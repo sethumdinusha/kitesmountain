@@ -1,0 +1,19 @@
+image: alpine:latest
+
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - cp index.html public/
+    - cp rooms.html public/
+    - cp amenities.html public/
+    - cp banquet.html public/
+    - cp contact.html public/
+    - cp -r css public/
+    - cp -r js public/
+    - cp -r images public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"

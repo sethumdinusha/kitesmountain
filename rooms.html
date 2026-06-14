@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooms - Kites Mountain Hotel & Resort</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo"><img src="images/kites_logo.png" alt="Logo" class="logo-img" /><span>Kites Mountain</span></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="amenities.html">Amenities</a></li>
+        <li><a href="banquet.html">Banquet Hall</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn-book">Book Now</a>
+      <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <section class="page-hero" style="background-image: url('images/roompage.JPG');">
+    <div class="hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="section-tag light">Accommodations</p>
+      <h1>Our Room Types</h1>
+      <p>8 carefully curated rooms for every traveller</p>
+    </div>
+  </section>
+
+  <section class="filter-section">
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">All Rooms</button>
+      <button class="filter-btn" data-filter="luxury">Luxury</button>
+      <button class="filter-btn" data-filter="family">Family</button>
+      <button class="filter-btn" data-filter="budget">Budget</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rooms-detail">
+
+      <div class="room-detail-card" data-category="luxury">
+        <div class="room-detail-img">
+          <img src="images/roompage.JPG" alt="King Room with Mountain View" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag luxury">Luxury</span>
+          <h3>King Room with Mountain View</h3>
+          <p>Wake up to breathtaking panoramic mountain views from your king-size bed. This premium room features floor-to-ceiling windows, elegant decor, and all modern comforts for a truly royal stay.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> King-Size Bed</li>
+            <li><i class="fa-solid fa-mountain"></i> Mountain View</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> 55" Smart TV</li>
+            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
+            <li><i class="fa-solid fa-bath"></i> Luxury Bathroom</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$180 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-detail-card reverse" data-category="luxury">
+        <div class="room-detail-img">
+          <img src="images/del_2_room.JPG" alt="Deluxe Double Room" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag popular">Most Popular</span>
+          <h3>Deluxe Double Room</h3>
+          <p>Our most sought-after room, the Deluxe Double combines sophisticated design with premium comfort. Featuring two queen beds, mountain-facing windows, and upscale amenities for a memorable stay.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> 2 Queen Beds</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> Smart TV</li>
+            <li><i class="fa-solid fa-mug-hot"></i> Coffee Maker</li>
+            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
+            <li><i class="fa-solid fa-bath"></i> Premium Bathroom</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$140 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-detail-card" data-category="budget">
+        <div class="room-detail-img">
+          <img src="images/roompage.JPG" alt="Budget Double Room" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag budget">Budget</span>
+          <h3>Budget Double Room</h3>
+          <p>Comfortable and affordable, our Budget Double Room is perfect for travellers who want quality without compromise. Clean, cozy, and equipped with all essential amenities for a pleasant stay.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> Double Bed</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> Flat-Screen TV</li>
+            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
+            <li><i class="fa-solid fa-bath"></i> Private Bathroom</li>
+            <li><i class="fa-solid fa-suitcase"></i> Luggage Storage</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$75 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-detail-card reverse" data-category="luxury">
+        <div class="room-detail-img">
+          <img src="images/roompage.JPG" alt="Deluxe Triple Room" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag luxury">Luxury</span>
+          <h3>Deluxe Triple Room</h3>
+          <p>Ideal for groups of three, the Deluxe Triple Room offers generous space, three comfortable beds, and premium finishes. Enjoy mountain views and upscale amenities in a stylish setting.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> 3 Single Beds</li>
+            <li><i class="fa-solid fa-mountain"></i> Mountain View</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> Smart TV</li>
+            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
+            <li><i class="fa-solid fa-bath"></i> Luxury Bathroom</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$160 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-detail-card" data-category="family">
+        <div class="room-detail-img">
+          <img src="images/fam_room_balcony.JPG" alt="Standard Family Room" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag family">Family</span>
+          <h3>Standard Family Room</h3>
+          <p>Designed with families in mind, the Standard Family Room provides ample space for parents and children. Featuring multiple beds, a cozy seating area, and all the comforts of home.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> 1 Double + 2 Singles</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> Smart TV</li>
+            <li><i class="fa-solid fa-couch"></i> Seating Area</li>
+            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
+            <li><i class="fa-solid fa-bath"></i> Family Bathroom</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$190 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-detail-card reverse" data-category="budget">
+        <div class="room-detail-img">
+          <img src="images/roompage.JPG" alt="Basic Triple Room" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag budget">Budget</span>
+          <h3>Basic Triple Room</h3>
+          <p>Our most economical option for groups of three. The Basic Triple Room offers clean, comfortable accommodation with all essential amenities at an unbeatable price point.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> 3 Single Beds</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> Flat-Screen TV</li>
+            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
+            <li><i class="fa-solid fa-bath"></i> Shared Bathroom</li>
+            <li><i class="fa-solid fa-suitcase"></i> Luggage Storage</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$90 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-detail-card" data-category="family">
+        <div class="room-detail-img">
+          <img src="images/fam_room_balcony.JPG" alt="Family Room with Balcony" />
+        </div>
+        <div class="room-detail-info">
+          <span class="room-type-tag popular">Best for Families</span>
+          <h3>Family Room with Balcony</h3>
+          <p>The ultimate family retreat &mdash; enjoy a spacious room with a private balcony overlooking the majestic mountains. Perfect for families who want extra space and a stunning outdoor area to relax.</p>
+          <ul class="room-amenities">
+            <li><i class="fa-solid fa-bed"></i> 1 King + 2 Singles</li>
+            <li><i class="fa-solid fa-person-shelter"></i> Private Balcony</li>
+            <li><i class="fa-solid fa-mountain"></i> Mountain View</li>
+            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
+            <li><i class="fa-solid fa-tv"></i> 55" Smart TV</li>
+            <li><i class="fa-solid fa-bath"></i> Luxury Bathroom</li>
+          </ul>
+          <div class="room-price-book">
+            <span class="price-big">$220 <small>/ night</small></span>
+            <a href="contact.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section bg-light">
+    <div class="container-center">
+      <p class="section-tag">Compare</p>
+      <h2>Room Comparison</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Room Type</th><th>Beds</th><th>View</th><th>Balcony</th><th>Price/Night</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>King Room with Mountain View</strong></td><td>1 King</td><td><i class="fa-solid fa-check gold"></i> Mountain</td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">$180</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+          <tr class="highlight-row"><td><strong>Deluxe Double Room</strong></td><td>2 Queen</td><td><i class="fa-solid fa-check gold"></i> Mountain</td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">$140</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+          <tr><td><strong>Budget Double Room</strong></td><td>1 Double</td><td><i class="fa-solid fa-minus"></i></td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">$75</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+          <tr><td><strong>Deluxe Triple Room</strong></td><td>3 Single</td><td><i class="fa-solid fa-check gold"></i> Mountain</td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">$160</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+          <tr><td><strong>Standard Family Room</strong></td><td>1 Dbl + 2 Sgl</td><td><i class="fa-solid fa-minus"></i></td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">$190</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+          <tr><td><strong>Basic Triple Room</strong></td><td>3 Single</td><td><i class="fa-solid fa-minus"></i></td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">$90</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+          <tr><td><strong>Family Room with Balcony</strong></td><td>1 King + 2 Sgl</td><td><i class="fa-solid fa-check gold"></i> Mountain</td><td><i class="fa-solid fa-check gold"></i></td><td class="price-col">$220</td><td><a href="contact.html" class="btn-sm">Book</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><img src="images/kites_logo.png" alt="Logo" class="logo-img" /><span>Kites Mountain</span></div>
+        <p>A luxury mountain retreat offering world-class hospitality.</p>
+        <div class="socials">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="amenities.html">Amenities</a></li>
+          <li><a href="banquet.html">Banquet Hall</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Mountain View Road, Highland District</p>
+        <p><i class="fa-solid fa-phone"></i> +1 (800) 555-KITES</p>
+        <p><i class="fa-solid fa-envelope"></i> info@kitesmountain.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel &amp; Resort. All rights reserved.</p></div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
