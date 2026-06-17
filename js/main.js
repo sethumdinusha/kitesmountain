@@ -139,7 +139,7 @@ function createFloatingButtons() {
       style="width: 56px; height: 56px; border-radius: 50%; background: #003580;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s; text-decoration: none;">
-      <img src="https://cf.bstatic.com/static/img/favicon/favicon-32x32.png" width="28" height="28" alt="Booking.com" style="border-radius: 4px;" />
+      <span style="color: white; font-size: 28px; font-weight: 900; font-family: Georgia, serif; line-height: 1;">𝔹</span>
     </a>
   `;
   document.body.appendChild(floatingBtns);
