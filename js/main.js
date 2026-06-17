@@ -117,7 +117,7 @@ document.querySelectorAll(
   observer.observe(el);
 });
 // ===== FLOATING BUTTONS =====
-window.addEventListener('DOMContentLoaded', () => {
+function createFloatingButtons() {
   const floatingBtns = document.createElement('div');
   floatingBtns.style.cssText = `
     position: fixed; bottom: 24px; right: 24px;
@@ -139,8 +139,14 @@ window.addEventListener('DOMContentLoaded', () => {
       style="width: 56px; height: 56px; border-radius: 50%; background: #003580;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s; text-decoration: none;">
-      <span style="color: white; font-size: 26px; font-weight: 900; font-family: Arial, sans-serif; line-height: 1;">B</span>
+      <img src="https://cf.bstatic.com/static/img/favicon/favicon-32x32.png" width="28" height="28" alt="Booking.com" style="border-radius: 4px;" />
     </a>
   `;
   document.body.appendChild(floatingBtns);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', createFloatingButtons);
+} else {
+  createFloatingButtons();
+}
