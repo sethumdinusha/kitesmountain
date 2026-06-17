@@ -138,10 +138,8 @@ window.addEventListener('DOMContentLoaded', () => {
       title="Book on Booking.com"
       style="width: 56px; height: 56px; border-radius: 50%; background: #003580;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
-        <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5zm-5-3c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-      </svg>
+      box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s; text-decoration: none;">
+      <span style="color: white; font-size: 26px; font-weight: 900; font-family: Arial, sans-serif; line-height: 1;">B</span>
     </a>
   `;
   document.body.appendChild(floatingBtns);
