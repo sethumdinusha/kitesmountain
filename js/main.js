@@ -41,22 +41,21 @@ if (contactForm) {
     e.preventDefault();
     const btn = contactForm.querySelector('button[type="submit"]');
     const formData = new FormData(contactForm);
-
     try {
       const response = await fetch(contactForm.action, {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
-
       if (response.ok) {
-        const popup = document.createElement('div');
-        popup.style.cssText = `
+        const overlay = document.createElement('div');
+        overlay.id = 'bookingPopup';
+        overlay.style.cssText = `
           position: fixed; top: 0; left: 0; width: 100%; height: 100%;
           background: rgba(0,0,0,0.6); display: flex; align-items: center;
           justify-content: center; z-index: 9999;
         `;
-        popup.innerHTML = `
+        overlay.innerHTML = `
           <div style="background: white; border-radius: 16px; padding: 40px; max-width: 420px;
             width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
             <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
@@ -68,21 +67,20 @@ if (contactForm) {
             </p>
             <a href="https://wa.me/94775243432" target="_blank"
               style="display: inline-block; background: #25D366; color: white; padding: 14px 28px;
-              border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; margin-bottom: 12px; width: 100%; box-sizing: border-box;">
+              border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;
+              margin-bottom: 12px; width: 100%; box-sizing: border-box;">
               📲 Confirm Booking on WhatsApp
             </a>
             <br/>
-            <button onclick="this.closest('.popup-overlay').remove()"
+            <button id="closePopup"
               style="background: none; border: none; color: #999; cursor: pointer; margin-top: 8px; font-size: 14px;">
               Close
             </button>
           </div>
         `;
-        popup.classList.add('popup-overlay');
-        document.body.appendChild(popup);
-        popup.addEventListener('click', (e) => {
-          if (e.target === popup) popup.remove();
-        });
+        document.body.appendChild(overlay);
+        document.getElementById('closePopup').addEventListener('click', () => overlay.remove());
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
         contactForm.reset();
       } else {
         btn.textContent = 'Something went wrong. Try again.';
@@ -119,30 +117,32 @@ document.querySelectorAll(
   observer.observe(el);
 });
 // ===== FLOATING BUTTONS =====
-const floatingBtns = document.createElement('div');
-floatingBtns.style.cssText = `
-  position: fixed; bottom: 24px; right: 24px;
-  display: flex; flex-direction: column; gap: 12px; z-index: 9998;
-`;
-floatingBtns.innerHTML = `
-  <a href="https://wa.me/94775243432" target="_blank" rel="noopener"
-    title="Chat on WhatsApp"
-    style="width: 56px; height: 56px; border-radius: 50%; background: #25D366;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 16px rgba(37,211,102,0.5); transition: transform 0.2s;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.17 1.535 5.943L.057 23.57a.75.75 0 0 0 .92.92l5.687-1.476A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 0 1-4.989-1.371l-.358-.213-3.712.964.991-3.624-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-    </svg>
-  </a>
-  <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener"
-    title="Book on Booking.com"
-    style="width: 56px; height: 56px; border-radius: 50%; background: #003580;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5zm-5-3c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-    </svg>
-  </a>
-`;
-document.body.appendChild(floatingBtns);
+window.addEventListener('DOMContentLoaded', () => {
+  const floatingBtns = document.createElement('div');
+  floatingBtns.style.cssText = `
+    position: fixed; bottom: 24px; right: 24px;
+    display: flex; flex-direction: column; gap: 12px; z-index: 9998;
+  `;
+  floatingBtns.innerHTML = `
+    <a href="https://wa.me/94775243432" target="_blank" rel="noopener"
+      title="Chat on WhatsApp"
+      style="width: 56px; height: 56px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.5); transition: transform 0.2s;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.17 1.535 5.943L.057 23.57a.75.75 0 0 0 .92.92l5.687-1.476A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 0 1-4.989-1.371l-.358-.213-3.712.964.991-3.624-.233-.373A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+      </svg>
+    </a>
+    <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener"
+      title="Book on Booking.com"
+      style="width: 56px; height: 56px; border-radius: 50%; background: #003580;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5zm-5-3c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+      </svg>
+    </a>
+  `;
+  document.body.appendChild(floatingBtns);
+});
