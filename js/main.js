@@ -3,7 +3,6 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
-
 // ===== HAMBURGER MENU =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
@@ -13,7 +12,6 @@ if (hamburger && navLinks) {
     link.addEventListener('click', () => navLinks.classList.remove('open'));
   });
 }
-
 // ===== ROOM FILTER TABS =====
 const filterBtns = document.querySelectorAll('.filter-btn');
 const roomCards = document.querySelectorAll('.room-detail-card');
@@ -36,7 +34,6 @@ if (filterBtns.length) {
     });
   });
 }
-
 // ===== CONTACT FORM =====
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
@@ -79,7 +76,6 @@ if (contactForm) {
     }
   });
 }
-
 // ===== SCROLL REVEAL =====
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -89,7 +85,6 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1 });
-
 document.querySelectorAll(
   '.room-card, .amenity-card, .testimonial-card, .event-card, .venue-card, .amenity-detail-card, .stat-item'
 ).forEach(el => {
