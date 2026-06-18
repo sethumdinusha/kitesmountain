@@ -277,3 +277,75 @@ ul { list-style: none; }
   .amenity-strip-inner { flex-direction: column; align-items: center; }
   .room-thumb { height: 200px; }
 }
+
+/* =========================================================
+   ADD-ON BLOCK — appended for: clickable logo link + rooms
+   page 3-image gallery. Does not modify any rule above.
+   ========================================================= */
+
+/* Makes the new <a> wrapper around the navbar logo inherit
+   the exact same look the plain .logo div had before —
+   no change to font size, family, color, or spacing. */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+}
+
+/* 3-image gallery for the Rooms page: 1 large photo (bed) on
+   the left, 2 stacked smaller photos (bathroom/view) on the
+   right. Falls back to a single column on small screens. */
+.room-gallery-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+}
+
+.room-gallery-3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.room-gallery-3 img:nth-child(1) {
+  grid-row: 1 / 3;
+  grid-column: 1;
+}
+
+.room-gallery-3 img:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.room-gallery-3 img:nth-child(3) {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+@media (max-width: 768px) {
+  .room-gallery-3 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    height: 280px;
+  }
+  .room-gallery-3 img:nth-child(1) {
+    grid-row: 1;
+    grid-column: 1 / 3;
+    height: 180px;
+  }
+  .room-gallery-3 img:nth-child(2) {
+    grid-row: 2;
+    grid-column: 1;
+    height: 95px;
+  }
+  .room-gallery-3 img:nth-child(3) {
+    grid-row: 2;
+    grid-column: 2;
+    height: 95px;
+  }
+}
