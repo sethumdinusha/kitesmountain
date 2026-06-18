@@ -48,6 +48,36 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (response.ok) {
+        // ===== Build a readable WhatsApp message from the real form data =====
+        const firstName = formData.get('first_name') || '';
+        const lastName = formData.get('last_name') || '';
+        const email = formData.get('email') || '';
+        const phone = formData.get('phone') || '';
+        const roomType = formData.get('room_type') || '';
+        const checkin = formData.get('checkin_date') || '';
+        const checkout = formData.get('checkout_date') || '';
+        const guests = formData.get('guests') || '';
+        const message = formData.get('message') || '';
+
+        const waLines = [
+          '🏔️ *New Booking Request — Kites Mountain*',
+          '',
+          `👤 *Name:* ${firstName} ${lastName}`.trim(),
+          `📞 *Phone:* ${phone || 'N/A'}`,
+          `✉️ *Email:* ${email || 'N/A'}`,
+          `🛏️ *Room Type:* ${roomType || 'N/A'}`,
+          `📅 *Check-in:* ${checkin || 'N/A'}`,
+          `📅 *Check-out:* ${checkout || 'N/A'}`,
+          `👥 *Guests:* ${guests || 'N/A'}`
+        ];
+        if (message) {
+          waLines.push('', `📝 *Message:* ${message}`);
+        }
+        waLines.push('', '✅ Please confirm availability for these dates. Thank you!');
+
+        const waMessage = encodeURIComponent(waLines.join('\n'));
+        const waLink = `https://wa.me/94775243432?text=${waMessage}`;
+
         const overlay = document.createElement('div');
         overlay.id = 'bookingPopup';
         overlay.style.cssText = `
@@ -65,7 +95,7 @@ if (contactForm) {
             <p style="color: #666; margin-bottom: 24px; line-height: 1.6;">
               Thank you for choosing Kites Mountain. To confirm your reservation, please contact us on WhatsApp.
             </p>
-            <a href="https://wa.me/94775243432" target="_blank"
+            <a href="${waLink}" target="_blank"
               style="display: inline-block; background: #25D366; color: white; padding: 14px 28px;
               border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;
               margin-bottom: 12px; width: 100%; box-sizing: border-box;">
