@@ -151,7 +151,7 @@ function createFloatingButtons() {
   const floatingBtns = document.createElement('div');
   floatingBtns.style.cssText = `
     position: fixed; bottom: 24px; right: 24px;
-    display: flex; flex-direction: column; gap: 12px; z-index: 9998;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px; z-index: 9998;
   `;
   floatingBtns.innerHTML = `
     <a href="https://wa.me/94775243432" target="_blank" rel="noopener"
