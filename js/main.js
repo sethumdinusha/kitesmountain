@@ -151,12 +151,14 @@ function createFloatingButtons() {
   const floatingBtns = document.createElement('div');
   floatingBtns.style.cssText = `
     position: fixed; bottom: 24px; right: 24px;
-    display: flex; flex-direction: column; gap: 12px; z-index: 9998;
+    display: flex; flex-direction: column; align-items: flex-end;
+    gap: 12px; z-index: 9998;
   `;
   floatingBtns.innerHTML = `
     <a href="https://wa.me/94775243432" target="_blank" rel="noopener"
       title="Chat on WhatsApp"
-      style="width: 56px; height: 56px; border-radius: 50%; background: #25D366;
+      style="width: 56px; height: 56px; min-width: 56px; min-height: 56px; flex-shrink: 0;
+      border-radius: 50%; background: #25D366;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 16px rgba(37,211,102,0.5); transition: transform 0.2s;">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
@@ -166,7 +168,8 @@ function createFloatingButtons() {
     </a>
     <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener"
       title="Book on Booking.com"
-      style="width: 56px; height: 56px; border-radius: 50%; background: #003580;
+      style="width: 56px; height: 56px; min-width: 56px; min-height: 56px; flex-shrink: 0;
+      border-radius: 50%; background: #003580;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 16px rgba(0,53,128,0.5); transition: transform 0.2s; text-decoration: none;">
       <span style="color: white; font-size: 28px; font-weight: 900; font-family: Georgia, serif; line-height: 1;">𝔹</span>
