@@ -25,7 +25,7 @@ ul { list-style: none; }
 .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; }
 .logo { display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); }
 .logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 6px; flex-shrink: 0; }
-.nav-links { display: flex; gap: 34px; }
+.nav-links { display: flex; gap: 34px; margin-right: 32px; }
 .nav-links a { color: rgba(255,255,255,0.85); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.4px; transition: var(--transition); position: relative; }
 .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: var(--transition); }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -122,6 +122,12 @@ ul { list-style: none; }
 .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 16px; }
 .testimonial-card p { color: rgba(255,255,255,0.8); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
 .guest { color: var(--gold); font-size: 0.85rem; }
+
+/* REVIEWS CTA (Booking.com link button) */
+.reviews-cta-wrap { text-align: center; margin-top: 48px; }
+.btn-booking { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--dark); padding: 14px 34px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; border: 2px solid var(--gold); transition: var(--transition); }
+.btn-booking i { font-size: 0.95rem; }
+.btn-booking:hover { background: var(--dark2); color: var(--gold-light); border-color: var(--gold-light); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
 
 /* CTA */
 .cta { background: linear-gradient(135deg, var(--dark2) 0%, #16213e 100%); padding: 100px 24px; text-align: center; position: relative; overflow: hidden; }
@@ -221,6 +227,31 @@ ul { list-style: none; }
 .venue-specs span { font-size: 0.82rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 6px; }
 .venue-card p { color: var(--text); font-size: 0.88rem; line-height: 1.7; margin-bottom: 24px; }
 
+/* BANQUET — VIDEO SPOTLIGHT (single hall, single column) */
+.venue-spotlight { position: relative; min-height: 640px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--dark2); }
+.venue-spotlight-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.venue-spotlight-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,13,26,0.82) 0%, rgba(13,13,26,0.55) 100%); }
+.venue-spotlight-content { position: relative; z-index: 2; max-width: 720px; text-align: center; color: white; padding: 80px 24px; }
+.venue-spotlight-content p:not(.section-tag) { color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 28px; font-size: 1.05rem; }
+.venue-spotlight-specs { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+.venue-spotlight-specs span { display: flex; align-items: center; gap: 8px; color: var(--gold-light); font-weight: 600; font-size: 0.92rem; }
+
+/* BANQUET — WEDDING GALLERY PLACEHOLDER */
+.wedding-gallery-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 24px; }
+.wedding-gallery-placeholder { aspect-ratio: 4 / 3; border-radius: var(--radius); background: repeating-linear-gradient(45deg, #ece7da, #ece7da 12px, #f3f0e6 12px, #f3f0e6 24px); border: 2px dashed #d9d2bf; display: flex; align-items: center; justify-content: center; }
+.wedding-gallery-placeholder i { font-size: 2rem; color: #c9c2ab; }
+.wedding-gallery-item { aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.wedding-gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
+.wedding-gallery-item:hover img { transform: scale(1.06); }
+
+@media (max-width: 768px) {
+  .wedding-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .venue-spotlight { min-height: 520px; }
+}
+@media (max-width: 480px) {
+  .wedding-gallery-grid { grid-template-columns: 1fr; }
+}
+
 /* CONTACT */
 .contact-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
 .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 16px; }
@@ -253,7 +284,7 @@ ul { list-style: none; }
   .rooms-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--dark2); padding: 24px; gap: 16px; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--dark2); padding: 24px; gap: 16px; margin-right: 0; }
   .nav-links.open { display: flex; }
   .hamburger { display: block; }
   .btn-book { display: none; }
@@ -325,6 +356,71 @@ ul { list-style: none; }
 .room-gallery-3 img:nth-child(3) {
   grid-row: 2;
   grid-column: 2;
+}
+
+/* 4-image gallery variant: 1 large photo on the left, 3 stacked
+   smaller photos on the right. Same fallback behaviour as the
+   3-image gallery on small screens. */
+.room-gallery-4 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.room-gallery-4 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.room-gallery-4 img:nth-child(1) {
+  grid-row: 1 / 4;
+  grid-column: 1;
+}
+
+.room-gallery-4 img:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.room-gallery-4 img:nth-child(3) {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.room-gallery-4 img:nth-child(4) {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+@media (max-width: 768px) {
+  .room-gallery-4 {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    height: 280px;
+  }
+  .room-gallery-4 img:nth-child(1) {
+    grid-row: 1;
+    grid-column: 1 / 4;
+    height: 180px;
+  }
+  .room-gallery-4 img:nth-child(2) {
+    grid-row: 2;
+    grid-column: 1;
+    height: 95px;
+  }
+  .room-gallery-4 img:nth-child(3) {
+    grid-row: 2;
+    grid-column: 2;
+    height: 95px;
+  }
+  .room-gallery-4 img:nth-child(4) {
+    grid-row: 2;
+    grid-column: 3;
+    height: 95px;
+  }
 }
 
 @media (max-width: 768px) {
