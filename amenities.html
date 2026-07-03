@@ -3,11 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amenities - Kites Mountain Hotel & Resort</title>
+  <title>Amenities - Kites Mountain Hotel &amp; Resort</title>
   <link rel="icon" type="image/png" href="images/kites_logo.png" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Tour Packages Card Highlight */
+    .amenity-detail-card.tour-card {
+      background: linear-gradient(135deg, rgba(201,169,110,0.06) 0%, rgba(201,169,110,0.02) 100%);
+      border-left: 4px solid #c9a96e;
+    }
+    .tour-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 1.5rem;
+    }
+    .tour-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.97rem;
+      color: #444;
+    }
+    .tour-list li:last-child { border-bottom: none; }
+    .tour-list li i { color: #c9a96e; width: 1.1rem; text-align: center; }
+    /* Booking.com Banner */
+    .booking-banner {
+      background: linear-gradient(135deg, #003580 0%, #0057b8 100%);
+      padding: 3.5rem 1rem;
+      text-align: center;
+    }
+    .booking-banner p.tag { color: rgba(255,255,255,0.75); font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .booking-banner h2 { color: #fff; margin-bottom: 0.8rem; }
+    .booking-banner p.sub { color: rgba(255,255,255,0.82); max-width: 480px; margin: 0 auto 1.8rem; }
+  </style>
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -47,6 +80,7 @@
       <div class="strip-item"><i class="fa-solid fa-utensils"></i><span>Breakfast</span></div>
       <div class="strip-item"><i class="fa-solid fa-wifi"></i><span>Free WiFi</span></div>
       <div class="strip-item"><i class="fa-solid fa-square-parking"></i><span>Free Parking</span></div>
+      <div class="strip-item"><i class="fa-solid fa-person-hiking"></i><span>Tour Packages</span></div>
     </div>
   </section>
 
@@ -54,7 +88,7 @@
     <div class="container-center">
       <p class="section-tag">World-Class Facilities</p>
       <h2>Indulge in Every Comfort</h2>
-      <p class="section-sub">From relaxation to socialising, Kites Mountain offers a complete experience for every guest.</p>
+      <p class="section-sub">From relaxation to adventure, Kites Mountain offers a complete experience for every guest.</p>
     </div>
 
     <div class="amenities-detail">
@@ -68,7 +102,7 @@
             <li>Open all year</li>
             <li>Open-air bath</li>
             <li>Free for all guests</li>
-            <li>Outdoor furniture & loungers</li>
+            <li>Outdoor furniture &amp; loungers</li>
           </ul>
         </div>
       </div>
@@ -76,11 +110,11 @@
       <div class="amenity-detail-card">
         <div class="amenity-icon-large"><i class="fa-solid fa-utensils"></i></div>
         <div class="amenity-detail-info">
-          <h3>Breakfast & Dining</h3>
+          <h3>Breakfast &amp; Dining</h3>
           <p>Start your day with a full English or Irish breakfast served with fresh juice and fruit. Room service and a dedicated dining area are also available for relaxed meals throughout your stay.</p>
           <ul>
             <li>Full English/Irish breakfast</li>
-            <li>Fresh juice & fruit included</li>
+            <li>Fresh juice &amp; fruit included</li>
             <li>Room service available</li>
             <li>On-site dining area</li>
           </ul>
@@ -90,10 +124,10 @@
       <div class="amenity-detail-card">
         <div class="amenity-icon-large"><i class="fa-solid fa-shuttle-van"></i></div>
         <div class="amenity-detail-info">
-          <h3>Free Airport Shuttle</h3>
-          <p>Travel with ease using our complimentary airport shuttle service. Our friendly drivers are always ready to help, making your arrival and departure smooth and stress-free.</p>
+          <h3>Airport Shuttle</h3>
+          <p>Travel with ease using our airport shuttle service. Our friendly drivers are always ready to help, making your arrival and departure smooth and stress-free.</p>
           <ul>
-            <li>Free pick-up & drop-off</li>
+            <li>Airport pick-up &amp; drop-off</li>
             <li>Friendly, helpful drivers</li>
             <li>Easy access to Badulla town</li>
             <li>24-hour front desk assistance</li>
@@ -123,18 +157,46 @@
           <ul>
             <li>Free on-site parking</li>
             <li>No reservation needed</li>
-            <li>24-hour security & CCTV</li>
+            <li>24-hour security &amp; CCTV</li>
             <li>Safety deposit box at front desk</li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Tour Packages -->
+      <div class="amenity-detail-card tour-card">
+        <div class="amenity-icon-large"><i class="fa-solid fa-mountain-sun"></i></div>
+        <div class="amenity-detail-info">
+          <h3>Tour Packages &amp; Adventures</h3>
+          <p>Discover the stunning landscapes around Badulla with our curated tour packages. From thrilling mountain hikes to scenic nature trails, our team is happy to arrange the perfect adventure for you.</p>
+          <ul class="tour-list">
+            <li><i class="fa-solid fa-person-hiking"></i> Narangala Hike</li>
+            <li><i class="fa-solid fa-mountain"></i> Kite Mountain Hike</li>
+            <li><i class="fa-solid fa-route"></i> Custom Tours &mdash; We Can Arrange!</li>
+            <li><i class="fa-solid fa-binoculars"></i> Scenic Badulla Explorations</li>
+          </ul>
+          <a href="contact.html" class="btn-primary">Enquire About Tours</a>
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- Booking.com Banner -->
+  <section class="booking-banner">
+    <div class="container-center">
+      <p class="tag">Book Online</p>
+      <h2>Also Available on Booking.com</h2>
+      <p class="sub">View all amenities, read verified guest reviews, and book securely through Booking.com.</p>
+      <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener" class="btn-booking">
+        <i class="fa-solid fa-bed"></i> View on Booking.com
+      </a>
+    </div>
+  </section>
+
   <section class="cta">
     <div class="cta-content">
-      <h2>Experience All This & More</h2>
+      <h2>Experience All This &amp; More</h2>
       <p>Book your stay and enjoy unlimited access to all our world-class amenities.</p>
       <a href="contact.html" class="btn-primary">Book Your Stay</a>
     </div>
@@ -143,12 +205,13 @@
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo"><img src="images/kites_logo.png" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel & Resort</span></div>
+        <div class="logo"><img src="images/kites_logo.png" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel &amp; Resort</span></div>
         <p>A luxury mountain retreat offering world-class hospitality.</p>
         <div class="socials">
           <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kites_mountain?igsh=MTljczc1bXU1YmhlaA%3D%3D&utm_source=qr" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener"><i class="fa-solid fa-bed"></i></a>
         </div>
       </div>
       <div class="footer-links">
@@ -168,7 +231,7 @@
         <p><i class="fa-solid fa-envelope"></i> kitemountainhotel@gmail.com</p>
       </div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel & Resort. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel &amp; Resort. All rights reserved.</p></div>
   </footer>
   <script src="js/main.js"></script>
 </body>

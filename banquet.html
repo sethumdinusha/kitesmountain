@@ -3,11 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Banquet Hall - Kites Mountain Hotel & Resort</title>
+  <title>Banquet Hall - Kites Mountain Hotel &amp; Resort</title>
   <link rel="icon" type="image/png" href="images/kites_logo.png" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Video Section ── */
+    .video-section {
+      background: #0c0c0c;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .video-section .section-tag { color: rgba(201,169,110,0.9); }
+    .video-section h2 { color: #fff; margin-bottom: 0.6rem; }
+    .video-section p.sub { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+    .video-frame-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      aspect-ratio: 16/9;
+    }
+    .video-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── Book Hall CTA ── */
+    .book-hall-section {
+      background: linear-gradient(135deg, #1a0e02 0%, #2c1a05 50%, #1a0e02 100%);
+      padding: 4.5rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .book-hall-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,169,110,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .book-hall-section .section-tag { color: #c9a96e; }
+    .book-hall-section h2 { color: #fff; margin-bottom: 0.8rem; }
+    .book-hall-section p { color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto 2rem; }
+    .book-hall-btns {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 2rem;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .btn-whatsapp:hover {
+      background: #1ebc5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+    }
+    .btn-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: #c9a96e;
+      border: 2px solid #c9a96e;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .btn-call:hover {
+      background: #c9a96e;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,169,110,0.4);
+    }
+
+    /* ── Booking.com Banner ── */
+    .booking-banner {
+      background: linear-gradient(135deg, #003580 0%, #0057b8 100%);
+      padding: 3.5rem 1rem;
+      text-align: center;
+    }
+    .booking-banner p.tag { color: rgba(255,255,255,0.75); font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .booking-banner h2 { color: #fff; margin-bottom: 0.8rem; }
+    .booking-banner p.sub { color: rgba(255,255,255,0.82); max-width: 480px; margin: 0 auto 1.8rem; }
+  </style>
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -33,7 +136,7 @@
   <section class="page-hero" style="background-image: url('images/banquthall_page.JPG');">
     <div class="hero-overlay"></div>
     <div class="page-hero-content">
-      <p class="section-tag light">Events & Celebrations</p>
+      <p class="section-tag light">Events &amp; Celebrations</p>
       <h1>Banquet Hall</h1>
       <p>Where every celebration becomes a cherished memory</p>
     </div>
@@ -50,7 +153,7 @@
           <li><i class="fa-solid fa-check"></i> Capacity: Up to 500 Guests</li>
           <li><i class="fa-solid fa-check"></i> State-of-the-Art AV System</li>
           <li><i class="fa-solid fa-check"></i> Dedicated Events Coordinator</li>
-          <li><i class="fa-solid fa-check"></i> Customizable Décor & Lighting</li>
+          <li><i class="fa-solid fa-check"></i> Customizable Décor &amp; Lighting</li>
           <li><i class="fa-solid fa-check"></i> Gourmet Catering Services</li>
           <li><i class="fa-solid fa-check"></i> Valet Parking Available</li>
         </ul>
@@ -77,6 +180,7 @@
     </div>
   </section>
 
+  <!-- Gallery -->
   <section class="section bg-light">
     <div class="container-center">
       <p class="section-tag">Memories Made Here</p>
@@ -85,14 +189,13 @@
     </div>
     <div class="hall-slider" id="hallSlider">
       <div class="hall-slider-track" id="hallSliderTrack">
-        <div class="hall-slide"><img src="images/banquthall_page.JPG" alt="Summit Grand Ballroom" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b1.JPG" alt="Wedding celebration at Kites Mountain - 1" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b2.JPG" alt="Wedding celebration at Kites Mountain - 2" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b3.JPG" alt="Wedding celebration at Kites Mountain - 3" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b4.JPG" alt="Wedding celebration at Kites Mountain - 4" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b5.JPG" alt="Wedding celebration at Kites Mountain - 5" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b6.JPG" alt="Wedding celebration at Kites Mountain - 6" loading="lazy" /></div>
-        <div class="hall-slide"><img src="images/b7.JPG" alt="Wedding celebration at Kites Mountain - 7" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=159RZbJUnnzeP8qC28U_23OAI5ZEh42U-" alt="Banquet Hall celebration - 1" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1AVvrEZQOQumq3PVhYszuOadS6yMIB2Ta" alt="Banquet Hall celebration - 2" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1OYjSmbCYR3bPS3YBje3b26vSefzS8Q1P" alt="Banquet Hall celebration - 3" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1QTtv-9V0P-gRxHYJgWyPSGXxEJzoemKM" alt="Banquet Hall celebration - 4" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1YmRLDZh2WPwG_wYh60MqlBMv-IC7lTpz" alt="Banquet Hall celebration - 5" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1aII_2zHAweNm0eWDAWM2YfJ_WmKs0Mrm" alt="Banquet Hall celebration - 6" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1qmXFz2Zl5OA92MdgIylsuBUgZM6CFEMy" alt="Banquet Hall celebration - 7" loading="lazy" /></div>
       </div>
       <button class="hall-slider-arrow prev" id="hallPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="hall-slider-arrow next" id="hallNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
@@ -100,23 +203,62 @@
     </div>
   </section>
 
-  <section class="cta">
-    <div class="cta-content">
-      <h2>Plan Your Perfect Event</h2>
-      <p>Contact our events team to start planning your unforgettable celebration.</p>
-      <a href="contact.html" class="btn-primary">Get in Touch</a>
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="container-center">
+      <p class="section-tag">See It in Action</p>
+      <h2>Experience the Grand Ballroom</h2>
+      <p class="sub">Watch our banquet hall come alive during a celebration at Kites Mountain.</p>
+    </div>
+    <div class="video-frame-wrap">
+      <iframe
+        src="https://drive.google.com/file/d/1kBhQX56LRGSdUQflmAokPsszN4WDIyZ1/preview"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+        title="Kites Mountain Banquet Hall Video">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Book the Hall -->
+  <section class="book-hall-section">
+    <div class="container-center">
+      <p class="section-tag">Reserve the Hall</p>
+      <h2>Want to Book the Banquet Hall?</h2>
+      <p>To book our hall for your special event, simply call or WhatsApp us and our team will arrange everything for you.</p>
+      <div class="book-hall-btns">
+        <a href="https://wa.me/94775243432?text=Hello%2C%20I%20would%20like%20to%20book%20the%20Banquet%20Hall%20at%20Kites%20Mountain%20Hotel." target="_blank" rel="noopener" class="btn-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+        </a>
+        <a href="tel:+94775243432" class="btn-call">
+          <i class="fa-solid fa-phone"></i> Call Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking.com Banner -->
+  <section class="booking-banner">
+    <div class="container-center">
+      <p class="tag">Book Online</p>
+      <h2>Also Available on Booking.com</h2>
+      <p class="sub">View our property, facilities, and book your stay securely through Booking.com.</p>
+      <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener" class="btn-booking">
+        <i class="fa-solid fa-bed"></i> View on Booking.com
+      </a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo"><img src="images/kites_logo.png" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel & Resort</span></div>
+        <div class="logo"><img src="images/kites_logo.png" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel &amp; Resort</span></div>
         <p>A luxury mountain retreat offering world-class hospitality.</p>
         <div class="socials">
           <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kites_mountain?igsh=MTljczc1bXU1YmhlaA%3D%3D&utm_source=qr" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener"><i class="fa-solid fa-bed"></i></a>
         </div>
       </div>
       <div class="footer-links">
@@ -136,8 +278,9 @@
         <p><i class="fa-solid fa-envelope"></i> kitemountainhotel@gmail.com</p>
       </div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel & Resort. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel &amp; Resort. All rights reserved.</p></div>
   </footer>
+
   <script src="js/main.js"></script>
   <script>
     (function () {
@@ -172,7 +315,6 @@
       prevBtn.addEventListener('click', () => goTo(index - 1));
       nextBtn.addEventListener('click', () => goTo(index + 1));
 
-      // touch swipe support
       let startX = 0;
       track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
       track.addEventListener('touchend', (e) => {
@@ -181,7 +323,6 @@
         else if (diff < -40) goTo(index + 1);
       }, { passive: true });
 
-      // autoplay
       let timer = setInterval(() => goTo(index + 1), 5000);
       const slider = document.getElementById('hallSlider');
       slider.addEventListener('mouseenter', () => clearInterval(timer));
