@@ -155,10 +155,35 @@ ul { list-style: none; }
 .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 0.82rem; }
 
 /* PAGE HERO */
-.page-hero { height: 65vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.page-hero { 
+  height: 65vh; 
+  position: relative; 
+  overflow: hidden; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background-size: 0 0 !important; /* Hide parent background paint but preserve URL for inheritance */
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  animation: slowZoom 12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform;
+}
 .page-hero-content { position: relative; z-index: 2; text-align: center; color: white; padding: 0 24px; }
 .page-hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.2rem); margin: 12px 0 8px; }
 .page-hero-content p { color: rgba(255,255,255,0.8); font-size: 1rem; }
+
+@keyframes slowZoom {
+  from { transform: scale(1.15); }
+  to { transform: scale(1); }
+}
 
 /* FILTER TABS */
 .filter-section { background: var(--light-bg); padding: 28px 24px; text-align: center; }
