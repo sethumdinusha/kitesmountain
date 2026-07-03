@@ -1,3 +1,19 @@
+// ===== HERO VIDEO PARALLAX =====
+(function () {
+  const heroVideo = document.querySelector('.hero-video');
+  if (!heroVideo) return;
+  let ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        heroVideo.style.transform = 'translateY(' + (window.scrollY * 0.35) + 'px)';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
 // ===== NAVBAR SCROLL =====
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
