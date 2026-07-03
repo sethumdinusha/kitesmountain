@@ -12,6 +12,7 @@ pages:
     - cp -r css public/
     - cp -r js public/
     - cp -r images public/
+    - cp -r videos public/
   artifacts:
     paths:
       - public
