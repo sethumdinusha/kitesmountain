@@ -28,11 +28,12 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.7);
       aspect-ratio: 16/9;
     }
-    .video-frame-wrap iframe {
+    .video-frame-wrap video {
       width: 100%;
       height: 100%;
-      border: none;
+      object-fit: cover;
       display: block;
+      border: none;
     }
 
     /* ── Book Hall CTA ── */
@@ -100,16 +101,6 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(201,169,110,0.4);
     }
-
-    /* ── Booking.com Banner ── */
-    .booking-banner {
-      background: linear-gradient(135deg, #003580 0%, #0057b8 100%);
-      padding: 3.5rem 1rem;
-      text-align: center;
-    }
-    .booking-banner p.tag { color: rgba(255,255,255,0.75); font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .booking-banner h2 { color: #fff; margin-bottom: 0.8rem; }
-    .booking-banner p.sub { color: rgba(255,255,255,0.82); max-width: 480px; margin: 0 auto 1.8rem; }
   </style>
 </head>
 <body>
@@ -189,13 +180,13 @@
     </div>
     <div class="hall-slider" id="hallSlider">
       <div class="hall-slider-track" id="hallSliderTrack">
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=159RZbJUnnzeP8qC28U_23OAI5ZEh42U-" alt="Banquet Hall celebration - 1" loading="lazy" /></div>
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1AVvrEZQOQumq3PVhYszuOadS6yMIB2Ta" alt="Banquet Hall celebration - 2" loading="lazy" /></div>
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1OYjSmbCYR3bPS3YBje3b26vSefzS8Q1P" alt="Banquet Hall celebration - 3" loading="lazy" /></div>
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1QTtv-9V0P-gRxHYJgWyPSGXxEJzoemKM" alt="Banquet Hall celebration - 4" loading="lazy" /></div>
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1YmRLDZh2WPwG_wYh60MqlBMv-IC7lTpz" alt="Banquet Hall celebration - 5" loading="lazy" /></div>
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1aII_2zHAweNm0eWDAWM2YfJ_WmKs0Mrm" alt="Banquet Hall celebration - 6" loading="lazy" /></div>
-        <div class="hall-slide"><img src="https://drive.google.com/uc?export=view&id=1qmXFz2Zl5OA92MdgIylsuBUgZM6CFEMy" alt="Banquet Hall celebration - 7" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/159RZbJUnnzeP8qC28U_23OAI5ZEh42U-" alt="Banquet Hall celebration - 1" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1AVvrEZQOQumq3PVhYszuOadS6yMIB2Ta" alt="Banquet Hall celebration - 2" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1OYjSmbCYR3bPS3YBje3b26vSefzS8Q1P" alt="Banquet Hall celebration - 3" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1QTtv-9V0P-gRxHYJgWyPSGXxEJzoemKM" alt="Banquet Hall celebration - 4" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1YmRLDZh2WPwG_wYh60MqlBMv-IC7lTpz" alt="Banquet Hall celebration - 5" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1aII_2zHAweNm0eWDAWM2YfJ_WmKs0Mrm" alt="Banquet Hall celebration - 6" loading="lazy" /></div>
+        <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1qmXFz2Zl5OA92MdgIylsuBUgZM6CFEMy" alt="Banquet Hall celebration - 7" loading="lazy" /></div>
       </div>
       <button class="hall-slider-arrow prev" id="hallPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="hall-slider-arrow next" id="hallNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
@@ -211,12 +202,10 @@
       <p class="sub">Watch our banquet hall come alive during a celebration at Kites Mountain.</p>
     </div>
     <div class="video-frame-wrap">
-      <iframe
-        src="https://drive.google.com/file/d/1kBhQX56LRGSdUQflmAokPsszN4WDIyZ1/preview"
-        allow="autoplay; fullscreen"
-        allowfullscreen
-        title="Kites Mountain Banquet Hall Video">
-      </iframe>
+      <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;">
+        <source src="https://drive.google.com/uc?export=download&id=1kBhQX56LRGSdUQflmAokPsszN4WDIyZ1" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
@@ -234,18 +223,6 @@
           <i class="fa-solid fa-phone"></i> Call Us
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Booking.com Banner -->
-  <section class="booking-banner">
-    <div class="container-center">
-      <p class="tag">Book Online</p>
-      <h2>Also Available on Booking.com</h2>
-      <p class="sub">View our property, facilities, and book your stay securely through Booking.com.</p>
-      <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener" class="btn-booking">
-        <i class="fa-solid fa-bed"></i> View on Booking.com
-      </a>
     </div>
   </section>
 
