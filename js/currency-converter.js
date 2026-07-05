@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  *  Kites Mountain — Dynamic Pricing & Currency Converter
  * ============================================================
@@ -29,7 +29,7 @@
   // Map country code -> { currency code, symbol, locale }
   var COUNTRY_CURRENCY_MAP = {
     // Asia-Pacific
-    LK: { code: 'LKR', symbol: 'LKR ', locale: 'si-LK' },
+    LK: { code: 'LKR', symbol: 'LKR ', locale: 'en-LK' },
     IN: { code: 'INR', symbol: '\u20B9',   locale: 'en-IN' },
     JP: { code: 'JPY', symbol: '\u00A5',   locale: 'ja-JP' },
     CN: { code: 'CNY', symbol: '\u00A5',   locale: 'zh-CN' },
