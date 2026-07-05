@@ -1,347 +1,371 @@
-/**
+﻿/**
  * ============================================================
  *  Kites Mountain — Dynamic Pricing & Currency Converter
  * ============================================================
+ *  Sheet prices are in LKR (Sri Lankan Rupees).
  *  Flow:
- *    1. Fetch room prices from Google Sheets (CSV, always live)
- *    2. Detect visitor's country via ipapi.co (free, no key needed)
- *    3. Fetch live USD exchange rates via open.er-api.com (free)
- *    4. Update every .price-big and .price-col element on the page
- *    5. Show a subtle currency-info badge so the visitor knows their currency
+ *    1. Fetch room prices from Google Sheets (CSV, always live, in LKR)
+ *    2. Detect visitor country via ipapi.co (free, no key needed)
+ *    3. Fetch live USD rates via open.er-api.com to compute LKR→target
+ *    4. Update every .price-big, .price, and .price-col element on the page
+ *    5. Show animated currency badge for non-LKR visitors
  * ============================================================
  */
 
 (function () {
   'use strict';
 
-  /* ── CONFIG ─────────────────────────────────────────────── */
+  /* ── CONFIG ──────────────────────────────────────────────── */
   var SHEET_ID = '17cvSVqR0WvnZvUOZX0qYOXowQbsr7A3PqZ9C6Ht0KBA';
   var SHEET_CSV_URL =
     'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
     '/export?format=csv&cachebust=' + Date.now();
 
-  // Free exchange-rate API — no API key required (USD base, 1500 req/mo free)
+  // Sheet prices are in LKR. We fetch USD-based rates and compute:
+  //   LKR_to_Target = rates[target] / rates['LKR']
   var RATES_URL = 'https://open.er-api.com/v6/latest/USD';
+  var GEO_URL   = 'https://ipapi.co/json/';
 
-  // Geolocation: ipapi.co — free, 1000 req/day, no key needed
-  var GEO_URL = 'https://ipapi.co/json/';
-
-  // Map country code -> { currency code, symbol, locale }
+  /* ── COUNTRY → CURRENCY MAP ──────────────────────────────── */
   var COUNTRY_CURRENCY_MAP = {
-    // Asia-Pacific
-    LK: { code: 'LKR', symbol: 'LKR ', locale: 'en-LK' },
-    IN: { code: 'INR', symbol: '\u20B9',   locale: 'en-IN' },
-    JP: { code: 'JPY', symbol: '\u00A5',   locale: 'ja-JP' },
-    CN: { code: 'CNY', symbol: '\u00A5',   locale: 'zh-CN' },
-    AU: { code: 'AUD', symbol: 'A$',  locale: 'en-AU' },
-    NZ: { code: 'NZD', symbol: 'NZ$', locale: 'en-NZ' },
-    SG: { code: 'SGD', symbol: 'S$',  locale: 'en-SG' },
-    MY: { code: 'MYR', symbol: 'RM',  locale: 'ms-MY' },
-    TH: { code: 'THB', symbol: '\u0E3F',   locale: 'th-TH' },
-    ID: { code: 'IDR', symbol: 'Rp',  locale: 'id-ID' },
-    PH: { code: 'PHP', symbol: '\u20B1',   locale: 'fil-PH' },
-    KR: { code: 'KRW', symbol: '\u20A9',   locale: 'ko-KR' },
-    PK: { code: 'PKR', symbol: '\u20A8',   locale: 'ur-PK' },
-    BD: { code: 'BDT', symbol: '\u09F3',   locale: 'bn-BD' },
-    NP: { code: 'NPR', symbol: 'Rs', locale: 'ne-NP' },
-    MV: { code: 'MVR', symbol: 'Rf',  locale: 'dv-MV' },
+    // South Asia
+    LK: { code: 'LKR', symbol: 'LKR',  locale: 'en-LK' },
+    IN: { code: 'INR', symbol: '\u20B9',    locale: 'en-IN' },
+    PK: { code: 'PKR', symbol: 'Rs',    locale: 'en-PK' },
+    BD: { code: 'BDT', symbol: 'Tk',    locale: 'en-BD' },
+    NP: { code: 'NPR', symbol: 'Rs',    locale: 'ne-NP' },
+    MV: { code: 'MVR', symbol: 'Rf',    locale: 'en-MV' },
+    // East / SE Asia
+    JP: { code: 'JPY', symbol: '\u00A5',    locale: 'ja-JP' },
+    CN: { code: 'CNY', symbol: '\u00A5',    locale: 'zh-CN' },
+    KR: { code: 'KRW', symbol: '\u20A9',    locale: 'ko-KR' },
+    SG: { code: 'SGD', symbol: 'S$',    locale: 'en-SG' },
+    MY: { code: 'MYR', symbol: 'RM',    locale: 'ms-MY' },
+    TH: { code: 'THB', symbol: '\u0E3F',    locale: 'th-TH' },
+    ID: { code: 'IDR', symbol: 'Rp',    locale: 'id-ID' },
+    PH: { code: 'PHP', symbol: '\u20B1',    locale: 'en-PH' },
+    // Oceania
+    AU: { code: 'AUD', symbol: 'A$',    locale: 'en-AU' },
+    NZ: { code: 'NZD', symbol: 'NZ$',   locale: 'en-NZ' },
     // Europe
-    GB: { code: 'GBP', symbol: '\u00A3',   locale: 'en-GB' },
-    DE: { code: 'EUR', symbol: '\u20AC',   locale: 'de-DE' },
-    FR: { code: 'EUR', symbol: '\u20AC',   locale: 'fr-FR' },
-    IT: { code: 'EUR', symbol: '\u20AC',   locale: 'it-IT' },
-    ES: { code: 'EUR', symbol: '\u20AC',   locale: 'es-ES' },
-    NL: { code: 'EUR', symbol: '\u20AC',   locale: 'nl-NL' },
-    PT: { code: 'EUR', symbol: '\u20AC',   locale: 'pt-PT' },
-    BE: { code: 'EUR', symbol: '\u20AC',   locale: 'fr-BE' },
-    AT: { code: 'EUR', symbol: '\u20AC',   locale: 'de-AT' },
-    CH: { code: 'CHF', symbol: 'CHF', locale: 'de-CH' },
-    SE: { code: 'SEK', symbol: 'kr',  locale: 'sv-SE' },
-    NO: { code: 'NOK', symbol: 'kr',  locale: 'nb-NO' },
-    DK: { code: 'DKK', symbol: 'kr',  locale: 'da-DK' },
-    PL: { code: 'PLN', symbol: 'zl',  locale: 'pl-PL' },
-    RU: { code: 'RUB', symbol: '\u20BD',   locale: 'ru-RU' },
-    // Middle East & Africa
-    AE: { code: 'AED', symbol: 'AED', locale: 'ar-AE' },
-    SA: { code: 'SAR', symbol: 'SAR', locale: 'ar-SA' },
-    QA: { code: 'QAR', symbol: 'QAR', locale: 'ar-QA' },
-    KW: { code: 'KWD', symbol: 'KD',  locale: 'ar-KW' },
-    ZA: { code: 'ZAR', symbol: 'R',   locale: 'en-ZA' },
-    EG: { code: 'EGP', symbol: 'E',  locale: 'ar-EG' },
-    NG: { code: 'NGN', symbol: '\u20A6',   locale: 'en-NG' },
+    GB: { code: 'GBP', symbol: '\u00A3',    locale: 'en-GB' },
+    DE: { code: 'EUR', symbol: '\u20AC',    locale: 'de-DE' },
+    FR: { code: 'EUR', symbol: '\u20AC',    locale: 'fr-FR' },
+    IT: { code: 'EUR', symbol: '\u20AC',    locale: 'it-IT' },
+    ES: { code: 'EUR', symbol: '\u20AC',    locale: 'es-ES' },
+    NL: { code: 'EUR', symbol: '\u20AC',    locale: 'nl-NL' },
+    PT: { code: 'EUR', symbol: '\u20AC',    locale: 'pt-PT' },
+    BE: { code: 'EUR', symbol: '\u20AC',    locale: 'fr-BE' },
+    AT: { code: 'EUR', symbol: '\u20AC',    locale: 'de-AT' },
+    CH: { code: 'CHF', symbol: 'CHF',   locale: 'de-CH' },
+    SE: { code: 'SEK', symbol: 'kr',    locale: 'sv-SE' },
+    NO: { code: 'NOK', symbol: 'kr',    locale: 'nb-NO' },
+    DK: { code: 'DKK', symbol: 'kr',    locale: 'da-DK' },
+    PL: { code: 'PLN', symbol: 'zl',    locale: 'pl-PL' },
+    RU: { code: 'RUB', symbol: '\u20BD',    locale: 'ru-RU' },
+    // Middle East
+    AE: { code: 'AED', symbol: 'AED',   locale: 'ar-AE' },
+    SA: { code: 'SAR', symbol: 'SAR',   locale: 'ar-SA' },
+    QA: { code: 'QAR', symbol: 'QAR',   locale: 'ar-QA' },
+    KW: { code: 'KWD', symbol: 'KD',    locale: 'ar-KW' },
+    // Africa
+    ZA: { code: 'ZAR', symbol: 'R',     locale: 'en-ZA' },
+    EG: { code: 'EGP', symbol: 'E\u00A3',   locale: 'ar-EG' },
+    NG: { code: 'NGN', symbol: '\u20A6',    locale: 'en-NG' },
     // Americas
-    US: { code: 'USD', symbol: '$',   locale: 'en-US' },
-    CA: { code: 'CAD', symbol: 'CA$', locale: 'en-CA' },
-    MX: { code: 'MXN', symbol: 'MX$', locale: 'es-MX' },
-    BR: { code: 'BRL', symbol: 'R$',  locale: 'pt-BR' },
-    AR: { code: 'ARS', symbol: '$',   locale: 'es-AR' },
+    US: { code: 'USD', symbol: '$',     locale: 'en-US' },
+    CA: { code: 'CAD', symbol: 'CA$',   locale: 'en-CA' },
+    MX: { code: 'MXN', symbol: 'MX$',   locale: 'es-MX' },
+    BR: { code: 'BRL', symbol: 'R$',    locale: 'pt-BR' },
+    AR: { code: 'ARS', symbol: '$',     locale: 'es-AR' },
   };
 
   /* ── HELPERS ─────────────────────────────────────────────── */
 
+  /** Parse Google Sheets CSV. Column header: "Room Name, Price(LKR)" */
   function parseSheetCSV(csv) {
     var lines = csv.trim().split('\n');
     var prices = {};
     for (var i = 1; i < lines.length; i++) {
-      var parts = lines[i].split(',');
-      if (parts.length >= 2) {
-        var name  = parts[0].trim().replace(/\r/g, '');
-        var price = parseFloat(parts[1].trim().replace(/\r/g, ''));
-        if (name && !isNaN(price)) {
-          prices[name] = price;
-        }
+      // Handle commas inside quoted names
+      var line = lines[i].replace(/\r/g, '');
+      var commaIdx = line.lastIndexOf(',');
+      if (commaIdx < 0) continue;
+      var name  = line.substring(0, commaIdx).trim().replace(/^"|"$/g, '');
+      var price = parseFloat(line.substring(commaIdx + 1).trim());
+      if (name && !isNaN(price) && price > 0) {
+        prices[name] = price;
       }
     }
     return prices;
   }
 
-  function formatCurrency(amount, currencyInfo) {
+  /** Format amount using Intl.NumberFormat. Falls back to symbol+number. */
+  function formatCurrency(lkrAmount, rate, currencyInfo) {
+    var amount = lkrAmount * rate;
+    var noDecimals = (amount >= 500) ||
+      currencyInfo.code === 'JPY' ||
+      currencyInfo.code === 'KRW' ||
+      currencyInfo.code === 'IDR' ||
+      currencyInfo.code === 'LKR';
     try {
-      var decimals = (amount >= 1000 || currencyInfo.code === 'JPY' || currencyInfo.code === 'KRW' || currencyInfo.code === 'IDR') ? 0 : 2;
       return new Intl.NumberFormat(currencyInfo.locale, {
         style: 'currency',
         currency: currencyInfo.code,
-        maximumFractionDigits: decimals,
-        minimumFractionDigits: decimals,
+        maximumFractionDigits: noDecimals ? 0 : 2,
+        minimumFractionDigits: noDecimals ? 0 : 2,
       }).format(amount);
     } catch (e) {
-      var decimals2 = (amount >= 1000) ? 0 : 2;
-      var rounded = amount >= 1000
-        ? Math.round(amount).toLocaleString()
-        : amount.toFixed(decimals2);
-      return currencyInfo.symbol + rounded;
+      var n = noDecimals ? Math.round(amount).toLocaleString() : amount.toFixed(2);
+      return currencyInfo.symbol + ' ' + n;
     }
   }
 
+  /** fetch() with abort timeout */
   function fetchWithTimeout(url, ms) {
     ms = ms || 5000;
     if (typeof AbortController !== 'undefined') {
-      var controller = new AbortController();
-      var id = setTimeout(function() { controller.abort(); }, ms);
-      return fetch(url, { signal: controller.signal })
-        .finally(function() { clearTimeout(id); });
+      var ctrl = new AbortController();
+      var id   = setTimeout(function () { ctrl.abort(); }, ms);
+      return fetch(url, { signal: ctrl.signal }).finally(function () { clearTimeout(id); });
     }
     return fetch(url);
   }
 
-  /* ── CURRENCY BADGE UI ───────────────────────────────────── */
+  /* ── BADGE UI ────────────────────────────────────────────── */
   function injectBadgeStyles() {
-    if (document.getElementById('km-badge-styles')) return;
-    var style = document.createElement('style');
-    style.id = 'km-badge-styles';
-    style.textContent = [
-      '#km-currency-badge {',
-      '  position: fixed;',
-      '  top: 80px;',
-      '  right: 16px;',
-      '  z-index: 9990;',
-      '  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);',
-      '  color: #c9a96e;',
-      '  border: 1px solid rgba(201,169,110,0.35);',
-      '  border-radius: 50px;',
-      '  padding: 7px 15px 7px 11px;',
-      '  display: flex;',
-      '  align-items: center;',
-      '  gap: 7px;',
-      '  font-family: Inter, sans-serif;',
-      '  font-size: 12px;',
-      '  font-weight: 500;',
-      '  box-shadow: 0 4px 20px rgba(0,0,0,0.35);',
-      '  opacity: 0;',
-      '  transform: translateY(-8px);',
-      '  transition: opacity 0.4s ease, transform 0.4s ease;',
-      '  cursor: default;',
-      '  user-select: none;',
-      '  letter-spacing: 0.02em;',
+    if (document.getElementById('km-badge-style')) return;
+    var s = document.createElement('style');
+    s.id  = 'km-badge-style';
+    s.textContent = [
+      '#km-currency-badge{',
+        'position:fixed;top:80px;right:16px;z-index:9990;',
+        'background:linear-gradient(135deg,#1a1a2e,#16213e);',
+        'color:#c9a96e;border:1px solid rgba(201,169,110,.35);',
+        'border-radius:50px;padding:7px 15px 7px 11px;',
+        'display:flex;align-items:center;gap:7px;',
+        'font-family:Inter,sans-serif;font-size:12px;font-weight:500;',
+        'box-shadow:0 4px 20px rgba(0,0,0,.35);letter-spacing:.02em;',
+        'opacity:0;transform:translateY(-8px);',
+        'transition:opacity .4s ease,transform .4s ease;',
+        'user-select:none;cursor:default;',
       '}',
-      '#km-currency-badge.km-visible {',
-      '  opacity: 1;',
-      '  transform: translateY(0);',
+      '#km-currency-badge.km-vis{opacity:1;transform:translateY(0)}',
+      '#km-currency-badge .km-dot{',
+        'width:7px;height:7px;border-radius:50%;background:#4ade80;',
+        'animation:km-pulse 2s infinite;flex-shrink:0;',
       '}',
-      '#km-currency-badge .km-dot {',
-      '  width: 7px;',
-      '  height: 7px;',
-      '  border-radius: 50%;',
-      '  background: #4ade80;',
-      '  animation: km-pulse 2s infinite;',
-      '  flex-shrink: 0;',
-      '}',
-      '@keyframes km-pulse {',
-      '  0%,100% { opacity:1; transform:scale(1); }',
-      '  50%      { opacity:0.5; transform:scale(0.75); }',
-      '}',
-      '.price-converting { opacity: 0.4 !important; transition: opacity 0.3s ease !important; }',
-    ].join('\n');
-    document.head.appendChild(style);
+      '@keyframes km-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}',
+      '.price-converting{opacity:.35!important;transition:opacity .3s ease!important}',
+    ].join('');
+    document.head.appendChild(s);
   }
 
-  function showCurrencyBadge(countryCode, currencyInfo) {
+  function showBadge(countryCode, currencyInfo) {
     injectBadgeStyles();
     var old = document.getElementById('km-currency-badge');
     if (old) old.remove();
-    var badge = document.createElement('div');
-    badge.id = 'km-currency-badge';
-    badge.innerHTML =
+    var b = document.createElement('div');
+    b.id = 'km-currency-badge';
+    b.innerHTML =
       '<span class="km-dot"></span>' +
-      '<span>\uD83C\uDF0D Prices in <strong>' + currencyInfo.code + '</strong> &nbsp;&middot;&nbsp; ' + countryCode + '</span>';
-    document.body.appendChild(badge);
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        badge.classList.add('km-visible');
-      });
+      '<span>\uD83C\uDF0D Prices in <strong>' + currencyInfo.code + '</strong>' +
+      '&nbsp;&middot;&nbsp;' + countryCode + '</span>';
+    document.body.appendChild(b);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { b.classList.add('km-vis'); });
     });
-    setTimeout(function() {
-      badge.style.opacity = '0';
-      badge.style.transform = 'translateY(-8px)';
-      setTimeout(function() { badge.remove(); }, 450);
+    setTimeout(function () {
+      b.style.opacity = '0';
+      b.style.transform = 'translateY(-8px)';
+      setTimeout(function () { b.remove(); }, 450);
     }, 7000);
   }
 
-  /* ── PRICE UPDATE ────────────────────────────────────────── */
+  /* ── DOM PRICE UPDATERS ──────────────────────────────────── */
 
-  function updatePriceBig(el, usdPrice, rate, currencyInfo) {
-    var converted = usdPrice * rate;
-    var formatted = formatCurrency(converted, currencyInfo);
+  /** .price-big  →  "LKR 19,000 <small>/ night</small>" */
+  function updatePriceBig(el, lkrPrice, rate, currencyInfo) {
     var small = el.querySelector('small');
-    el.setAttribute('data-usd', usdPrice);
+    var formatted = formatCurrency(lkrPrice, rate, currencyInfo);
+    el.setAttribute('data-lkr', lkrPrice);
     el.setAttribute('data-converted', 'true');
     while (el.firstChild) el.removeChild(el.firstChild);
     el.appendChild(document.createTextNode(formatted + ' '));
     if (small) {
       el.appendChild(small);
     } else {
-      var s = document.createElement('small');
-      s.textContent = '/ night';
-      el.appendChild(s);
+      var sm = document.createElement('small');
+      sm.textContent = '/ night';
+      el.appendChild(sm);
     }
     el.classList.remove('price-converting');
   }
 
-  function updatePriceCol(el, usdPrice, rate, currencyInfo) {
-    var converted = usdPrice * rate;
-    el.setAttribute('data-usd', usdPrice);
+  /** .price  (home page cards)  →  "From LKR 19,000<small>/night</small>" */
+  function updatePriceSpan(el, lkrPrice, rate, currencyInfo) {
+    var small = el.querySelector('small');
+    var formatted = formatCurrency(lkrPrice, rate, currencyInfo);
+    el.setAttribute('data-lkr', lkrPrice);
     el.setAttribute('data-converted', 'true');
-    el.textContent = formatCurrency(converted, currencyInfo);
+    while (el.firstChild) el.removeChild(el.firstChild);
+    el.appendChild(document.createTextNode('From ' + formatted));
+    if (small) {
+      el.appendChild(small);
+    } else {
+      var sm2 = document.createElement('small');
+      sm2.textContent = '/night';
+      el.appendChild(sm2);
+    }
+    el.classList.remove('price-converting');
   }
 
-  function applyPrices(sheetPrices, rate, currencyInfo) {
-    var hasSheetData = Object.keys(sheetPrices).length > 0;
+  /** .price-col  (comparison table)  →  "LKR 19,000" */
+  function updatePriceCol(el, lkrPrice, rate, currencyInfo) {
+    el.setAttribute('data-lkr', lkrPrice);
+    el.setAttribute('data-converted', 'true');
+    el.textContent = formatCurrency(lkrPrice, rate, currencyInfo);
+  }
 
-    // ── Room detail cards ──
-    var cards = document.querySelectorAll('.room-detail-card');
-    cards.forEach(function(card) {
+  /* ── EXTRACT FALLBACK LKR FROM HTML TEXT ─────────────────── */
+  function extractNumbers(text) {
+    var clean = text.replace(/[^0-9.]/g, '');
+    return parseFloat(clean) || 0;
+  }
+
+  /* ── APPLY PRICES ────────────────────────────────────────── */
+  function applyPrices(sheetPrices, rate, currencyInfo) {
+    var hasSheet = Object.keys(sheetPrices).length > 0;
+    var delay    = 320;
+
+    /* 1. rooms.html — .room-detail-card cards */
+    var detailCards = document.querySelectorAll('.room-detail-card');
+    detailCards.forEach(function (card) {
       var h3 = card.querySelector('h3');
       if (!h3) return;
-      var roomName = h3.textContent.trim();
-      var usdPrice = hasSheetData ? sheetPrices[roomName] : null;
-
+      var name     = h3.textContent.trim();
+      var lkrPrice = hasSheet ? sheetPrices[name] : 0;
       var priceBig = card.querySelector('.price-big');
       if (!priceBig) return;
-
-      // If no sheet price for this room, still convert the existing HTML price
-      if (!usdPrice) {
-        var rawText = priceBig.textContent.replace(/[^0-9.]/g, '');
-        usdPrice = parseFloat(rawText);
-      }
-      if (!usdPrice || isNaN(usdPrice)) return;
-
+      if (!lkrPrice) lkrPrice = extractNumbers(priceBig.textContent);
+      if (!lkrPrice) return;
       priceBig.classList.add('price-converting');
-      (function(el, price) {
-        setTimeout(function() {
-          updatePriceBig(el, price, rate, currencyInfo);
-        }, 350);
-      })(priceBig, usdPrice);
+      (function (el, p) {
+        setTimeout(function () { updatePriceBig(el, p, rate, currencyInfo); }, delay);
+      })(priceBig, lkrPrice);
     });
 
-    // ── Comparison table ──
+    /* 2. index.html — .room-card preview cards */
+    var previewCards = document.querySelectorAll('.room-card');
+    previewCards.forEach(function (card) {
+      var h3 = card.querySelector('h3');
+      if (!h3) return;
+      var name      = h3.textContent.trim();
+      var lkrPrice  = hasSheet ? sheetPrices[name] : 0;
+      var priceSpan = card.querySelector('.price');
+      if (!priceSpan) return;
+      if (!lkrPrice) lkrPrice = extractNumbers(priceSpan.textContent);
+      if (!lkrPrice) return;
+      priceSpan.classList.add('price-converting');
+      (function (el, p) {
+        setTimeout(function () { updatePriceSpan(el, p, rate, currencyInfo); }, delay);
+      })(priceSpan, lkrPrice);
+    });
+
+    /* 3. rooms.html — .compare-table tbody */
     var tableRows = document.querySelectorAll('.compare-table tbody tr');
-    tableRows.forEach(function(row) {
+    tableRows.forEach(function (row) {
       var nameCell = row.querySelector('td:first-child strong');
       if (!nameCell) return;
-      var roomName = nameCell.textContent.trim();
-      var usdPrice = hasSheetData ? sheetPrices[roomName] : null;
-
+      var name      = nameCell.textContent.trim();
+      var lkrPrice  = hasSheet ? sheetPrices[name] : 0;
       var priceCell = row.querySelector('.price-col');
       if (!priceCell) return;
-
-      if (!usdPrice) {
-        var rawText2 = priceCell.textContent.replace(/[^0-9.]/g, '');
-        usdPrice = parseFloat(rawText2);
-      }
-      if (!usdPrice || isNaN(usdPrice)) return;
-
-      (function(el, price) {
-        setTimeout(function() {
-          updatePriceCol(el, price, rate, currencyInfo);
-        }, 500);
-      })(priceCell, usdPrice);
+      if (!lkrPrice) lkrPrice = extractNumbers(priceCell.textContent);
+      if (!lkrPrice) return;
+      (function (el, p) {
+        setTimeout(function () { updatePriceCol(el, p, rate, currencyInfo); }, delay + 150);
+      })(priceCell, lkrPrice);
     });
   }
 
-  /* ── MAIN INIT ───────────────────────────────────────────── */
+  /* ── MAIN ────────────────────────────────────────────────── */
   function init() {
-    var sheetPrices = {};
-    var countryCode = 'US';
-    var currencyInfo = COUNTRY_CURRENCY_MAP['US'];
-    var rate = 1;
+    var sheetPrices  = {};
+    var countryCode  = 'LK';   // default to Sri Lanka (home country)
+    var currencyInfo = COUNTRY_CURRENCY_MAP['LK'];
+    var usdRates     = null;
 
-    // Step 1: Fetch sheet prices
-    fetchWithTimeout(SHEET_CSV_URL, 6000)
-      .then(function(resp) {
-        if (!resp.ok) throw new Error('Sheet fetch failed: ' + resp.status);
-        return resp.text();
+    /* Step 1 — Google Sheet prices (LKR) */
+    fetchWithTimeout(SHEET_CSV_URL, 7000)
+      .then(function (r) {
+        if (!r.ok) throw new Error('Sheet ' + r.status);
+        return r.text();
       })
-      .then(function(csv) {
+      .then(function (csv) {
         sheetPrices = parseSheetCSV(csv);
-        console.log('[KM Pricing] Sheet prices loaded:', sheetPrices);
+        console.log('[KM] Sheet prices (LKR):', sheetPrices);
       })
-      .catch(function(err) {
-        console.warn('[KM Pricing] Sheet fetch error (using HTML fallback):', err.message);
+      .catch(function (e) {
+        console.warn('[KM] Sheet fallback to HTML prices:', e.message);
       })
-      // Step 2: Detect country
-      .then(function() {
-        return fetchWithTimeout(GEO_URL, 5000);
+
+      /* Step 2 — Visitor geolocation */
+      .then(function () { return fetchWithTimeout(GEO_URL, 5000); })
+      .then(function (r) {
+        if (!r.ok) throw new Error('Geo ' + r.status);
+        return r.json();
       })
-      .then(function(resp) {
-        if (!resp.ok) throw new Error('Geo fetch failed: ' + resp.status);
-        return resp.json();
-      })
-      .then(function(geo) {
-        countryCode = (geo.country_code || 'US').toUpperCase();
+      .then(function (geo) {
+        countryCode  = (geo.country_code || 'LK').toUpperCase();
         currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || COUNTRY_CURRENCY_MAP['US'];
-        console.log('[KM Pricing] Country:', countryCode, '| Currency:', currencyInfo.code);
+        console.log('[KM] Country:', countryCode, '| Currency:', currencyInfo.code);
       })
-      .catch(function(err) {
-        console.warn('[KM Pricing] Geo detection failed (defaulting to USD):', err.message);
+      .catch(function (e) {
+        console.warn('[KM] Geo failed, defaulting to LKR:', e.message);
       })
-      // Step 3: Fetch exchange rates (skip if already USD)
-      .then(function() {
-        if (currencyInfo.code === 'USD') return null;
+
+      /* Step 3 — Exchange rates (skip if already LKR) */
+      .then(function () {
+        if (currencyInfo.code === 'LKR') return null;
         return fetchWithTimeout(RATES_URL, 5000);
       })
-      .then(function(resp) {
-        if (!resp) return null;
-        if (!resp.ok) throw new Error('Rates fetch failed: ' + resp.status);
-        return resp.json();
+      .then(function (r) {
+        if (!r) return null;
+        if (!r.ok) throw new Error('Rates ' + r.status);
+        return r.json();
       })
-      .then(function(data) {
-        if (data && data.rates && data.rates[currencyInfo.code]) {
-          rate = data.rates[currencyInfo.code];
-          console.log('[KM Pricing] Rate USD->' + currencyInfo.code + ': ' + rate);
+      .then(function (data) {
+        if (data && data.rates) {
+          usdRates = data.rates;
+          console.log('[KM] Rates loaded. LKR/USD:', usdRates['LKR']);
         }
       })
-      .catch(function(err) {
-        console.warn('[KM Pricing] Exchange rate fetch failed (rate=1):', err.message);
+      .catch(function (e) {
+        console.warn('[KM] Rates failed (will use LKR):', e.message);
       })
-      // Step 4: Apply everything
-      .then(function() {
+
+      /* Step 4 — Compute rate and apply */
+      .then(function () {
+        var rate = 1; // LKR → LKR
+
+        if (currencyInfo.code !== 'LKR' && usdRates) {
+          var lkrPerUsd    = usdRates['LKR'] || 300;
+          var targetPerUsd = usdRates[currencyInfo.code] || 1;
+          // LKR → target:  price_lkr * (targetPerUsd / lkrPerUsd)
+          rate = targetPerUsd / lkrPerUsd;
+          console.log('[KM] Rate LKR->' + currencyInfo.code + ': ' + rate.toFixed(6));
+        }
+
         applyPrices(sheetPrices, rate, currencyInfo);
-        if (currencyInfo.code !== 'USD') {
-          showCurrencyBadge(countryCode, currencyInfo);
+
+        // Show badge only for non-LKR visitors
+        if (currencyInfo.code !== 'LKR') {
+          showBadge(countryCode, currencyInfo);
         }
       })
-      .catch(function(err) {
-        console.error('[KM Pricing] Fatal error in init:', err);
+      .catch(function (e) {
+        console.error('[KM] Fatal:', e);
       });
   }
 
