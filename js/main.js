@@ -89,44 +89,53 @@ if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = contactForm.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
     const formData = new FormData(contactForm);
+
+    // ===== Build WhatsApp message from form data =====
+    const firstName = formData.get('first_name') || '';
+    const lastName  = formData.get('last_name')  || '';
+    const email     = formData.get('email')       || '';
+    const phone     = formData.get('phone')       || '';
+    const roomType  = formData.get('room_type')   || '';
+    const checkin   = formData.get('checkin_date')  || '';
+    const checkout  = formData.get('checkout_date') || '';
+    const guests    = formData.get('guests')      || '';
+    const message   = formData.get('message')     || '';
+
+    const waLines = [
+      '🏔️ *New Booking Request — Kites Mountain*',
+      '',
+      `👤 *Name:* ${firstName} ${lastName}`.trim(),
+      `📞 *Phone:* ${phone || 'N/A'}`,
+      `✉️ *Email:* ${email || 'N/A'}`,
+      `🛏️ *Room Type:* ${roomType || 'N/A'}`,
+      `📅 *Check-in:* ${checkin || 'N/A'}`,
+      `📅 *Check-out:* ${checkout || 'N/A'}`,
+      `👥 *Guests:* ${guests || 'N/A'}`
+    ];
+    if (message) waLines.push('', `📝 *Message:* ${message}`);
+    waLines.push('', '✅ Please confirm availability for these dates. Thank you!');
+
+    const waMessage = encodeURIComponent(waLines.join('\n'));
+    const waLink = `https://wa.me/94775243432?text=${waMessage}`;
+
     try {
+      // Send email via Formspree
       const response = await fetch(contactForm.action, {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
+
       if (response.ok) {
-        // ===== Build a readable WhatsApp message from the real form data =====
-        const firstName = formData.get('first_name') || '';
-        const lastName = formData.get('last_name') || '';
-        const email = formData.get('email') || '';
-        const phone = formData.get('phone') || '';
-        const roomType = formData.get('room_type') || '';
-        const checkin = formData.get('checkin_date') || '';
-        const checkout = formData.get('checkout_date') || '';
-        const guests = formData.get('guests') || '';
-        const message = formData.get('message') || '';
+        contactForm.reset();
 
-        const waLines = [
-          '🏔️ *New Booking Request — Kites Mountain*',
-          '',
-          `👤 *Name:* ${firstName} ${lastName}`.trim(),
-          `📞 *Phone:* ${phone || 'N/A'}`,
-          `✉️ *Email:* ${email || 'N/A'}`,
-          `🛏️ *Room Type:* ${roomType || 'N/A'}`,
-          `📅 *Check-in:* ${checkin || 'N/A'}`,
-          `📅 *Check-out:* ${checkout || 'N/A'}`,
-          `👥 *Guests:* ${guests || 'N/A'}`
-        ];
-        if (message) {
-          waLines.push('', `📝 *Message:* ${message}`);
-        }
-        waLines.push('', '✅ Please confirm availability for these dates. Thank you!');
+        // ===== Automatically open WhatsApp with booking details =====
+        window.open(waLink, '_blank');
 
-        const waMessage = encodeURIComponent(waLines.join('\n'));
-        const waLink = `https://wa.me/94775243432?text=${waMessage}`;
-
+        // ===== Show success popup =====
         const overlay = document.createElement('div');
         overlay.id = 'bookingPopup';
         overlay.style.cssText = `
@@ -139,16 +148,20 @@ if (contactForm) {
             width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
             <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
             <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 12px; color: #1a1a1a;">
-              Booking Request Received!
+              Booking Request Sent!
             </h3>
-            <p style="color: #666; margin-bottom: 24px; line-height: 1.6;">
-              Thank you for choosing Kites Mountain. To confirm your reservation, please contact us on WhatsApp.
+            <p style="color: #666; margin-bottom: 8px; line-height: 1.6;">
+              Your request has been emailed to us.<br/>
+              WhatsApp has opened so you can confirm your reservation directly.
+            </p>
+            <p style="color: #999; font-size: 13px; margin-bottom: 24px;">
+              (If WhatsApp didn't open, tap the button below.)
             </p>
             <a href="${waLink}" target="_blank"
               style="display: inline-block; background: #25D366; color: white; padding: 14px 28px;
               border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;
               margin-bottom: 12px; width: 100%; box-sizing: border-box;">
-              📲 Confirm Booking on WhatsApp
+              📲 Open WhatsApp
             </a>
             <br/>
             <button id="closePopup"
@@ -159,12 +172,15 @@ if (contactForm) {
         `;
         document.body.appendChild(overlay);
         document.getElementById('closePopup').addEventListener('click', () => overlay.remove());
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
-        contactForm.reset();
+        overlay.addEventListener('click', (ev) => { if (ev.target === overlay) overlay.remove(); });
+
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
       } else {
         btn.textContent = 'Something went wrong. Try again.';
         btn.style.background = '#e74c3c';
         btn.style.color = 'white';
+        btn.disabled = false;
         setTimeout(() => {
           btn.textContent = 'Send Message';
           btn.style.background = '';
@@ -175,6 +191,7 @@ if (contactForm) {
       btn.textContent = 'Network error. Try again.';
       btn.style.background = '#e74c3c';
       btn.style.color = 'white';
+      btn.disabled = false;
     }
   });
 }
