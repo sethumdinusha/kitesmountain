@@ -163,5 +163,22 @@
     <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel & Resort. All rights reserved.</p></div>
   </footer>
   <script src="js/main.js"></script>
+  <script>
+    // Auto-select room type from URL ?room= parameter
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const room = params.get('room');
+      if (!room) return;
+      const select = document.querySelector('select[name="room_type"]');
+      if (!select) return;
+      const decoded = decodeURIComponent(room.replace(/\+/g, ' '));
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === decoded || select.options[i].text === decoded) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
