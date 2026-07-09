@@ -12,23 +12,42 @@
   <meta property="og:url" content="https://kitesmountainhotel.com/" />
   <meta property="og:title" content="Luxury Hotel in Badulla | Kites Mountain Hotel & Resort" />
   <meta property="og:description" content="Experience premium mountain view rooms at our luxury hotel in Badulla. A peaceful resort near Dunhinda Falls with an outdoor swimming pool & free breakfast." />
-  <meta property="og:image" content="https://kitesmountainhotel.com/images/hotelfront.JPG" />
+  <meta property="og:image" content="https://kitesmountainhotel.com/images/hotelfront.webp" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://kitesmountainhotel.com/" />
   <meta property="twitter:title" content="Luxury Hotel in Badulla | Kites Mountain Hotel & Resort" />
   <meta property="twitter:description" content="Experience premium mountain view rooms at our luxury hotel in Badulla. A peaceful resort near Dunhinda Falls with an outdoor swimming pool & free breakfast." />
-  <meta property="twitter:image" content="https://kitesmountainhotel.com/images/hotelfront.JPG" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <meta property="twitter:image" content="https://kitesmountainhotel.com/images/hotelfront.webp" />
+  <link rel="shortcut icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#1a1a2e" />
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org JSON-LD for Site Logo and Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kites Mountain Hotel & Resort",
+    "url": "https://kitesmountainhotel.com/",
+    "logo": "https://kitesmountainhotel.com/images/kites_logo.webp",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+94-77-52-43-432",
+      "contactType": "reservations"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -36,7 +55,7 @@
     <div class="nav-container">
       <div class="logo">
         <a href="#home" class="logo-link">
-          <img src="images/kites_logo.png" alt="Kites Mountain Logo" class="logo-img" />
+          <img src="images/kites_logo.webp" alt="Kites Mountain Logo" class="logo-img" />
           <span>Kites Mountain</span>
         </a>
       </div>
@@ -48,7 +67,7 @@
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
       <a href="contact.html" class="btn-book">Book Now</a>
-      <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+      <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu"><i class="fa-solid fa-bars"></i></div>
     </div>
   </nav>
 
@@ -60,7 +79,7 @@
     <div class="hero-content">
       <p class="hero-tag">Luxury Hotel in Badulla</p>
       <h1>Kites Mountain<br /><span>Hotel &amp; Resort</span></h1>
-      <p class="hero-sub">Stunning mountain view rooms near Dunhinda Falls &mdash; your peaceful Alpine escape.</p>
+      <p class="hero-sub">Stunning mountain view rooms near Dunhinda Falls, your peaceful Alpine escape.</p>
       <div class="hero-btns">
         <a href="rooms.html" class="btn-primary">Explore Rooms</a>
         <a href="contact.html" class="btn-outline">Book a Stay</a>
@@ -80,7 +99,7 @@
     <div class="container">
       <div class="about-img">
         <div class="about-img-wrap" style="overflow: hidden; border-radius: var(--radius);">
-          <img src="images/about_resort.jpg" alt="Kites Mountain Resort view" />
+          <img src="images/about_resort.webp" alt="Kites Mountain Resort view" />
         </div>
       </div>
       <div class="about-text">
@@ -105,39 +124,48 @@
     <div class="container-center">
       <p class="section-tag">Accommodations</p>
       <h2>Our Signature Rooms</h2>
-      <p class="section-sub">From budget-friendly options to luxurious suites &mdash; find your perfect mountain sanctuary.</p>
+      <p class="section-sub">From budget-friendly options to luxurious suites, find your perfect mountain sanctuary.</p>
     </div>
     <div class="rooms-grid">
       <div class="room-card">
-        <div class="room-thumb"><img src="images/roompage.JPG" alt="King Room" /></div>
+        <div class="room-thumb"><img src="images/roompage.webp" alt="King Room" /></div>
         <div class="room-info">
           <h3>King Room with Mountain View</h3>
           <p>A cozy double room with a private balcony offering mountain views, air conditioning, and a private outdoor bathtub.</p>
           <div class="room-footer">
-            <span class="price">From LKR 19,000<small>/night</small></span>
+            <div class="price-wrapper">
+              <span class="price">From LKR 19,000<small>/night</small></span>
+              <span class="price-note">*Price may change due to taxes & others</span>
+            </div>
             <a href="rooms.html" class="btn-sm">View Details</a>
           </div>
         </div>
       </div>
       <div class="room-card featured">
         <div class="badge">Most Popular</div>
-        <div class="room-thumb"><img src="images/del_2_room.JPG" alt="Deluxe Double" /></div>
+        <div class="room-thumb"><img src="images/del_2_room.webp" alt="Deluxe Double" /></div>
         <div class="room-info">
           <h3>Deluxe Double Room</h3>
           <p>An air-conditioned double room with a private balcony, mountain views, and a private bathroom with a shower.</p>
           <div class="room-footer">
-            <span class="price">From LKR 20,000<small>/night</small></span>
+            <div class="price-wrapper">
+              <span class="price">From LKR 20,000<small>/night</small></span>
+              <span class="price-note">*Price may change due to taxes & others</span>
+            </div>
             <a href="rooms.html" class="btn-sm">View Details</a>
           </div>
         </div>
       </div>
       <div class="room-card">
-        <div class="room-thumb"><img src="images/fam_room_balcony.JPG" alt="Family Room" /></div>
+        <div class="room-thumb"><img src="images/fam_room_balcony.webp" alt="Family Room" /></div>
         <div class="room-info">
           <h3>Family Room with Balcony</h3>
           <p>A spacious air-conditioned family room with a private balcony, scenic views, private entrance, and a private bathroom.</p>
           <div class="room-footer">
-            <span class="price">From LKR 13,850<small>/night</small></span>
+            <div class="price-wrapper">
+              <span class="price">From LKR 13,850<small>/night</small></span>
+              <span class="price-note">*Price may change due to taxes & others</span>
+            </div>
             <a href="rooms.html" class="btn-sm">View Details</a>
           </div>
         </div>
@@ -171,17 +199,17 @@
       <div class="testimonial-card">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>"An absolute paradise in Badulla! We loved the peaceful mountain atmosphere and spent hours relaxing by the amazing pool. Plus, it is just a short walk to the waterfall entrance. Outstanding service!"</p>
-        <div class="guest"><strong>Ebru</strong> &mdash; Turkey</div>
+        <div class="guest"><strong>Ebru</strong>, Turkey</div>
       </div>
       <div class="testimonial-card">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>"Beautiful mountain view rooms and top-tier hospitality. The location is perfect for exploring the Uva Province, and returning to the peaceful mountain atmosphere and pool was wonderful."</p>
-        <div class="guest"><strong>Lone</strong> &mdash; Denmark</div>
+        <div class="guest"><strong>Lone</strong>, Denmark</div>
       </div>
       <div class="testimonial-card">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>"Everything was perfect from the moment we arrived, travelling with our 2-year-old daughter. The entire team was incredibly helpful and kind &mdash; one of the best stays of our trip."</p>
-        <div class="guest"><strong>Marion</strong> &mdash; France</div>
+        <p>"Everything was perfect from the moment we arrived, travelling with our 2-year-old daughter. The entire team was incredibly helpful and kind, one of the best stays of our trip."</p>
+        <div class="guest"><strong>Marion</strong>, France</div>
       </div>
     </div>
     <div class="reviews-cta-wrap">
@@ -202,13 +230,13 @@
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo"><img src="images/kites_logo.png" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel & Resort</span></div>
+        <div class="logo"><img src="images/kites_logo.webp" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel & Resort</span></div>
         <p>A luxury mountain retreat offering world-class hospitality and unforgettable experiences.</p>
         <div class="socials">
-          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener"><i class="fa-solid fa-bed"></i></a>
+          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
         </div>
       </div>
       <div class="footer-links">
