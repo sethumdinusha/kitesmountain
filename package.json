@@ -1,0 +1,32 @@
+{
+  "name": "kitesmountainhotel",
+  "version": "1.0.0",
+  "description": "Luxury Hotel in Badulla - Kites Mountain Hotel & Resort",
+  "main": "index.js",
+  "scripts": {
+    "build:speed-insights": "esbuild src/speed-insights-init.js --bundle --minify --outfile=js/speed-insights.js --format=iife",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sethumdinusha/kitesmountain.git"
+  },
+  "keywords": [
+    "hotel",
+    "badulla",
+    "sri-lanka",
+    "resort"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sethumdinusha/kitesmountain/issues"
+  },
+  "homepage": "https://github.com/sethumdinusha/kitesmountain#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  }
+}
