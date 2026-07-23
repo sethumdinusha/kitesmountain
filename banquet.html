@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="css/style.css?v=6" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
     /* ── Video Section ── */
     .video-section {
@@ -121,6 +123,45 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(201,169,110,0.4);
     }
+    /* ── Decor Swiper Gallery ── */
+    .decor-gallery-section {
+      background: #0e0e0e;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .decor-gallery-section .section-tag { color: rgba(201,169,110,0.9); }
+    .decor-gallery-section h2 { color: #fff; margin-bottom: 0.5rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .decor-gallery-section .decor-sub {
+      color: rgba(255,255,255,0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.97rem;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .decor-swiper {
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    }
+    .decor-swiper .swiper-slide img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .decor-swiper .swiper-button-next,
+    .decor-swiper .swiper-button-prev {
+      color: #c9a96e;
+    }
+    .decor-swiper .swiper-pagination-bullet-active {
+      background: #c9a96e;
+    }
+    @media (max-width: 600px) {
+      .decor-swiper .swiper-slide img { height: 260px; }
+    }
   </style>
 
   <!-- Vercel Web Analytics -->
@@ -173,21 +214,43 @@
       <div class="about-text">
         <p class="section-tag">Grand Celebrations</p>
         <h2>The Summit Grand Ballroom</h2>
-        <p>Our magnificent Summit Grand Ballroom is the perfect venue for weddings, corporate events, gala dinners, and milestone celebrations. With a capacity of up to 500 guests, state-of-the-art AV systems, and a dedicated events team, we ensure every occasion is flawlessly executed.</p>
-        <p>Surrounded by breathtaking mountain views and adorned with elegant chandeliers, the ballroom creates an atmosphere of grandeur and sophistication that your guests will remember forever.</p>
+        <p>ඔබගේ විශේෂ දිනය අමතක නොවන සුන්දර මතකයක් බවට පත්කරන්න Kites Mountain Banquet Hall ලෑස්තියි! මංගල උත්සව, උපන්දින සාද (Birthday Parties), Batch Parties, Get-togethers සහ Corporate Events ඇතුළු ඕනෑම විශේෂ අවස්ථාවක් සඳහා අපගේ ශාලාව වෙන්කරවා ගත හැක. උත්සවයේ සියලුම සංවිධාන කටයුතු අපගේ පළපුරුදු කණ්ඩායම විසින් ඉටුකර දෙන බැවින්, ඔබට තියෙන්නේ පාටිය දවසට ඇවිත් සතුටින් කාලය ගතකරන්න විතරයි!</p>
         <ul class="about-features">
-          <li><i class="fa-solid fa-check"></i> Capacity: Up to 500 Guests</li>
-          <li><i class="fa-solid fa-check"></i> State-of-the-Art AV System</li>
-          <li><i class="fa-solid fa-check"></i> Dedicated Events Coordinator</li>
-          <li><i class="fa-solid fa-check"></i> Customizable Décor &amp; Lighting</li>
-          <li><i class="fa-solid fa-check"></i> Gourmet Catering Services</li>
-          <li><i class="fa-solid fa-check"></i> Valet Parking Available</li>
+          <li><i class="fa-solid fa-check"></i> අමුත්තන් 200ක් දක්වා පහසුවෙන් අසුන්ගත හැක</li>
+          <li><i class="fa-solid fa-check"></i> සම්පූර්ණයෙන්ම A/C කරන ලද අලංකාර ශාලාව</li>
+          <li><i class="fa-solid fa-check"></i> සාදයට ගැළපෙන ලෙස පාට මාරු වන LED Ceiling Lighting System</li>
+          <li><i class="fa-solid fa-check"></i> DJ සහ Live Music Band පහසුකම්</li>
+          <li><i class="fa-solid fa-check"></i> Pre-shoot සඳහාම වෙන්වූ ඉතාම ලස්සන Photo Locations</li>
+          <li><i class="fa-solid fa-check"></i> Wedding &amp; Party Decor: මල් සැරසිලි (Floral), පෝරුව සහ Settee Back සැකසුම්</li>
+          <li><i class="fa-solid fa-check"></i> Full Event Planning: උත්සවයේ සියලුම සැකසුම් අප විසින්ම බලාගනු ලැබේ</li>
+          <li><i class="fa-solid fa-check"></i> රසවත් ආහාර පාන සහ සුහදශීලී සේවාව</li>
         </ul>
         <a href="contact.html" class="btn-primary">Enquire Now</a>
       </div>
       <div class="about-img">
         <img src="images/banquthall_page.webp" alt="Banquet Hall" />
       </div>
+    </div>
+  </section>
+
+  <!-- Decor Swiper Gallery -->
+  <section class="decor-gallery-section">
+    <div class="container-center">
+      <p class="section-tag">Decor &amp; Settings</p>
+      <h2>පෝරුව, Settee Back සහ ඩෙකරේෂන් නිර්මාණ</h2>
+      <p class="decor-sub">පෝරුව, සෙටිබැක් සහ ඩෙකරේෂන් පිළිබඳ අදහසක් ලබාගැනීමට පහත පින්තූර නරඹන්න.</p>
+    </div>
+    <div class="swiper decor-swiper" id="decorSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/decor_poruwa.jpg" alt="පෝරුව සැකසුම" loading="lazy" /></div>
+        <div class="swiper-slide"><img src="images/decor_setteeback.jpg" alt="Settee Back සැකසුම" loading="lazy" /></div>
+        <div class="swiper-slide"><img src="images/decor_floral1.jpg" alt="Floral Decoration 1" loading="lazy" /></div>
+        <div class="swiper-slide"><img src="images/decor_floral2.jpg" alt="Floral Decoration 2" loading="lazy" /></div>
+        <div class="swiper-slide"><img src="images/decor_table.jpg" alt="Table Decoration" loading="lazy" /></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </section>
 
@@ -298,6 +361,21 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <!-- Swiper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('#decorSwiper', {
+      loop: true,
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      pagination: { el: '.decor-swiper .swiper-pagination', clickable: true },
+      navigation: {
+        nextEl: '.decor-swiper .swiper-button-next',
+        prevEl: '.decor-swiper .swiper-button-prev'
+      },
+      effect: 'slide',
+      speed: 600
+    });
+  </script>
   <script>
     (function () {
       const track = document.getElementById('hallSliderTrack');
