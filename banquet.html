@@ -126,51 +126,16 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 28px rgba(201,169,110,0.4);
     }
-    /* ── Decor Swiper Gallery ── */
-    .decor-gallery-section {
-      background: #0e0e0e;
-      padding: 4rem 1rem;
-      text-align: center;
-    }
-    .decor-gallery-section .section-tag { color: rgba(201,169,110,0.9); }
-    .decor-gallery-section h2 { color: #fff; margin-bottom: 0.5rem; font-size: clamp(1.4rem, 3vw, 2rem); font-family: 'Noto Sans Sinhala', 'Playfair Display', sans-serif; }
-    .decor-gallery-section .decor-sub {
-      color: rgba(255,255,255,0.65);
-      font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
-      font-size: 0.97rem;
-      max-width: 640px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-    }
-    .decor-swiper {
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    }
-    .decor-swiper .swiper-slide {
-      background: #111;
-      aspect-ratio: 16 / 9;
-    }
-    .decor-swiper .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-    .decor-swiper .swiper-button-next,
-    .decor-swiper .swiper-button-prev {
-      color: #c9a96e;
-    }
-    .decor-swiper .swiper-pagination-bullet-active {
-      background: #c9a96e;
-    }
     /* ── Sinhala Font Styling ── */
     .about-text p,
     .about-text li,
     .about-features li {
+      font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
+    }
+    .sinhala-heading {
+      font-family: 'Noto Sans Sinhala', 'Playfair Display', sans-serif;
+    }
+    .sinhala-sub {
       font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
     }
   </style>
@@ -245,56 +210,25 @@
     </div>
   </section>
 
-  <!-- Decor Swiper Gallery -->
-  <section class="decor-gallery-section">
-    <div class="container-center">
-      <p class="section-tag">Decor &amp; Settings</p>
-      <h2>පෝරුව, Settee Back, Outdoor Bar සහ ඩෙකරේෂන්</h2>
-      <p class="decor-sub">පෝරුව, සෙටිබැක්, Outdoor Bar සහ ඩෙකරේෂන් පිළිබඳ අදහසක් ලබාගැනීමට පහත පින්තූර නරඹන්න.</p>
-    </div>
-    <div class="swiper decor-swiper" id="decorSwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="images/decor_poruwa.jpg" alt="පෝරුව සැකසුම" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/decor_setteeback.jpg" alt="Settee Back සැකසුම" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/decor_floral1.jpg" alt="Floral Decoration 1" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/decor_floral2.jpg" alt="Floral Decoration 2" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/decor_table.jpg" alt="Table Decoration" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/outdoor_bar1.jpg" alt="Outdoor Bar - 1" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/outdoor_bar2.jpg" alt="Outdoor Bar - 2" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/decor_desk1.jpg" alt="Table Decoration - Pink Setting" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/decor_desk2.jpg" alt="Table Decoration - Cream Setting" loading="lazy" /></div>
-        <div class="swiper-slide"><img src="images/banquthall_page.webp" alt="Banquet Hall Interior" loading="lazy" /></div>
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
-  </section>
-
-  <section class="section bg-light">
-    <div class="container-center">
-      <p class="section-tag">Event Types</p>
-      <h2>Perfect for Every Occasion</h2>
-    </div>
-    <div class="events-grid">
-      <div class="event-card"><i class="fa-solid fa-heart"></i><h3>Weddings</h3><p>Create your dream wedding with our expert planners, stunning décor, and gourmet catering in a breathtaking mountain setting.</p></div>
-      <div class="event-card"><i class="fa-solid fa-briefcase"></i><h3>Corporate Events</h3><p>Host impactful conferences, product launches, and team retreats with full AV support and professional catering.</p></div>
-      <div class="event-card"><i class="fa-solid fa-champagne-glasses"></i><h3>Gala Dinners</h3><p>Celebrate milestones in style with our elegant gala dinner packages featuring live entertainment and fine dining.</p></div>
-      <div class="event-card"><i class="fa-solid fa-cake-candles"></i><h3>Birthday Parties</h3><p>Make birthdays unforgettable with customized themes, entertainment, and a dedicated party coordinator.</p></div>
-      <div class="event-card"><i class="fa-solid fa-graduation-cap"></i><h3>Graduations</h3><p>Celebrate academic achievements with family and friends in our elegant banquet spaces.</p></div>
-      <div class="event-card"><i class="fa-solid fa-handshake"></i><h3>Social Gatherings</h3><p>From family reunions to cocktail parties, our versatile spaces adapt to any social occasion.</p></div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
+  <!-- Gallery: Decor, Outdoor Bar & Banquet Hall -->
   <section class="section bg-light">
     <div class="container-center">
       <p class="section-tag">Memories Made Here</p>
-      <h2>Banquet Hall &amp; Wedding Gallery</h2>
-      <p class="section-sub">A glimpse of the Summit Grand Ballroom and the celebrations hosted at Kites Mountain.</p>
+      <h2 class="sinhala-heading">පෝරුව, Settee Back, Outdoor Bar සහ ඩෙකරේෂන්</h2>
+      <p class="section-sub sinhala-sub">පෝරුව, සෙටිබැක්, Outdoor Bar සහ ඩෙකරේෂන් පිළිබඳ අදහසක් ලබාගැනීමට පහත පින්තූර නරඹන්න.</p>
     </div>
     <div class="hall-slider" id="hallSlider">
       <div class="hall-slider-track" id="hallSliderTrack">
+        <div class="hall-slide"><img src="images/decor_poruwa.jpg" alt="පෝරුව සැකසුම" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/decor_setteeback.jpg" alt="Settee Back සැකසුම" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/decor_floral1.jpg" alt="Floral Decoration 1" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/decor_floral2.jpg" alt="Floral Decoration 2" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/decor_table.jpg" alt="Table Decoration" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/outdoor_bar1.jpg" alt="Outdoor Bar - 1" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/outdoor_bar2.jpg" alt="Outdoor Bar - 2" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/decor_desk1.jpg" alt="Table Decoration - Pink Setting" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/decor_desk2.jpg" alt="Table Decoration - Cream Setting" loading="lazy" /></div>
+        <div class="hall-slide"><img src="images/banquthall_page.webp" alt="Banquet Hall Interior" loading="lazy" /></div>
         <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/159RZbJUnnzeP8qC28U_23OAI5ZEh42U-" alt="Banquet Hall celebration - 1" loading="lazy" /></div>
         <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1AVvrEZQOQumq3PVhYszuOadS6yMIB2Ta" alt="Banquet Hall celebration - 2" loading="lazy" /></div>
         <div class="hall-slide"><img src="https://lh3.googleusercontent.com/d/1OYjSmbCYR3bPS3YBje3b26vSefzS8Q1P" alt="Banquet Hall celebration - 3" loading="lazy" /></div>
@@ -311,6 +245,21 @@
       <button class="hall-slider-arrow prev" id="hallPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="hall-slider-arrow next" id="hallNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="hall-slider-dots" id="hallDots"></div>
+    </div>
+  </section>
+
+  <section class="section bg-light">
+    <div class="container-center">
+      <p class="section-tag">Event Types</p>
+      <h2>Perfect for Every Occasion</h2>
+    </div>
+    <div class="events-grid">
+      <div class="event-card"><i class="fa-solid fa-heart"></i><h3>Weddings</h3><p>Create your dream wedding with our expert planners, stunning décor, and gourmet catering in a breathtaking mountain setting.</p></div>
+      <div class="event-card"><i class="fa-solid fa-briefcase"></i><h3>Corporate Events</h3><p>Host impactful conferences, product launches, and team retreats with full AV support and professional catering.</p></div>
+      <div class="event-card"><i class="fa-solid fa-champagne-glasses"></i><h3>Gala Dinners</h3><p>Celebrate milestones in style with our elegant gala dinner packages featuring live entertainment and fine dining.</p></div>
+      <div class="event-card"><i class="fa-solid fa-cake-candles"></i><h3>Birthday Parties</h3><p>Make birthdays unforgettable with customized themes, entertainment, and a dedicated party coordinator.</p></div>
+      <div class="event-card"><i class="fa-solid fa-graduation-cap"></i><h3>Graduations</h3><p>Celebrate academic achievements with family and friends in our elegant banquet spaces.</p></div>
+      <div class="event-card"><i class="fa-solid fa-handshake"></i><h3>Social Gatherings</h3><p>From family reunions to cocktail parties, our versatile spaces adapt to any social occasion.</p></div>
     </div>
   </section>
 
@@ -381,17 +330,7 @@
   <!-- Swiper.js -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    new Swiper('#decorSwiper', {
-      loop: true,
-      autoplay: { delay: 4000, disableOnInteraction: false },
-      pagination: { el: '.decor-swiper .swiper-pagination', clickable: true },
-      navigation: {
-        nextEl: '.decor-swiper .swiper-button-next',
-        prevEl: '.decor-swiper .swiper-button-prev'
-      },
-      effect: 'slide',
-      speed: 600
-    });
+    /* Swiper not needed — removed */
   </script>
   <script>
     (function () {
