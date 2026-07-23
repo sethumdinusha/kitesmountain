@@ -59,10 +59,10 @@ ul { list-style: none; }
 .full-width { width: 100%; text-align: center; border: none; cursor: pointer; font-family: inherit; }
 
 /* STATS */
-.stats { background: var(--dark2); display: grid; grid-template-columns: repeat(4, 1fr); padding: 52px 24px; }
+.stats { background: var(--white); display: grid; grid-template-columns: repeat(4, 1fr); padding: 52px 24px; border-bottom: 1px solid rgba(0,0,0,0.05); }
 .stat-item { text-align: center; padding: 16px; }
-.stat-item h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--gold); margin-bottom: 8px; }
-.stat-item p { color: rgba(255,255,255,0.65); font-size: 0.88rem; }
+.stat-item h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--gold-dark); margin-bottom: 8px; }
+.stat-item p { color: var(--text); font-size: 0.88rem; font-weight: 500; }
 
 /* SECTIONS */
 .section { padding: 100px 24px; }
