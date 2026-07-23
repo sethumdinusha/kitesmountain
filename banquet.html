@@ -31,6 +31,9 @@
   <link rel="stylesheet" href="css/style.css?v=6" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
@@ -130,17 +133,17 @@
       text-align: center;
     }
     .decor-gallery-section .section-tag { color: rgba(201,169,110,0.9); }
-    .decor-gallery-section h2 { color: #fff; margin-bottom: 0.5rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .decor-gallery-section h2 { color: #fff; margin-bottom: 0.5rem; font-size: clamp(1.4rem, 3vw, 2rem); font-family: 'Noto Sans Sinhala', 'Playfair Display', sans-serif; }
     .decor-gallery-section .decor-sub {
       color: rgba(255,255,255,0.65);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
       font-size: 0.97rem;
       max-width: 640px;
       margin: 0 auto 2rem;
       line-height: 1.7;
     }
     .decor-swiper {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       border-radius: 14px;
       overflow: hidden;
@@ -148,15 +151,13 @@
     }
     .decor-swiper .swiper-slide {
       background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 520px;
+      aspect-ratio: 16 / 9;
     }
     .decor-swiper .swiper-slide img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center;
       display: block;
     }
     .decor-swiper .swiper-button-next,
@@ -166,8 +167,11 @@
     .decor-swiper .swiper-pagination-bullet-active {
       background: #c9a96e;
     }
-    @media (max-width: 600px) {
-      .decor-swiper .swiper-slide img { height: 260px; }
+    /* ── Sinhala Font Styling ── */
+    .about-text p,
+    .about-text li,
+    .about-features li {
+      font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
     }
   </style>
 
