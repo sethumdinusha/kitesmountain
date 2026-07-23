@@ -130,49 +130,69 @@
     <style>
       .attractions-section {
         background: #0d0d0d;
-        padding: 5rem 1.5rem;
+        padding: 80px 24px;
+      }
+      .attractions-container {
+        max-width: 1200px;
+        margin: 0 auto;
       }
       .attractions-header {
         text-align: center;
-        max-width: 720px;
-        margin: 0 auto 3rem;
+        max-width: 800px;
+        margin: 0 auto 48px;
       }
-      .attractions-header .section-tag { color: #d4af37; }
+      .attractions-header .section-tag {
+        color: #d4af37;
+        font-size: 0.78rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 12px;
+        display: block;
+      }
       .attractions-header h2 {
         color: #fff;
         font-family: 'Playfair Display', serif;
-        font-size: clamp(1.6rem, 4vw, 2.4rem);
-        margin-bottom: 1rem;
+        font-size: clamp(1.9rem, 3vw, 2.9rem);
+        margin-bottom: 20px;
+        line-height: 1.2;
       }
       .attractions-header p {
-        color: rgba(255,255,255,0.7);
+        color: rgba(255, 255, 255, 0.7);
         font-family: 'Inter', sans-serif;
-        font-size: 1.02rem;
+        font-size: 1rem;
         line-height: 1.75;
+        margin: 0;
       }
       .attractions-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto 3rem;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      @media (min-width: 992px) {
+        .attractions-grid {
+          grid-template-columns: 1fr 1fr;
+        }
       }
       .attraction-card {
-        background: #161616;
-        border-radius: 14px;
-        overflow: hidden;
-        border: 1px solid rgba(212,175,55,0.1);
-        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        background: #121212;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: var(--radius);
+        padding: 24px;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
       }
       .attraction-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 50px rgba(212,175,55,0.12);
-        border-color: rgba(212,175,55,0.3);
+        transform: translateY(-4px);
+        border-color: #d4af37;
       }
       .attraction-img-wrap {
         position: relative;
         width: 100%;
-        aspect-ratio: 16 / 10;
+        height: 240px;
+        border-radius: 8px;
         overflow: hidden;
       }
       .attraction-img-wrap img {
@@ -192,51 +212,57 @@
       .attraction-card:hover .attraction-img-wrap img.img-default {
         opacity: 0;
       }
-      .attraction-badge {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: rgba(0,0,0,0.7);
-        color: #d4af37;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.78rem;
-        font-weight: 600;
-        padding: 0.35rem 0.8rem;
-        border-radius: 50px;
-        border: 1px solid rgba(212,175,55,0.3);
-        backdrop-filter: blur(6px);
-        z-index: 2;
+      .attraction-meta {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 0.35rem;
+        gap: 16px;
       }
-      .attraction-body {
-        padding: 1.4rem 1.5rem 1.6rem;
+      @media (max-width: 576px) {
+        .attraction-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
       }
-      .attraction-body h3 {
+      .attraction-title {
         color: #fff;
         font-family: 'Playfair Display', serif;
-        font-size: 1.15rem;
+        font-size: 1.35rem;
         font-weight: 600;
-        margin-bottom: 0.65rem;
+        margin: 0;
       }
-      .attraction-body p {
-        color: rgba(255,255,255,0.62);
+      .attraction-time {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        color: #d4af37;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 5px 14px;
+        border-radius: 50px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+      .attraction-desc {
+        color: rgba(255, 255, 255, 0.65);
         font-family: 'Inter', sans-serif;
         font-size: 0.9rem;
         line-height: 1.7;
+        margin: 0;
       }
       .attractions-cta {
-        max-width: 760px;
-        margin: 0 auto;
+        max-width: 800px;
+        margin: 48px auto 0;
         text-align: center;
-        padding: 1.6rem 2rem;
-        border: 1px solid rgba(212,175,55,0.25);
+        padding: 1.25rem 2rem;
+        border: 1px solid rgba(212, 175, 55, 0.25);
         border-radius: 12px;
-        background: rgba(212,175,55,0.04);
+        background: rgba(212, 175, 55, 0.03);
       }
       .attractions-cta p {
-        color: rgba(255,255,255,0.72);
+        color: rgba(255, 255, 255, 0.85);
         font-family: 'Inter', sans-serif;
         font-size: 0.95rem;
         margin: 0;
@@ -247,63 +273,65 @@
         margin-right: 0.5rem;
       }
     </style>
-    <div class="attractions-header">
-      <p class="section-tag">EXPLORE BADULLA & ELLA</p>
-      <h2>Iconic Attractions Near Kites Mountain</h2>
-      <p>Kites Mountain Hotel & Resort serves as the ideal hilltop gateway to explore Sri Lanka's famous central highlands, tea estates, and historic bridges. Located just a short drive from key landmarks, our resort offers guests the perfect balance of peaceful mountain relaxation and active local exploration.</p>
-    </div>
-    <div class="attractions-grid">
-      <!-- Card 1: Nine Arch Bridge -->
-      <div class="attraction-card">
-        <div class="attraction-img-wrap">
-          <img src="images/nine_arch_1.jpg" alt="Nine Arch Bridge, Demodara" class="img-default" />
-          <img src="images/nine_arch_2.jpg" alt="Nine Arch Bridge with train" class="img-hover" />
-          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~40 mins drive</span>
+    <div class="attractions-container">
+      <div class="attractions-header">
+        <p class="section-tag">DISCOVER BADULLA & ELLA</p>
+        <h2>Iconic Attractions Near Kites Mountain</h2>
+        <p>Positioned amidst the misty peaks of Uva Province, Kites Mountain serves as the perfect luxury gateway to explore iconic highlands, historic colonial heritage, and breathtaking natural waterfalls.</p>
+      </div>
+      <div class="attractions-grid">
+        <!-- Card 1: Nine Arch Bridge -->
+        <div class="attraction-card">
+          <div class="attraction-img-wrap">
+            <img src="images/nine_arch_1.jpg" alt="Nine Arch Bridge, Demodara" class="img-default" />
+            <img src="images/nine_arch_2.jpg" alt="Nine Arch Bridge with train" class="img-hover" />
+          </div>
+          <div class="attraction-meta">
+            <h3 class="attraction-title">Nine Arch Bridge, Demodara</h3>
+            <span class="attraction-time"><i class="fa-solid fa-car"></i> ~40 mins drive</span>
+          </div>
+          <p class="attraction-desc">Marvel at Sri Lanka’s legendary colonial railway bridge nestled amidst dense tea plantations. Watch the iconic blue train wind through the valley and capture timeless high-country moments.</p>
         </div>
-        <div class="attraction-body">
-          <h3>Nine Arch Bridge, Demodara</h3>
-          <p>Marvel at Sri Lanka’s legendary colonial railway bridge nestled amidst dense tea plantations. Watch the iconic blue train wind through the valley and capture timeless high-country moments.</p>
+        <!-- Card 2: Bogoda Wooden Bridge -->
+        <div class="attraction-card">
+          <div class="attraction-img-wrap">
+            <img src="images/bogoda_1.jpg" alt="Bogoda Wooden Bridge" class="img-default" />
+            <img src="images/bogoda_2.jpg" alt="Bogoda Bridge and Temple" class="img-hover" />
+          </div>
+          <div class="attraction-meta">
+            <h3 class="attraction-title">Bogoda Wooden Bridge & Temple</h3>
+            <span class="attraction-time"><i class="fa-solid fa-car"></i> ~20 mins drive</span>
+          </div>
+          <p class="attraction-desc">Discover Sri Lanka’s oldest roofed wooden bridge dating back to the 16th century. Tucked beside an ancient temple, it offers a serene journey into authentic island heritage.</p>
+        </div>
+        <!-- Card 3: Dunhinda Waterfall -->
+        <div class="attraction-card">
+          <div class="attraction-img-wrap">
+            <img src="images/dunhinda_1.jpg" alt="Dunhinda Waterfall" class="img-default" />
+            <img src="images/dunhinda_2.jpg" alt="Dunhinda Falls pathway" class="img-hover" />
+          </div>
+          <div class="attraction-meta">
+            <h3 class="attraction-title">Dunhinda Waterfall</h3>
+            <span class="attraction-time"><i class="fa-solid fa-car"></i> ~15 mins drive</span>
+          </div>
+          <p class="attraction-desc">Witness the magnificent force of Badulla’s most famous waterfall. A picturesque jungle path leads you to spectacular viewpoints surrounded by cool mountain mist.</p>
+        </div>
+        <!-- Card 4: Ella Rock -->
+        <div class="attraction-card">
+          <div class="attraction-img-wrap">
+            <img src="images/ella_1.jpg" alt="Ella Rock panoramic view" class="img-default" />
+            <img src="images/ella_2.jpg" alt="Mini Adams Peak view" class="img-hover" />
+          </div>
+          <div class="attraction-meta">
+            <h3 class="attraction-title">Ella Rock & Mini Adams Peak</h3>
+            <span class="attraction-time"><i class="fa-solid fa-car"></i> ~45 mins drive</span>
+          </div>
+          <p class="attraction-desc">Tailor-made for adventure enthusiasts seeking morning hikes with panoramic mountain views. Enjoy breathtaking vistas across the Ella Gap just a short ride away.</p>
         </div>
       </div>
-      <!-- Card 2: Bogoda Wooden Bridge -->
-      <div class="attraction-card">
-        <div class="attraction-img-wrap">
-          <img src="images/bogoda_1.jpg" alt="Bogoda Wooden Bridge" class="img-default" />
-          <img src="images/bogoda_2.jpg" alt="Bogoda Bridge and Temple" class="img-hover" />
-          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~20 mins drive</span>
-        </div>
-        <div class="attraction-body">
-          <h3>Bogoda Wooden Bridge & Temple</h3>
-          <p>Discover Sri Lanka’s oldest roofed wooden bridge dating back to the 16th century. Tucked beside an ancient temple, it offers a serene journey into authentic island heritage.</p>
-        </div>
+      <div class="attractions-cta">
+        <p><i class="fa-solid fa-concierge-bell"></i>Planning day excursions? Our front desk team is happy to assist with private transport and local tour arrangements.</p>
       </div>
-      <!-- Card 3: Dunhinda Waterfall -->
-      <div class="attraction-card">
-        <div class="attraction-img-wrap">
-          <img src="images/dunhinda_1.jpg" alt="Dunhinda Waterfall" class="img-default" />
-          <img src="images/dunhinda_2.jpg" alt="Dunhinda Falls pathway" class="img-hover" />
-          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~15 mins drive</span>
-        </div>
-        <div class="attraction-body">
-          <h3>Dunhinda Waterfall</h3>
-          <p>Witness the magnificent force of Badulla’s most famous waterfall. A picturesque jungle path leads you to spectacular viewpoints surrounded by cool mountain mist.</p>
-        </div>
-      </div>
-      <!-- Card 4: Ella Rock -->
-      <div class="attraction-card">
-        <div class="attraction-img-wrap">
-          <img src="images/ella_1.jpg" alt="Ella Rock panoramic view" class="img-default" />
-          <img src="images/ella_2.jpg" alt="Mini Adams Peak view" class="img-hover" />
-          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~45 mins drive</span>
-        </div>
-        <div class="attraction-body">
-          <h3>Ella Rock & Mini Adams Peak</h3>
-          <p>Tailor-made for adventure enthusiasts seeking morning hikes with panoramic mountain views. Enjoy breathtaking vistas across the Ella Gap just a short ride away.</p>
-        </div>
-      </div>
-    </div>
-    <div class="attractions-cta">
-      <p><i class="fa-solid fa-concierge-bell"></i>Planning day excursions? Our front desk team is happy to assist with private transport and local tour arrangements.</p>
     </div>
   </section>
 
