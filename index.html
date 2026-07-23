@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luxury Hotel in Badulla | Kites Mountain Hotel & Resort</title>
-  <meta name="description" content="Experience premium mountain view rooms at our luxury hotel in Badulla. A peaceful resort near Dunhinda Falls with pool & free airport shuttle." />
-  <meta name="keywords" content="Luxury hotel in Badulla, resort near Dunhinda Falls, mountain view rooms, Kites Mountain Resort, Badulla hotels, Ella accommodation" />
+  <title>Kites Mountain Hotel & Resort Badulla | Luxury Stay near Nine Arch Bridge & Ella</title>
+  <meta name="title" content="Kites Mountain Hotel & Resort Badulla | Luxury Stay near Nine Arch Bridge & Ella">
+  <meta name="description" content="Experience luxury hospitality at Kites Mountain Hotel & Resort, Badulla. Mountain view balconies, outdoor pool, banquet hall, and quick access to Nine Arch Bridge, Dunhinda Falls, and Bogoda Wooden Bridge." />
+  <meta name="keywords" content="Kites Mountain Hotel, Hotels in Badulla, Hotels near Nine Arch Bridge, Luxury Resort Badulla, Hotels near Ella Sri Lanka, Dunhinda Falls hotel" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kitesmountainhotel.com/" />
-  <meta property="og:title" content="Luxury Hotel in Badulla | Kites Mountain Hotel & Resort" />
-  <meta property="og:description" content="Experience premium mountain view rooms at our luxury hotel in Badulla. A peaceful resort near Dunhinda Falls with an outdoor swimming pool & free breakfast." />
+  <meta property="og:title" content="Kites Mountain Hotel & Resort Badulla | Gateway to Ella & Nine Arch Bridge" />
+  <meta property="og:description" content="Mountain view balconies, outdoor pool, fine dining, and close to top Ella & Badulla attractions. Plan your perfect Sri Lanka getaway." />
   <meta property="og:image" content="https://kitesmountainhotel.com/images/hotelfront.webp" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://kitesmountainhotel.com/" />
-  <meta property="twitter:title" content="Luxury Hotel in Badulla | Kites Mountain Hotel & Resort" />
-  <meta property="twitter:description" content="Experience premium mountain view rooms at our luxury hotel in Badulla. A peaceful resort near Dunhinda Falls with an outdoor swimming pool & free breakfast." />
+  <meta property="twitter:title" content="Kites Mountain Hotel & Resort Badulla | Luxury Stay near Nine Arch Bridge & Ella" />
+  <meta property="twitter:description" content="Experience luxury hospitality at Kites Mountain Hotel & Resort, Badulla. Mountain view balconies, outdoor pool, and quick access to Nine Arch Bridge & Dunhinda Falls." />
   <meta property="twitter:image" content="https://kitesmountainhotel.com/images/hotelfront.webp" />
   <!-- Google Search & Browser Favicon Settings -->
   <link rel="icon" type="image/png" sizes="192x192" href="images/kites_logo_2.png" />
@@ -32,7 +34,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Schema.org JSON-LD for Site Logo and Organization -->
+  <!-- Schema.org JSON-LD for Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,6 +46,30 @@
       "@type": "ContactPoint",
       "telephone": "+94-77-52-43-432",
       "contactType": "reservations"
+    }
+  }
+  </script>
+
+  <!-- Schema.org JSON-LD for Hotel -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Kites Mountain Hotel & Resort",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "138B, Rideepana",
+      "addressLocality": "Badulla",
+      "addressRegion": "Uva Province",
+      "addressCountry": "LK"
+    },
+    "url": "https://kitesmountainhotel.com",
+    "telephone": "+94775243432",
+    "image": "https://kitesmountainhotel.com/images/hotelfront.webp",
+    "priceRange": "LKR 8,350 - LKR 20,000",
+    "starRating": {
+      "@type": "Rating",
+      "ratingValue": "4"
     }
   }
   </script>
@@ -128,6 +154,188 @@
         </ul>
         <a href="amenities.html" class="btn-primary">Discover More</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Nearby Attractions -->
+  <section class="attractions-section" id="attractions">
+    <style>
+      .attractions-section {
+        background: #0d0d0d;
+        padding: 5rem 1.5rem;
+      }
+      .attractions-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 3rem;
+      }
+      .attractions-header .section-tag { color: #d4af37; }
+      .attractions-header h2 {
+        color: #fff;
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        margin-bottom: 1rem;
+      }
+      .attractions-header p {
+        color: rgba(255,255,255,0.7);
+        font-family: 'Inter', sans-serif;
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+      .attractions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+      }
+      .attraction-card {
+        background: #161616;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(212,175,55,0.1);
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+      .attraction-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(212,175,55,0.12);
+        border-color: rgba(212,175,55,0.3);
+      }
+      .attraction-img-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+      }
+      .attraction-img-wrap img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.5s ease;
+      }
+      .attraction-img-wrap img.img-hover {
+        opacity: 0;
+      }
+      .attraction-card:hover .attraction-img-wrap img.img-hover {
+        opacity: 1;
+      }
+      .attraction-card:hover .attraction-img-wrap img.img-default {
+        opacity: 0;
+      }
+      .attraction-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0,0,0,0.7);
+        color: #d4af37;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 0.35rem 0.8rem;
+        border-radius: 50px;
+        border: 1px solid rgba(212,175,55,0.3);
+        backdrop-filter: blur(6px);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .attraction-body {
+        padding: 1.4rem 1.5rem 1.6rem;
+      }
+      .attraction-body h3 {
+        color: #fff;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.65rem;
+      }
+      .attraction-body p {
+        color: rgba(255,255,255,0.62);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .attractions-cta {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 1.6rem 2rem;
+        border: 1px solid rgba(212,175,55,0.25);
+        border-radius: 12px;
+        background: rgba(212,175,55,0.04);
+      }
+      .attractions-cta p {
+        color: rgba(255,255,255,0.72);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        margin: 0;
+        line-height: 1.6;
+      }
+      .attractions-cta i {
+        color: #d4af37;
+        margin-right: 0.5rem;
+      }
+    </style>
+    <div class="attractions-header">
+      <p class="section-tag">Explore Badulla & Ella</p>
+      <h2>Iconic Attractions Near Kites Mountain</h2>
+      <p>Perched high in the misty highlands of Uva Province, Kites Mountain Hotel is the perfect starting point for exploring Sri Lanka's most celebrated hill country landmarks. From ancient bridges and legendary waterfalls to panoramic hiking trails across the Ella Gap, every adventure is just a short scenic drive away.</p>
+    </div>
+    <div class="attractions-grid">
+      <!-- Card 1: Nine Arch Bridge -->
+      <div class="attraction-card">
+        <div class="attraction-img-wrap">
+          <img src="images/nine_arch_1.jpg" alt="Nine Arch Bridge, Demodara" class="img-default" />
+          <img src="images/nine_arch_2.jpg" alt="Nine Arch Bridge with train" class="img-hover" />
+          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~40 mins drive</span>
+        </div>
+        <div class="attraction-body">
+          <h3>Nine Arch Bridge, Demodara</h3>
+          <p>Marvel at Sri Lanka's legendary colonial railway bridge nestled amidst dense tea plantations. Watch the iconic blue train wind through the valley and capture timeless high-country moments.</p>
+        </div>
+      </div>
+      <!-- Card 2: Bogoda Wooden Bridge -->
+      <div class="attraction-card">
+        <div class="attraction-img-wrap">
+          <img src="images/bogoda_1.jpg" alt="Bogoda Wooden Bridge" class="img-default" />
+          <img src="images/bogoda_2.jpg" alt="Bogoda Bridge and Temple" class="img-hover" />
+          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~20 mins drive</span>
+        </div>
+        <div class="attraction-body">
+          <h3>Bogoda Wooden Bridge & Temple</h3>
+          <p>Discover Sri Lanka's oldest roofed wooden bridge dating back to the 16th century. Tucked beside an ancient temple, it offers a serene journey into authentic island heritage.</p>
+        </div>
+      </div>
+      <!-- Card 3: Dunhinda Waterfall -->
+      <div class="attraction-card">
+        <div class="attraction-img-wrap">
+          <img src="images/dunhinda_1.jpg" alt="Dunhinda Waterfall" class="img-default" />
+          <img src="images/dunhinda_2.jpg" alt="Dunhinda Falls pathway" class="img-hover" />
+          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~15 mins drive</span>
+        </div>
+        <div class="attraction-body">
+          <h3>Dunhinda Waterfall</h3>
+          <p>Witness the magnificent force of Badulla's most famous waterfall. A picturesque jungle path leads you to spectacular viewpoints surrounded by cool mountain mist.</p>
+        </div>
+      </div>
+      <!-- Card 4: Ella Rock -->
+      <div class="attraction-card">
+        <div class="attraction-img-wrap">
+          <img src="images/ella_1.jpg" alt="Ella Rock panoramic view" class="img-default" />
+          <img src="images/ella_2.jpg" alt="Mini Adams Peak view" class="img-hover" />
+          <span class="attraction-badge"><i class="fa-solid fa-car"></i> ~45 mins drive</span>
+        </div>
+        <div class="attraction-body">
+          <h3>Ella Rock & Mini Adams Peak</h3>
+          <p>Tailor-made for adventure enthusiasts seeking morning hikes with panoramic mountain views. Enjoy breathtaking vistas across the Ella Gap just a short ride away.</p>
+        </div>
+      </div>
+    </div>
+    <div class="attractions-cta">
+      <p><i class="fa-solid fa-concierge-bell"></i>Planning day excursions? Our front desk team is happy to assist with private transport and local tour arrangements.</p>
     </div>
   </section>
 
