@@ -119,6 +119,102 @@
       .lightbox-prev { left: -2.6rem; }
       .lightbox-next { right: -2.6rem; }
     }
+
+    /* ── Video Popup Modal ── */
+    .video-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: lbFadeIn 0.25s ease;
+    }
+    .video-modal-overlay.active { display: flex; }
+    .video-modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      background: #0d0d0d;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 0 1px rgba(201,169,110,0.18);
+      animation: lbImgIn 0.25s ease;
+    }
+    .video-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.2rem;
+      background: rgba(201,169,110,0.06);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+    .video-modal-title {
+      color: #c9a96e;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .video-modal-close {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 50%;
+      font-size: 1.15rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .video-modal-close:hover { background: #c9a96e; color: #000; transform: rotate(90deg); }
+    .video-modal-body video {
+      width: 100%;
+      display: block;
+      max-height: 72vh;
+      background: #000;
+    }
+    .video-modal-unavail {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-family: 'Inter', sans-serif;
+    }
+    .video-modal-unavail i { font-size: 2.5rem; color: #c9a96e; margin-bottom: 1rem; display: block; }
+    /* Watch Video button on room cards */
+    .btn-watch-video {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.2rem;
+      background: transparent;
+      color: #c9a96e;
+      border: 1.5px solid #c9a96e;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.22s, color 0.22s, box-shadow 0.22s, transform 0.22s;
+      white-space: nowrap;
+    }
+    .btn-watch-video:hover {
+      background: #c9a96e;
+      color: #0d0d0d;
+      box-shadow: 0 4px 18px rgba(201,169,110,0.45);
+      transform: translateY(-1px);
+    }
+    .room-price-book {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
   </style>
 
   <!-- Vercel Web Analytics -->
@@ -201,6 +297,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=King+Room+with+Mountain+View" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('videos/room_king_mountain.mp4', 'King Room with Mountain View')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -230,6 +329,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=Deluxe+Double+Room" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('videos/room_deluxe_double.mp4', 'Deluxe Double Room')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -259,6 +361,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=Budget+Double+Room" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('videos/room_budget_double.mp4', 'Budget Double Room')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -288,6 +393,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=Deluxe+Triple+Room" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('videos/room_deluxe_triple.mp4', 'Deluxe Triple Room')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -317,6 +425,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=Standard+Family+Room" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('', 'Standard Family Room')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -346,6 +457,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=Basic+Triple+Room" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('videos/room_basic_triple.mp4', 'Basic Triple Room')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -375,6 +489,9 @@
               <span class="price-note">*Price may change due to taxes & others</span>
             </div>
             <a href="contact.html?room=Family+Room+with+Balcony" class="btn-primary">Book Now</a>
+            <button class="btn-watch-video" onclick="openVideoModal('videos/room_family_balcony.mp4', 'Family Room with Balcony')">
+              <i class="fa-solid fa-circle-play"></i> Watch Video
+            </button>
           </div>
         </div>
       </div>
@@ -450,6 +567,17 @@
     </div>
   </div>
 
+  <!-- Video Popup Modal -->
+  <div class="video-modal-overlay" id="videoModal" onclick="handleVideoOverlayClick(event)">
+    <div class="video-modal-box">
+      <div class="video-modal-header">
+        <p class="video-modal-title" id="videoModalTitle">Room Video</p>
+        <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Close video"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="video-modal-body" id="videoModalBody"></div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
   <script src="js/currency-converter.js"></script>
   <script>
@@ -490,6 +618,41 @@
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') lightboxNav(-1);
       if (e.key === 'ArrowRight') lightboxNav(1);
+    });
+
+    /* ── Video Popup Modal JS ── */
+    function openVideoModal(src, title) {
+      var modal = document.getElementById('videoModal');
+      var body  = document.getElementById('videoModalBody');
+      var titleEl = document.getElementById('videoModalTitle');
+      titleEl.textContent = title;
+      body.innerHTML = '';
+      if (src) {
+        var vid = document.createElement('video');
+        vid.src = src;
+        vid.controls = true;
+        vid.autoplay = true;
+        vid.playsInline = true;
+        vid.style.cssText = 'width:100%;display:block;max-height:72vh;background:#000;';
+        body.appendChild(vid);
+      } else {
+        body.innerHTML = '<div class="video-modal-unavail"><i class="fa-solid fa-video-slash"></i><p>Video coming soon for this room.<br>Please contact us for a virtual tour.</p></div>';
+      }
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoModal() {
+      var modal = document.getElementById('videoModal');
+      var body  = document.getElementById('videoModalBody');
+      modal.classList.remove('active');
+      body.innerHTML = ''; /* stops video fully */
+      document.body.style.overflow = '';
+    }
+    function handleVideoOverlayClick(e) {
+      if (e.target === document.getElementById('videoModal')) closeVideoModal();
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('videoModal').classList.contains('active')) closeVideoModal();
     });
   </script>
 </body>
