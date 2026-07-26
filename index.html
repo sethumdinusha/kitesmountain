@@ -137,10 +137,10 @@
     <style>
       .attractions-grid {
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 0 auto 50px;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 28px;
         padding: 0 24px;
       }
       @media (min-width: 992px) {
@@ -151,7 +151,7 @@
       .attraction-img-wrap {
         position: relative;
         width: 100%;
-        height: 240px;
+        aspect-ratio: 16 / 9;
         border-radius: 8px;
         overflow: hidden;
         margin-bottom: 20px;
@@ -162,6 +162,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: inherit;
         transition: opacity 0.5s ease;
       }
       .attraction-img-wrap img.img-hover {
@@ -172,6 +173,18 @@
       }
       .testimonial-card:hover .attraction-img-wrap img.img-default {
         opacity: 0;
+      }
+      .badge-proximity {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--gold);
+        color: var(--dark);
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-bottom: 12px;
       }
       .attraction-meta {
         display: flex;
@@ -214,32 +227,117 @@
         line-height: 1.7;
         margin: 0;
       }
-      .attractions-cta {
+      
+      /* Hiking & Camping Grid */
+      .section-subtitle-wrap {
+        text-align: center;
+        margin: 60px auto 32px;
         max-width: 800px;
+        padding: 0 24px;
+      }
+      .section-subtitle-wrap h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+        color: var(--white);
+        margin-top: 6px;
+      }
+      .hotspots-grid {
+        max-width: 1200px;
+        margin: 0 auto 50px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 0 24px;
+      }
+      @media (max-width: 991px) {
+        .hotspots-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .hotspots-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .hotspot-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 24px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+      .hotspot-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(201, 168, 76, 0.4);
+      }
+      .hotspot-card h4 {
+        color: var(--white);
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hotspot-card p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.86rem;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Heritage Grid */
+      .heritage-grid {
+        max-width: 1200px;
+        margin: 0 auto 50px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 0 24px;
+      }
+      @media (max-width: 991px) {
+        .heritage-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Callout Banner */
+      .attractions-cta {
+        max-width: 900px;
         margin: 40px auto 0;
         text-align: center;
-        padding: 1.25rem 2rem;
-        border: 1px solid rgba(201, 168, 76, 0.25);
-        border-radius: 12px;
-        background: rgba(201, 168, 76, 0.03);
+        padding: 2rem 2.5rem;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(201, 168, 76, 0.06), rgba(0, 0, 0, 0.4));
+      }
+      .attractions-cta h4 {
+        color: var(--gold);
+        font-family: 'Playfair Display', serif;
+        font-size: 1.35rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
       .attractions-cta p {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.82);
         font-family: 'Inter', sans-serif;
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         margin: 0;
-        line-height: 1.6;
-      }
-      .attractions-cta i {
-        color: var(--gold);
-        margin-right: 0.5rem;
+        line-height: 1.65;
       }
     </style>
+
+    <!-- Main Header -->
     <div class="container-center">
       <p class="section-tag light">DISCOVER BADULLA & ELLA</p>
-      <h2 class="light">Iconic Attractions Near Kites Mountain</h2>
-      <p class="section-sub" style="color: rgba(255, 255, 255, 0.78);">Positioned amidst the misty peaks of Uva Province, Kites Mountain serves as the perfect luxury gateway to explore iconic highlands, historic colonial heritage, and breathtaking natural waterfalls.</p>
+      <h2 class="light">Iconic Attractions & Adventure Near Kites Mountain</h2>
+      <p class="section-sub" style="color: rgba(255, 255, 255, 0.78);">Positioned amidst the misty peaks of Uva Province, Kites Mountain serves as your luxury gateway to explore iconic highland landmarks, ancient historical heritage, and thrilling mountain trails.</p>
     </div>
+
+    <!-- Core Attractions Grid -->
     <div class="attractions-grid">
       <!-- Card 1: Nine Arch Bridge -->
       <div class="testimonial-card">
@@ -253,6 +351,7 @@
         </div>
         <p class="attraction-desc">Marvel at Sri Lanka’s legendary colonial railway bridge nestled amidst dense tea plantations. Watch the iconic blue train wind through the valley and capture timeless high-country moments.</p>
       </div>
+
       <!-- Card 2: Bogoda Wooden Bridge -->
       <div class="testimonial-card">
         <div class="attraction-img-wrap">
@@ -265,19 +364,22 @@
         </div>
         <p class="attraction-desc">Discover Sri Lanka’s oldest roofed wooden bridge dating back to the 16th century. Tucked beside an ancient temple, it offers a serene journey into authentic island heritage.</p>
       </div>
-      <!-- Card 3: Dunhinda Waterfall -->
+
+      <!-- Card 3: Dunhinda Waterfall (Highlighted Proximity) -->
       <div class="testimonial-card">
+        <span class="badge-proximity"><i class="fa-solid fa-fire"></i> Walking Distance / 5 Mins Away</span>
         <div class="attraction-img-wrap">
           <img src="images/dunhinda_1.jpg" alt="Dunhinda Waterfall" class="img-default" />
           <img src="images/dunhinda_2.jpg" alt="Dunhinda Falls pathway" class="img-hover" />
         </div>
         <div class="attraction-meta">
           <h3 class="attraction-title">Dunhinda Waterfall</h3>
-          <span class="attraction-time"><i class="fa-solid fa-car"></i> ~15 mins drive</span>
+          <span class="attraction-time"><i class="fa-solid fa-person-walking"></i> ~5 mins away</span>
         </div>
-        <p class="attraction-desc">Witness the magnificent force of Badulla’s most famous waterfall. A picturesque jungle path leads you to spectacular viewpoints surrounded by cool mountain mist.</p>
+        <p class="attraction-desc">Located right near Kites Mountain Hotel! Experience Sri Lanka's most iconic, roaring waterfall just a short walk or quick 5-minute ride away.</p>
       </div>
-      <!-- Card 4: Ella Rock -->
+
+      <!-- Card 4: Ella Rock & Mini Adams Peak -->
       <div class="testimonial-card">
         <div class="attraction-img-wrap">
           <img src="images/ella_1.jpg" alt="Ella Rock panoramic view" class="img-default" />
@@ -290,8 +392,63 @@
         <p class="attraction-desc">Tailor-made for adventure enthusiasts seeking morning hikes with panoramic mountain views. Enjoy breathtaking vistas across the Ella Gap just a short ride away.</p>
       </div>
     </div>
+
+    <!-- Hiking & Camping Hotspots Grid -->
+    <div class="section-subtitle-wrap">
+      <p class="section-tag light">OUTDOOR ADVENTURES</p>
+      <h3>🏕️ Hiking & Camping Hotspots Around Badulla</h3>
+    </div>
+    <div class="hotspots-grid">
+      <div class="hotspot-card">
+        <h4>⛰️ Kites Mountain</h4>
+        <p>Walking distance directly from hotel grounds! Enjoy panoramic ridge walks and peaceful nature trails without leaving the property.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>👑 Queen's Mountain</h4>
+        <p>Scenic viewpoint & local hiking trail offering spectacular sunrise vistas over the surrounding tea hills and valleys.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>⛰️ Narangala Mountain Peak</h4>
+        <p>Famous 360-degree sunrise views & night camping spot known for its distinct pointed peak and golden grass slopes.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>🌾 Rathkale Pathana</h4>
+        <p>Peaceful grassy plain & mountain view campsite perfect for day picnics, stargazing, and high-country nature photography.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>🌄 Babaragala Pathana</h4>
+        <p>Scenic high-altitude trekking destination surrounded by cool breezes, pine trees, and sweeping mountain panoramas.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>🥾 Ella Rock & Mini Adams Peak</h4>
+        <p>Popular trekking trails with iconic mountain gap views, ideal for morning excursions from Kites Mountain Hotel.</p>
+      </div>
+    </div>
+
+    <!-- Historic & Local Attractions Grid -->
+    <div class="section-subtitle-wrap">
+      <p class="section-tag light">COLONIAL & HERITAGE LANDMARKS</p>
+      <h3>🏛️ Historic & Local Attractions</h3>
+    </div>
+    <div class="heritage-grid">
+      <div class="hotspot-card">
+        <h4>🏛️ Muthiyangana Raja Maha Viharaya</h4>
+        <p>Ancient Historic Temple (~10 mins away). One of Sri Lanka's 16 sacred Solosmasthana places visited by the Buddha.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>🚂 Demodara Railway Loop</h4>
+        <p>Engineering Marvel (~25 mins away). A unique spiral railway loop where the train passes underneath its own track station.</p>
+      </div>
+      <div class="hotspot-card">
+        <h4>🕰️ Badulla Colonial Clock Tower & Market</h4>
+        <p>Historic Town Center (~10 mins away). Explore vibrant local spice stalls, tea shops, and colonial architecture.</p>
+      </div>
+    </div>
+
+    <!-- Tour & Hiking Assistance Callout Banner -->
     <div class="attractions-cta">
-      <p><i class="fa-solid fa-concierge-bell"></i>Planning day excursions? Our front desk team is happy to assist with private transport and local tour arrangements.</p>
+      <h4>🗺️ Need Help Planning Your Hike or Tour?</h4>
+      <p>Staying at Kites Mountain Hotel gives you easy access to many hidden hiking trails, waterfalls, and camping spots around Badulla! Contact our front desk upon arrival—we are happy to guide you, provide expert local advice, and organize custom transport or guides for your adventure!</p>
     </div>
   </section>
 

@@ -83,26 +83,91 @@ if (filterBtns.length) {
     });
   });
 }
-// ===== CONTACT FORM =====
+// ===== CALENDAR DYNAMIC MIN-DATE & VALIDATION =====
+(function () {
+  const checkinInput = document.querySelector('input[name="checkin_date"]');
+  const checkoutInput = document.querySelector('input[name="checkout_date"]');
+  if (!checkinInput || !checkoutInput) return;
+
+  const today = new Date().toISOString().split('T')[0];
+  checkinInput.min = today;
+  checkoutInput.min = today;
+
+  checkinInput.addEventListener('change', function () {
+    if (this.value) {
+      const selected = new Date(this.value);
+      selected.setDate(selected.getDate() + 1);
+      const nextDay = selected.toISOString().split('T')[0];
+      checkoutInput.min = nextDay;
+      if (checkoutInput.value && checkoutInput.value < nextDay) {
+        checkoutInput.value = nextDay;
+      }
+    }
+  });
+})();
+
+// ===== ROOM AUTO-SELECT & SMOOTH SCROLL FROM URL ?room= =====
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const roomParam = params.get('room');
+  if (!roomParam) return;
+  
+  const select = document.querySelector('select[name="room_type"]');
+  if (select) {
+    const decoded = decodeURIComponent(roomParam.replace(/\+/g, ' ')).toLowerCase().trim();
+    for (let i = 0; i < select.options.length; i++) {
+      const optVal = select.options[i].value.toLowerCase().trim();
+      const optText = select.options[i].text.toLowerCase().trim();
+      if (optVal === decoded || optText === decoded || optVal.includes(decoded) || decoded.includes(optVal)) {
+        select.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  // Smooth scroll down to booking form if hash or room param present
+  window.addEventListener('DOMContentLoaded', () => {
+    const formWrap = document.getElementById('booking-form');
+    if (formWrap) {
+      setTimeout(() => {
+        formWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    }
+  });
+})();
+
+// ===== CONTACT FORM & WHATSAPP SUBMISSION =====
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // ===== PREVENT DUPLICATE SUBMISSIONS & 3-MINUTE COOLDOWN =====
+    const lastBookingTime = localStorage.getItem('lastBookingTime');
+    const now = Date.now();
+    const cooldownMs = 180000; // 3 minutes = 180,000 ms
+
+    if (lastBookingTime && (now - parseInt(lastBookingTime, 10)) < cooldownMs) {
+      alert("You have already sent a booking request! Please check your open WhatsApp tab or wait a few minutes before trying again.");
+      return;
+    }
+
     const btn = contactForm.querySelector('button[type="submit"]');
-    btn.textContent = 'Sending...';
+    btn.textContent = 'Sending... Please wait';
     btn.disabled = true;
     const formData = new FormData(contactForm);
 
     // ===== Build WhatsApp message from form data =====
-    const firstName = formData.get('first_name') || '';
-    const lastName  = formData.get('last_name')  || '';
-    const email     = formData.get('email')       || '';
-    const phone     = formData.get('phone')       || '';
-    const roomType  = formData.get('room_type')   || '';
-    const checkin   = formData.get('checkin_date')  || '';
-    const checkout  = formData.get('checkout_date') || '';
-    const guests    = formData.get('guests')      || '';
-    const message   = formData.get('message')     || '';
+    const firstName   = formData.get('first_name')   || '';
+    const lastName    = formData.get('last_name')    || '';
+    const email       = formData.get('email')         || '';
+    const phone       = formData.get('phone')         || '';
+    const roomType    = formData.get('room_type')     || '';
+    const checkin     = formData.get('checkin_date')  || '';
+    const checkout    = formData.get('checkout_date') || '';
+    const arrivalTime = formData.get('arrival_time')  || '';
+    const guests      = formData.get('guests')        || '';
+    const message     = formData.get('message')       || '';
 
     const waLines = [
       '🏔️ *New Booking Request — Kites Mountain*',
@@ -113,6 +178,7 @@ if (contactForm) {
       `🛏️ *Room Type:* ${roomType || 'N/A'}`,
       `📅 *Check-in:* ${checkin || 'N/A'}`,
       `📅 *Check-out:* ${checkout || 'N/A'}`,
+      `⏰ *Check-in Time:* ${arrivalTime || 'N/A'}`,
       `👥 *Guests:* ${guests || 'N/A'}`
     ];
     if (message) waLines.push('', `📝 *Message:* ${message}`);
@@ -130,9 +196,11 @@ if (contactForm) {
       });
 
       if (response.ok) {
+        // Save submission timestamp to LocalStorage lock
+        localStorage.setItem('lastBookingTime', Date.now().toString());
         contactForm.reset();
 
-        // ===== Automatically open WhatsApp with booking details =====
+        // ===== Automatically open WhatsApp ONCE with booking details =====
         window.open(waLink, '_blank');
 
         // ===== Show success popup =====

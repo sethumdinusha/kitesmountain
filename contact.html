@@ -106,7 +106,7 @@
         </div>
       </div>
 
-      <div class="contact-form-wrap">
+      <div class="contact-form-wrap" id="booking-form">
         <h3>Send Us a Message</h3>
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojzzkjz" method="POST">
           <div class="form-row">
@@ -130,8 +130,18 @@
             </select>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Check-in Date</label><input type="date" name="checkin_date" /></div>
-            <div class="form-group"><label>Check-out Date</label><input type="date" name="checkout_date" /></div>
+            <div class="form-group"><label>Check-in Date</label><input type="date" name="checkin_date" required /></div>
+            <div class="form-group"><label>Check-out Date</label><input type="date" name="checkout_date" required /></div>
+          </div>
+          <div class="form-group">
+            <label>Estimated Arrival / Check-in Time</label>
+            <select name="arrival_time" required>
+              <option value="" disabled selected>Select Arrival Time</option>
+              <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM</option>
+              <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM</option>
+              <option value="06:00 PM - 08:00 PM">06:00 PM - 08:00 PM</option>
+              <option value="After 08:00 PM">After 08:00 PM (Late Check-in)</option>
+            </select>
           </div>
           <div class="form-group"><label>Number of Guests</label><input type="number" name="guests" min="1" max="20" placeholder="2" /></div>
           <div class="form-group"><label>Message</label><textarea name="message" rows="4" placeholder="Tell us about your requirements..."></textarea></div>
