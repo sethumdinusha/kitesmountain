@@ -109,9 +109,18 @@
   </nav>
 
   <section class="hero" id="home">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="videos/about.mp4" type="video/mp4">
-    </video>
+    <div class="hero-slider" id="heroSlider">
+      <!-- Slide 1: Hotel Exterior & Mountain View Pool -->
+      <div class="hero-slide active" style="background-image: url('images/hero-pool.jpg'), url('images/pool.webp'), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=85');"></div>
+      <!-- Slide 2: Dunhinda Waterfall -->
+      <div class="hero-slide" style="background-image: url('images/hero-dunhinda.jpg'), url('images/dunhinda_1.jpg'), url('https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1920&q=85');"></div>
+      <!-- Slide 3: Nine Arch Bridge, Demodara -->
+      <div class="hero-slide" style="background-image: url('images/hero-ninearch.jpg'), url('images/nine_arch_1.jpg'), url('https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85');"></div>
+      <!-- Slide 4: Narangala Mountain Peak & Misty Tea Plantations -->
+      <div class="hero-slide" style="background-image: url('images/hero-narangala.jpg'), url('images/mountain_view.webp'), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=85');"></div>
+      <!-- Slide 5: Luxury Hotel Room Interior -->
+      <div class="hero-slide" style="background-image: url('images/hero-room.jpg'), url('images/roompage.webp'), url('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1920&q=85');"></div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-tag">Luxury Hotel in Badulla</p>
@@ -121,6 +130,13 @@
         <a href="rooms.html" class="btn-primary">Explore Rooms</a>
         <a href="contact.html" class="btn-outline">Book a Stay</a>
       </div>
+    </div>
+    <div class="hero-slider-dots" id="heroSliderDots">
+      <button class="hero-dot active" aria-label="Slide 1"></button>
+      <button class="hero-dot" aria-label="Slide 2"></button>
+      <button class="hero-dot" aria-label="Slide 3"></button>
+      <button class="hero-dot" aria-label="Slide 4"></button>
+      <button class="hero-dot" aria-label="Slide 5"></button>
     </div>
     <div class="hero-scroll"><i class="fa-solid fa-chevron-down"></i></div>
   </section>

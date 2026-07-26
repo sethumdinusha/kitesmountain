@@ -1,50 +1,46 @@
-// ===== HERO VIDEO PARALLAX =====
+// ===== HERO BACKGROUND SLIDER / CAROUSEL =====
 (function () {
-  const parallaxVideos = document.querySelectorAll('.hero-video');
-  if (!parallaxVideos.length) return;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  if (!slides.length) return;
 
-  function updateParallax() {
-    const viewportHeight = window.innerHeight;
-    
-    parallaxVideos.forEach(video => {
-      const container = video.parentElement;
-      if (!container) return;
-      
-      const rect = container.getBoundingClientRect();
-      
-      // Check if container is in viewport
-      if (rect.bottom < 0 || rect.top > viewportHeight) return;
-      
-      const containerHeight = rect.height;
-      // Calculate visibility progress: 0 (entering bottom) to 1 (leaving top)
-      const totalRange = viewportHeight + containerHeight;
-      const currentScroll = viewportHeight - rect.top;
-      const progress = Math.max(0, Math.min(1, currentScroll / totalRange));
-      
-      // The video is 120% height and top is -10%. 
-      // So extra height is 20% of container height.
-      // We want to translate from +10% to -10% of container height.
-      const extraHeight = containerHeight * 0.2;
-      const translateY = (0.5 - progress) * extraHeight;
-      
-      video.style.transform = `translateY(${translateY}px)`;
+  let currentSlide = 0;
+  const slideIntervalTime = 4500; // 4.5 seconds per slide
+  let slideTimer = null;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
     });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+    currentSlide = index;
   }
 
-  let ticking = false;
-  window.addEventListener('scroll', function () {
-    if (!ticking) {
-      requestAnimationFrame(function () {
-        updateParallax();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-  
-  // Run on load and resize
-  window.addEventListener('resize', updateParallax);
-  updateParallax();
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    slideTimer = setInterval(nextSlide, slideIntervalTime);
+  }
+
+  function stopAutoSlide() {
+    if (slideTimer) clearInterval(slideTimer);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      showSlide(i);
+      startAutoSlide();
+    });
+  });
+
+  // Start auto sliding
+  startAutoSlide();
 })();
 
 // ===== NAVBAR SCROLL =====
