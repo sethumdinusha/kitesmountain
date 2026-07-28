@@ -350,3 +350,62 @@ if (document.readyState === 'loading') {
 } else {
   createFloatingButtons();
 }
+
+// ===== ATTRACTION MODAL POP-UP LOGIC =====
+(function () {
+  const modal = document.getElementById('attraction-modal');
+  if (!modal) return;
+
+  const closeBtn = document.getElementById('closeAttractionModal');
+  const modalImg = document.getElementById('attractionModalImg');
+  const modalTitle = document.getElementById('attractionModalTitle');
+  const modalTime = document.getElementById('attractionModalTime');
+  const modalDesc = document.getElementById('attractionModalDesc');
+  const modalBadge = document.getElementById('attractionModalBadge');
+
+  function openAttractionModal(card) {
+    const imgEl = card.querySelector('.attraction-img-wrap img.img-default') || card.querySelector('.attraction-img-wrap img');
+    const titleEl = card.querySelector('.attraction-title');
+    const timeEl = card.querySelector('.attraction-time');
+    const descEl = card.querySelector('.attraction-desc');
+    const badgeEl = card.querySelector('.badge-proximity');
+
+    if (imgEl && modalImg) {
+      modalImg.src = imgEl.src;
+      modalImg.alt = imgEl.alt || (titleEl ? titleEl.textContent : 'Attraction');
+    }
+    if (titleEl && modalTitle) modalTitle.textContent = titleEl.textContent;
+    if (timeEl && modalTime) modalTime.innerHTML = timeEl.innerHTML;
+    if (descEl && modalDesc) modalDesc.textContent = descEl.textContent;
+
+    if (badgeEl && modalBadge) {
+      modalBadge.innerHTML = badgeEl.innerHTML;
+      modalBadge.style.display = 'inline-flex';
+    } else if (modalBadge) {
+      modalBadge.style.display = 'none';
+    }
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAttractionModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.attractions-grid .testimonial-card').forEach(card => {
+    card.addEventListener('click', () => openAttractionModal(card));
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeAttractionModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeAttractionModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeAttractionModal();
+  });
+})();
+

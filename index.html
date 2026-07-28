@@ -31,7 +31,7 @@
   <link rel="shortcut icon" href="images/kites_logo_2.png" />
   <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#1a1a2e" />
-  <link rel="stylesheet" href="css/style.css?v=9" />
+  <link rel="stylesheet" href="css/style.css?v=10" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -649,6 +649,22 @@
       <p>&copy; 2025 Kites Mountain Hotel &amp; Resort. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Attraction Detail Pop-up Modal -->
+  <div id="attraction-modal" class="attraction-modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="attractionModalTitle">
+    <div class="attraction-modal-box" onclick="event.stopPropagation()">
+      <button class="attraction-modal-close" id="closeAttractionModal" aria-label="Close attraction details">&times;</button>
+      <div class="attraction-modal-img-wrap">
+        <img id="attractionModalImg" src="" alt="" />
+      </div>
+      <div class="attraction-modal-body">
+        <span id="attractionModalBadge" class="badge-proximity" style="display: none;"></span>
+        <h3 id="attractionModalTitle" class="attraction-modal-title"></h3>
+        <span id="attractionModalTime" class="attraction-time" style="display: inline-flex; margin-bottom: 14px;"></span>
+        <p id="attractionModalDesc" class="attraction-modal-desc"></p>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
   <script src="js/currency-converter.js"></script>
