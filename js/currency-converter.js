@@ -19,7 +19,7 @@
   var SHEET_ID = '17cvSVqR0WvnZvUOZX0qYOXowQbsr7A3PqZ9C6Ht0KBA';
   var SHEET_CSV_URL =
     'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
-    '/export?format=csv&cachebust=' + Date.now();
+    '/gviz/tq?tqx=out:csv&cachebust=' + Date.now();
 
   // Sheet prices are in LKR. We fetch USD-based rates and compute:
   //   LKR_to_Target = rates[target] / rates['LKR']
@@ -82,6 +82,16 @@
 
   /* ── HELPERS ─────────────────────────────────────────────── */
 
+  function normalizeKey(str) {
+    if (!str) return '';
+    return str
+      .toLowerCase()
+      .replace(/budegt/g, 'budget')
+      .replace(/nomarl/g, 'normal')
+      .replace(/doble/g, 'double')
+      .replace(/[^a-z0-9]/g, '');
+  }
+
   /** Parse Google Sheets CSV. Column header: "Room Name, Price(LKR)" */
   function parseSheetCSV(csv) {
     var lines = csv.trim().split('\n');
@@ -90,15 +100,26 @@
       var line = lines[i].replace(/\r/g, '');
       var commaIdx = line.lastIndexOf(',');
       if (commaIdx < 0) continue;
-      var name = line.substring(0, commaIdx).trim().replace(/^"|"$/g, '');
-      var priceStr = line.substring(commaIdx + 1).trim().replace(/,/g, '');
-      var price = parseFloat(priceStr);
-      if (name && !isNaN(price) && price > 0) {
-        prices[name] = price;
-        prices[name.toLowerCase()] = price;
+      var rawName = line.substring(0, commaIdx).trim().replace(/^"|"$/g, '');
+      var rawPrice = line.substring(commaIdx + 1).trim().replace(/[^0-9.]/g, '');
+      var price = parseFloat(rawPrice);
+      if (rawName && !isNaN(price)) {
+        prices[rawName] = price;
+        prices[rawName.toLowerCase()] = price;
+        var norm = normalizeKey(rawName);
+        if (norm) prices[norm] = price;
       }
     }
     return prices;
+  }
+
+  function getSheetPrice(sheetPrices, name) {
+    if (!sheetPrices) return 0;
+    if (typeof sheetPrices[name] === 'number') return sheetPrices[name];
+    if (typeof sheetPrices[name.toLowerCase()] === 'number') return sheetPrices[name.toLowerCase()];
+    var norm = normalizeKey(name);
+    if (norm && typeof sheetPrices[norm] === 'number') return sheetPrices[norm];
+    return 0;
   }
 
   /** Format amount using Intl.NumberFormat. Falls back to symbol+number. */
@@ -245,7 +266,7 @@
       var h3 = card.querySelector('h3');
       if (!h3) return;
       var name     = h3.textContent.trim();
-      var lkrPrice = hasSheet ? (sheetPrices[name] || sheetPrices[name.toLowerCase()]) : 0;
+      var lkrPrice = hasSheet ? getSheetPrice(sheetPrices, name) : 0;
       var priceBig = card.querySelector('.price-big');
       if (!priceBig) return;
       if (!lkrPrice) lkrPrice = extractNumbers(priceBig.textContent);
@@ -262,7 +283,7 @@
       var h3 = card.querySelector('h3');
       if (!h3) return;
       var name      = h3.textContent.trim();
-      var lkrPrice  = hasSheet ? (sheetPrices[name] || sheetPrices[name.toLowerCase()]) : 0;
+      var lkrPrice  = hasSheet ? getSheetPrice(sheetPrices, name) : 0;
       var priceSpan = card.querySelector('.price');
       if (!priceSpan) return;
       if (!lkrPrice) lkrPrice = extractNumbers(priceSpan.textContent);
@@ -279,7 +300,7 @@
       var nameCell = row.querySelector('td:first-child strong');
       if (!nameCell) return;
       var name      = nameCell.textContent.trim();
-      var lkrPrice  = hasSheet ? (sheetPrices[name] || sheetPrices[name.toLowerCase()]) : 0;
+      var lkrPrice  = hasSheet ? getSheetPrice(sheetPrices, name) : 0;
       var priceCell = row.querySelector('.price-col');
       if (!priceCell) return;
       if (!lkrPrice) lkrPrice = extractNumbers(priceCell.textContent);
