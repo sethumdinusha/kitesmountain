@@ -24,3 +24,6 @@ npm-debug.log*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Archived unused assets
+_archive_unused/
