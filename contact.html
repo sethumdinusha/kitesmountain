@@ -6,6 +6,8 @@
   <title>Contact Us - Kites Mountain Hotel & Resort</title>
   <meta name="description" content="Contact Kites Mountain Hotel & Resort in Badulla. Find our location, phone number, email, and location map, or send us a booking enquiry directly." />
   <meta name="keywords" content="contact Kites Mountain, Badulla hotel contact, book hotel Badulla, Sri Lanka resort phone number" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://kitesmountainhotel.com/contact.html" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -15,11 +17,11 @@
   <meta property="og:image" content="https://kitesmountainhotel.com/images/mountain_view.webp" />
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://kitesmountainhotel.com/contact.html" />
-  <meta property="twitter:title" content="Contact Us | Kites Mountain Hotel & Resort" />
-  <meta property="twitter:description" content="Contact Kites Mountain Hotel & Resort in Badulla. Find our location, phone number, email, and location map, or send us a booking enquiry directly." />
-  <meta property="twitter:image" content="https://kitesmountainhotel.com/images/mountain_view.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://kitesmountainhotel.com/contact.html" />
+  <meta name="twitter:title" content="Contact Us | Kites Mountain Hotel & Resort" />
+  <meta name="twitter:description" content="Contact Kites Mountain Hotel & Resort in Badulla. Find our location, phone number, email, and location map, or send us a booking enquiry directly." />
+  <meta name="twitter:image" content="https://kitesmountainhotel.com/images/mountain_view.webp" />
   <!-- Google Search & Browser Favicon Settings -->
   <link rel="icon" type="image/png" sizes="192x192" href="images/kites_logo_2.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/kites_logo_2.png" />
@@ -28,9 +30,31 @@
   <link rel="shortcut icon" href="images/kites_logo_2.png" />
   <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#1a1a2e" />
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org JSON-LD Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://kitesmountainhotel.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact Us",
+        "item": "https://kitesmountainhotel.com/contact.html"
+      }
+    ]
+  }
+  </script>
 
   <!-- Vercel Web Analytics -->
   <script>
@@ -48,7 +72,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="logo">
-        <a href="index.html#home" class="logo-link">
+        <a href="index.html" class="logo-link">
           <img src="images/kites_logo.webp" alt="Kites Mountain Logo" class="logo-img" />
           <span>Kites Mountain</span>
         </a>
@@ -65,44 +89,51 @@
     </div>
   </nav>
 
-  <section class="page-hero" style="background-image: url('images/mountain_view.webp'); background-position: center center;">
+  <section class="page-hero">
     <div class="hero-overlay"></div>
-    <div class="page-hero-content">
-      <p class="section-tag light">Get in Touch</p>
+    <div class="hero-content">
+      <p class="hero-tag">Get in Touch</p>
       <h1>Contact Us</h1>
-      <p>We'd love to hear from you, 24/7</p>
+      <p class="hero-sub">We'd love to hear from you. Reach out for reservations, enquiries, or custom event packages.</p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="contact-wrapper">
+  <section class="section contact-section">
+    <div class="contact-grid">
       <div class="contact-info">
-        <p class="section-tag">Reach Us</p>
-        <h2>Let's Plan Your Stay</h2>
-        <p>Whether you're booking a room, planning an event, or simply have a question, our team is here to help around the clock.</p>
-        <div class="contact-details">
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div><h4>Address</h4><p>138B, Rideepana<br />Badulla, Sri Lanka</p></div>
+        <p class="section-tag">Reach Out</p>
+        <h2>Find Us Here</h2>
+        <p>Whether you're planning a mountain retreat or booking a private wedding banquet, our team is at your service.</p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <h4>Address</h4>
+              <p>138B, Rideepana, Badulla, Sri Lanka</p>
+            </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-            <div><h4>Phone</h4><p>+94 77 52 43 432</p></div>
+          <div class="info-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <h4>Phone</h4>
+              <p>+94 77 52 43 432</p>
+            </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div><h4>Email</h4><p>kitemountainhotel@gmail.com</p></div>
+          <div class="info-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>kitemountainhotel@gmail.com</p>
+            </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
-            <div><h4>Check-in / Check-out</h4><p>Check-in: 14:00 &ndash; 23:00<br />Check-out: 05:00 &ndash; 11:00</p></div>
+          <div class="info-item">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <h4>Front Desk Hours</h4>
+              <p>Open 24 Hours / 7 Days a Week</p>
+            </div>
           </div>
-        </div>
-        <div class="socials">
-          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G#hp_facilities_box" target="_blank" rel="noopener" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
         </div>
       </div>
 
@@ -110,14 +141,14 @@
         <h3>Send Us a Message</h3>
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojzzkjz" method="POST">
           <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="John" required /></div>
-            <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Doe" required /></div>
+            <div class="form-group"><label for="first_name">First Name</label><input type="text" id="first_name" name="first_name" placeholder="John" required /></div>
+            <div class="form-group"><label for="last_name">Last Name</label><input type="text" id="last_name" name="last_name" placeholder="Doe" required /></div>
           </div>
-          <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="john@example.com" required /></div>
-          <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+1 (000) 000-0000" /></div>
+          <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="john@example.com" required /></div>
+          <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="+94 77 524 3432" /></div>
           <div class="form-group">
-            <label>Room Type</label>
-            <select name="room_type">
+            <label for="room_type">Room Type</label>
+            <select id="room_type" name="room_type">
               <option>King Room with Mountain View</option>
               <option>Deluxe Double Room</option>
               <option>Budget Double Room</option>
@@ -130,12 +161,12 @@
             </select>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Check-in Date</label><input type="date" name="checkin_date" required /></div>
-            <div class="form-group"><label>Check-out Date</label><input type="date" name="checkout_date" required /></div>
+            <div class="form-group"><label for="checkin_date">Check-in Date</label><input type="date" id="checkin_date" name="checkin_date" required /></div>
+            <div class="form-group"><label for="checkout_date">Check-out Date</label><input type="date" id="checkout_date" name="checkout_date" required /></div>
           </div>
           <div class="form-group">
-            <label>Estimated Arrival / Check-in Time</label>
-            <select name="arrival_time" required>
+            <label for="arrival_time">Estimated Arrival / Check-in Time</label>
+            <select id="arrival_time" name="arrival_time" required>
               <option value="" disabled selected>Select Arrival Time</option>
               <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM</option>
               <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM</option>
@@ -143,8 +174,8 @@
               <option value="After 08:00 PM">After 08:00 PM (Late Check-in)</option>
             </select>
           </div>
-          <div class="form-group"><label>Number of Guests</label><input type="number" name="guests" min="1" max="20" placeholder="2" /></div>
-          <div class="form-group"><label>Message</label><textarea name="message" rows="4" placeholder="Tell us about your requirements..."></textarea></div>
+          <div class="form-group"><label for="guests">Number of Guests</label><input type="number" id="guests" name="guests" min="1" max="20" placeholder="2" /></div>
+          <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="4" placeholder="Tell us about your requirements..."></textarea></div>
           <button type="submit" class="btn-primary full-width">Send Message</button>
         </form>
       </div>
@@ -161,10 +192,10 @@
         <div class="logo"><img src="images/kites_logo.webp" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel & Resort</span></div>
         <p>A luxury mountain retreat offering world-class hospitality.</p>
         <div class="socials">
-          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
+          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener noreferrer" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
         </div>
       </div>
       <div class="footer-links">

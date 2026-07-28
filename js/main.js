@@ -45,9 +45,11 @@
 
 // ===== NAVBAR SCROLL =====
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
 // ===== HAMBURGER MENU =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
@@ -197,7 +199,7 @@ if (contactForm) {
         contactForm.reset();
 
         // ===== Automatically open WhatsApp ONCE with booking details =====
-        window.open(waLink, '_blank');
+        window.open(waLink, '_blank', 'noopener,noreferrer');
 
         // ===== Show success popup =====
         const overlay = document.createElement('div');
@@ -287,7 +289,7 @@ function createFloatingButtons() {
   `;
   floatingBtns.innerHTML = `
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94775243432" target="_blank" rel="noopener"
+    <a href="https://wa.me/94775243432" target="_blank" rel="noopener noreferrer"
       title="Chat on WhatsApp" aria-label="Chat on WhatsApp"
       style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex-shrink: 0;
       border-radius: 50%; background: #25D366;
@@ -301,7 +303,7 @@ function createFloatingButtons() {
       </svg>
     </a>
     <!-- Facebook Floating Button -->
-    <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener"
+    <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
       title="Follow us on Facebook" aria-label="Follow us on Facebook"
       style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex-shrink: 0;
       border-radius: 50%; background: #1877F2;
@@ -314,7 +316,7 @@ function createFloatingButtons() {
       </svg>
     </a>
     <!-- Instagram Floating Button -->
-    <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener"
+    <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener noreferrer"
       title="Follow us on Instagram" aria-label="Follow us on Instagram"
       style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex-shrink: 0;
       border-radius: 50%; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
@@ -327,7 +329,7 @@ function createFloatingButtons() {
       </svg>
     </a>
     <!-- TikTok Floating Button -->
-    <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener"
+    <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer"
       title="Follow us on TikTok" aria-label="Follow us on TikTok"
       style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex-shrink: 0;
       border-radius: 50%; background: #000000;

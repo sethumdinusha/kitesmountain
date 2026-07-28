@@ -6,6 +6,8 @@
   <title>Rooms - Kites Mountain Hotel &amp; Resort</title>
   <meta name="description" content="View our range of luxury family rooms, double rooms, and budget options at Kites Mountain Hotel & Resort in Badulla. Book your stay with us." />
   <meta name="keywords" content="Badulla hotel rooms, family rooms Badulla, cheap accommodation Badulla, mountain view hotel rooms Sri Lanka" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://kitesmountainhotel.com/rooms.html" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -28,9 +30,32 @@
   <link rel="shortcut icon" href="images/kites_logo_2.png" />
   <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#1a1a2e" />
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org JSON-LD Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://kitesmountainhotel.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Rooms",
+        "item": "https://kitesmountainhotel.com/rooms.html"
+      }
+    ]
+  }
+  </script>
+
   <style>
     /* ── Lightbox ── */
     .lightbox-overlay {
@@ -530,205 +555,10 @@
         <div class="logo"><img src="images/kites_logo.webp" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel &amp; Resort</span></div>
         <p>A luxury mountain retreat offering world-class hospitality.</p>
         <div class="socials">
-          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="rooms.html">Rooms</a></li>
-          <li><a href="amenities.html">Amenities</a></li>
-          <li><a href="banquet.html">Banquet Hall</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> 138B, Rideepana, Badulla</p>
-        <p><i class="fa-solid fa-phone"></i> +94 77 52 43 432</p>
-        <p><i class="fa-solid fa-envelope"></i> kitemountainhotel@gmail.com</p>
-      </div>
-    </div>
-    <div class="footer-bottom"><p>&copy; 2025 Kites Mountain Hotel &amp; Resort. All rights reserved.</p></div>
-  </footer>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox"><i class="fa-solid fa-xmark"></i></button>
-      <button class="lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
-      <img id="lightboxImg" src="" alt="Room photo" />
-      <button class="lightbox-next" onclick="lightboxNav(1)" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
-      <p id="lightboxCaption"></p>
-    </div>
-  </div>
-
-  <!-- Video Popup Modal -->
-  <div class="video-modal-overlay" id="videoModal" onclick="handleVideoOverlayClick(event)">
-    <div class="video-modal-box">
-      <div class="video-modal-header">
-        <p class="video-modal-title" id="videoModalTitle">Room Video</p>
-        <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Close video"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="video-modal-body" id="videoModalBody"></div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
-  <script src="js/currency-converter.js"></script>
-  <script>
-    var lightboxImages = [];
-    var lightboxIndex = 0;
-
-    function openLightbox(images, idx) {
-      lightboxImages = images;
-      lightboxIndex = idx;
-      document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex].src;
-      document.getElementById('lightboxCaption').textContent = lightboxImages[lightboxIndex].alt;
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    function lightboxNav(dir) {
-      lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
-      var img = document.getElementById('lightboxImg');
-      img.style.opacity = '0';
-      setTimeout(function() {
-        img.src = lightboxImages[lightboxIndex].src;
-        document.getElementById('lightboxCaption').textContent = lightboxImages[lightboxIndex].alt;
-        img.style.opacity = '1';
-      }, 150);
-    }
-    document.querySelectorAll('.room-detail-img img').forEach(function(imgEl) {
-            <li><i class="fa-solid fa-bed"></i> 1 Extra-Large Double + 1 Large Double Bed</li>
-            <li><i class="fa-solid fa-water-ladder"></i> Pool View</li>
-            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
-            <li><i class="fa-solid fa-tv"></i> Flat-Screen TV</li>
-            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
-            <li><i class="fa-solid fa-bath"></i> Private Bathroom with Shower</li>
-          </ul>
-          <div class="room-price-book">
-            <div class="price-wrapper">
-              <span class="price-big">LKR 16,000 <small>/ night</small></span>
-              <span class="price-note">*Price may change due to taxes & others</span>
-            </div>
-            <a href="contact.html?room=Standard+Family+Room#booking-form" class="btn-primary">Book Now</a>
-            <button class="btn-watch-video" onclick="openVideoModal('', 'Standard Family Room')">
-              <i class="fa-solid fa-circle-play"></i> Watch Video
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Room 6: Basic Triple Room -->
-      <div class="room-detail-card reverse" data-category="budget">
-        <div class="room-detail-img room-gallery-3">
-          <img src="https://lh3.googleusercontent.com/d/1R7GfxNj7E4UZXXFDtztn_eEJUfOgTFv2" alt="Basic Triple Room - beds" loading="lazy" />
-          <img src="https://lh3.googleusercontent.com/d/14tJnu2Cax2tMm0IEoAi-2wlbIG_h7dAV" alt="Basic Triple Room - bathroom" loading="lazy" />
-          <img src="https://lh3.googleusercontent.com/d/1DU7JTbEqkiPi4sq413AFzNW9tGxmr2_h" alt="Basic Triple Room - balcony view" loading="lazy" />
-        </div>
-        <div class="room-detail-info">
-          <span class="room-type-tag budget">Budget</span>
-          <h3>Basic Triple Room</h3>
-          <p>An air-conditioned 7 m&sup2; triple room with a private bathroom, electric kettle, and a balcony offering pool views, rated 9.3 for comfy beds.</p>
-          <ul class="room-amenities">
-            <li><i class="fa-solid fa-bed"></i> 1 Sofa Bed + 2 Large Double Beds</li>
-            <li><i class="fa-solid fa-water-ladder"></i> Pool View</li>
-            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
-            <li><i class="fa-solid fa-person-shelter"></i> Balcony</li>
-            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
-            <li><i class="fa-solid fa-bath"></i> Private Bathroom</li>
-          </ul>
-          <div class="room-price-book">
-            <div class="price-wrapper">
-              <span class="price-big">LKR 12,350 <small>/ night</small></span>
-              <span class="price-note">*Price may change due to taxes & others</span>
-            </div>
-            <a href="contact.html?room=Basic+Triple+Room#booking-form" class="btn-primary">Book Now</a>
-            <button class="btn-watch-video" onclick="openVideoModal('videos/room_basic_triple.mp4', 'Basic Triple Room')">
-              <i class="fa-solid fa-circle-play"></i> Watch Video
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Room 7: Family Room with Balcony -->
-      <div class="room-detail-card" data-category="family">
-        <div class="room-detail-img room-gallery-3">
-          <img src="https://lh3.googleusercontent.com/d/1Dv-JgWPpZ8OgZgZPoEpeM2VtHD1xlAmZ" alt="Family Room with Balcony - beds" loading="lazy" />
-          <img src="https://lh3.googleusercontent.com/d/1NEWvW3_07HzsOfyOvPeszj5wxQFTE0WK" alt="Family Room with Balcony - bathroom" loading="lazy" />
-          <img src="https://lh3.googleusercontent.com/d/1Xsc9GurznfpMghs3u3zSEb74xYjCeLER" alt="Family Room with Balcony - scenic view" loading="lazy" />
-        </div>
-        <div class="room-detail-info">
-          <span class="room-type-tag popular">Best for Families</span>
-          <h3>Family Room with Balcony</h3>
-          <p>An air-conditioned 8 m&sup2; family room with a private bathroom, private entrance, carpeted floor, and a balcony, rated 9.3 for comfy beds.</p>
-          <ul class="room-amenities">
-            <li><i class="fa-solid fa-bed"></i> 3 Large Double Beds</li>
-            <li><i class="fa-solid fa-person-shelter"></i> Private Balcony</li>
-            <li><i class="fa-solid fa-eye"></i> Scenic View</li>
-            <li><i class="fa-solid fa-wifi"></i> Free WiFi</li>
-            <li><i class="fa-solid fa-snowflake"></i> Air Conditioning</li>
-            <li><i class="fa-solid fa-bath"></i> Private Bathroom</li>
-          </ul>
-          <div class="room-price-book">
-            <div class="price-wrapper">
-              <span class="price-big">LKR 13,850 <small>/ night</small></span>
-              <span class="price-note">*Price may change due to taxes & others</span>
-            </div>
-            <a href="contact.html?room=Family+Room+with+Balcony#booking-form" class="btn-primary">Book Now</a>
-            <button class="btn-watch-video" onclick="openVideoModal('videos/room_family_balcony.mp4', 'Family Room with Balcony')">
-              <i class="fa-solid fa-circle-play"></i> Watch Video
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section bg-light">
-    <div class="container-center">
-      <p class="section-tag">Compare</p>
-      <h2>Room Comparison</h2>
-    </div>
-    <div class="table-wrap">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th>Room Type</th><th>Beds</th><th>View</th><th>Balcony</th><th>Price/Night</th><th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>King Room with Mountain View</strong></td><td>1 Large Double</td><td><i class="fa-solid fa-check gold"></i> Mountain</td><td><i class="fa-solid fa-check gold"></i></td><td class="price-col">LKR 19,000</td><td><a href="contact.html?room=King+Room+with+Mountain+View#booking-form" class="btn-sm">Book</a></td></tr>
-          <tr class="highlight-row"><td><strong>Deluxe Double Room</strong></td><td>1 X-Large Double</td><td><i class="fa-solid fa-check gold"></i> Mountain</td><td><i class="fa-solid fa-check gold"></i></td><td class="price-col">LKR 20,000</td><td><a href="contact.html?room=Deluxe+Double+Room#booking-form" class="btn-sm">Book</a></td></tr>
-          <tr><td><strong>Budget Double Room</strong></td><td>1 Large Double</td><td><i class="fa-solid fa-check gold"></i> Pool</td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">LKR 8,350</td><td><a href="contact.html?room=Budget+Double+Room#booking-form" class="btn-sm">Book</a></td></tr>
-          <tr><td><strong>Deluxe Triple Room</strong></td><td>1 Single + 1 X-Large Double</td><td><i class="fa-solid fa-check gold"></i> Pool</td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">LKR 16,000</td><td><a href="contact.html?room=Deluxe+Triple+Room#booking-form" class="btn-sm">Book</a></td></tr>
-          <tr><td><strong>Standard Family Room</strong></td><td>1 X-Large + 1 Large Double</td><td><i class="fa-solid fa-check gold"></i> Pool</td><td><i class="fa-solid fa-minus"></i></td><td class="price-col">LKR 16,000</td><td><a href="contact.html?room=Standard+Family+Room#booking-form" class="btn-sm">Book</a></td></tr>
-          <tr><td><strong>Basic Triple Room</strong></td><td>1 Sofa + 2 Large Double</td><td><i class="fa-solid fa-check gold"></i> Pool</td><td><i class="fa-solid fa-check gold"></i></td><td class="price-col">LKR 12,350</td><td><a href="contact.html?room=Basic+Triple+Room#booking-form" class="btn-sm">Book</a></td></tr>
-          <tr><td><strong>Family Room with Balcony</strong></td><td>3 Large Double</td><td><i class="fa-solid fa-check gold"></i> Scenic</td><td><i class="fa-solid fa-check gold"></i></td><td class="price-col">LKR 13,850</td><td><a href="contact.html?room=Family+Room+with+Balcony#booking-form" class="btn-sm">Book</a></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo"><img src="images/kites_logo.webp" alt="Kites Mountain Logo" class="logo-img" /><span>Kites Mountain Hotel &amp; Resort</span></div>
-        <p>A luxury mountain retreat offering world-class hospitality.</p>
-        <div class="socials">
-          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
+          <a href="https://www.facebook.com/share/18QkztvFvR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/kitesmountain?igsh=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@kites_mountain?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.booking.com/hotel/lk/kits-mountaion.en-gb.html?aid=2375516&label=01J1X42R3M4D4ZBF77BKWAKKWV_01KV2T17CBASDZ67RGN4X0PX5G" target="_blank" rel="noopener noreferrer" aria-label="Booking.com"><i class="fa-solid fa-bed"></i></a>
         </div>
       </div>
       <div class="footer-links">

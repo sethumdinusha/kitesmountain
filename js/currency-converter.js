@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  *  Kites Mountain — Dynamic Pricing & Currency Converter
  * ============================================================
@@ -310,36 +310,55 @@
         console.warn('[KM] Sheet fallback to HTML prices:', e.message);
       })
 
-      /* Step 2 — Visitor geolocation */
-      .then(function () { return fetchWithTimeout(GEO_URL, 5000); })
-      .then(function (r) {
-        if (!r.ok) throw new Error('Geo ' + r.status);
-        return r.json();
-      })
-      .then(function (geo) {
-        countryCode  = (geo.country_code || 'LK').toUpperCase();
-        currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || COUNTRY_CURRENCY_MAP['US'];
-        console.log('[KM] Country:', countryCode, '| Currency:', currencyInfo.code);
+      /* Step 2 — Detect Country (with sessionStorage cache) */
+      .then(function () {
+        var cachedGeo = sessionStorage.getItem('km_geo_code');
+        if (cachedGeo) {
+          countryCode = cachedGeo;
+          currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || DEFAULT_CURRENCY;
+          return null;
+        }
+        return fetchWithTimeout(GEO_URL, 3500)
+          .then(function (r) {
+            if (!r.ok) throw new Error('Geo ' + r.status);
+            return r.json();
+          })
+          .then(function (data) {
+            if (data && data.country_code) {
+              countryCode = data.country_code.toUpperCase();
+              currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || DEFAULT_CURRENCY;
+              sessionStorage.setItem('km_geo_code', countryCode);
+            }
+          });
       })
       .catch(function (e) {
-        console.warn('[KM] Geo failed, defaulting to LKR:', e.message);
+        console.warn('[KM] Geo failed (defaulting to LKR):', e.message);
       })
 
-      /* Step 3 — Exchange rates (skip if already LKR) */
+      /* Step 3 — Fetch USD Exchange Rates (with sessionStorage cache) */
       .then(function () {
         if (currencyInfo.code === 'LKR') return null;
-        return fetchWithTimeout(RATES_URL, 5000);
-      })
-      .then(function (r) {
-        if (!r) return null;
-        if (!r.ok) throw new Error('Rates ' + r.status);
-        return r.json();
-      })
-      .then(function (data) {
-        if (data && data.rates) {
-          usdRates = data.rates;
-          console.log('[KM] Rates loaded. LKR/USD:', usdRates['LKR']);
+
+        var cachedRates = sessionStorage.getItem('km_usd_rates');
+        if (cachedRates) {
+          try {
+            usdRates = JSON.parse(cachedRates);
+            return null;
+          } catch(e) {}
         }
+
+        return fetchWithTimeout(RATES_URL, 5000)
+          .then(function (r) {
+            if (!r) return null;
+            if (!r.ok) throw new Error('Rates ' + r.status);
+            return r.json();
+          })
+          .then(function (data) {
+            if (data && data.rates) {
+              usdRates = data.rates;
+              sessionStorage.setItem('km_usd_rates', JSON.stringify(usdRates));
+            }
+          });
       })
       .catch(function (e) {
         console.warn('[KM] Rates failed (will use LKR):', e.message);
