@@ -314,7 +314,7 @@
       var lkrPrice = hasSheet ? getSheetPrice(sheetPrices, name) : 0;
       var priceBig = card.querySelector('.price-big');
       if (!priceBig) return;
-      if (!lkrPrice) lkrPrice = extractNumbers(priceBig.textContent);
+      if (!lkrPrice) lkrPrice = parseFloat(priceBig.getAttribute('data-lkr')) || extractNumbers(priceBig.textContent);
       if (!lkrPrice) return;
       updatePriceBig(priceBig, lkrPrice, rate, currencyInfo);
     });
@@ -328,7 +328,7 @@
       var lkrPrice  = hasSheet ? getSheetPrice(sheetPrices, name) : 0;
       var priceSpan = card.querySelector('.price');
       if (!priceSpan) return;
-      if (!lkrPrice) lkrPrice = extractNumbers(priceSpan.textContent);
+      if (!lkrPrice) lkrPrice = parseFloat(priceSpan.getAttribute('data-lkr')) || extractNumbers(priceSpan.textContent);
       if (!lkrPrice) return;
       updatePriceSpan(priceSpan, lkrPrice, rate, currencyInfo);
     });
@@ -342,7 +342,7 @@
       var lkrPrice  = hasSheet ? getSheetPrice(sheetPrices, name) : 0;
       var priceCell = row.querySelector('.price-col');
       if (!priceCell) return;
-      if (!lkrPrice) lkrPrice = extractNumbers(priceCell.textContent);
+      if (!lkrPrice) lkrPrice = parseFloat(priceCell.getAttribute('data-lkr')) || extractNumbers(priceCell.textContent);
       if (!lkrPrice) return;
       updatePriceCol(priceCell, lkrPrice, rate, currencyInfo);
     });
