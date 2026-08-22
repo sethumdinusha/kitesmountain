@@ -535,6 +535,44 @@ ul { list-style: none; }
   letter-spacing: 0.02em;
 }
 
+/* ── Price Loading Skeleton ──────────────────────────────── */
+/* Applied instantly on page load while Google Sheet data fetches.
+   Hides hardcoded fallback text and shows an animated shimmer bar. */
+@keyframes km-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.price-loading {
+  color: transparent !important;
+  position: relative;
+  pointer-events: none;
+  min-width: 120px;
+  min-height: 1.2em;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.price-loading * { visibility: hidden; }
+.price-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(201,169,110,0.08) 25%,
+    rgba(201,169,110,0.18) 50%,
+    rgba(201,169,110,0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: km-shimmer 1.6s ease-in-out infinite;
+}
+.price-big.price-loading { min-width: 160px; min-height: 2rem; }
+.price-col.price-loading { min-width: 100px; min-height: 1.1em; }
+/* Smooth reveal once prices arrive */
+.price-big, .price, .price-col {
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+
 /* =========================================================
    MOBILE 2x2 GRID & ATTRACTION MODAL POP-UP STYLES
    ========================================================= */

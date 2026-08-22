@@ -26,6 +26,10 @@
   var RATES_URL = 'https://open.er-api.com/v6/latest/USD';
   var GEO_URL   = 'https://ipapi.co/json/';
 
+  var SHEET_CACHE_KEY = 'km_sheet_prices';
+  var SHEET_CACHE_TS  = 'km_sheet_ts';
+  var SHEET_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
   /* ── COUNTRY → CURRENCY MAP ──────────────────────────────── */
   var COUNTRY_CURRENCY_MAP = {
     // South Asia
@@ -204,6 +208,28 @@
     }, 7000);
   }
 
+  /* ── LOADING SKELETON ───────────────────────────────────── */
+  /**
+   * Immediately apply the 'price-loading' CSS class to all price
+   * elements so the hardcoded fallback text is hidden behind a
+   * shimmer skeleton before any fetch resolves.
+   */
+  function showPriceSkeletons() {
+    var selectors = ['.price-big', '.price', '.price-col'];
+    selectors.forEach(function (sel) {
+      var els = document.querySelectorAll(sel);
+      els.forEach(function (el) {
+        el.classList.add('price-loading');
+      });
+    });
+  }
+
+  /** Remove the skeleton from a single element (called after populating it). */
+  function revealPrice(el) {
+    el.classList.remove('price-loading');
+    el.classList.remove('price-converting');
+  }
+
   /* ── DOM PRICE UPDATERS ──────────────────────────────────── */
 
   /** .price-big  →  "LKR 19,000 <small>/ night</small>" */
@@ -221,7 +247,7 @@
       sm.textContent = '/ night';
       el.appendChild(sm);
     }
-    el.classList.remove('price-converting');
+    revealPrice(el);
   }
 
   /** .price  (home page cards)  →  "From LKR 19,000<small>/night</small>" */
@@ -239,7 +265,7 @@
       sm2.textContent = '/night';
       el.appendChild(sm2);
     }
-    el.classList.remove('price-converting');
+    revealPrice(el);
   }
 
   /** .price-col  (comparison table)  →  "LKR 19,000" */
@@ -247,6 +273,7 @@
     el.setAttribute('data-lkr', lkrPrice);
     el.setAttribute('data-converted', 'true');
     el.textContent = formatCurrency(lkrPrice, rate, currencyInfo);
+    revealPrice(el);
   }
 
   /* ── EXTRACT FALLBACK LKR FROM HTML TEXT ─────────────────── */
@@ -255,10 +282,28 @@
     return parseFloat(clean) || 0;
   }
 
+  /* ── SHEET PRICE CACHE (sessionStorage) ─────────────────── */
+  function getCachedSheetPrices() {
+    try {
+      var ts = parseInt(sessionStorage.getItem(SHEET_CACHE_TS), 10);
+      if (ts && (Date.now() - ts) < SHEET_CACHE_TTL) {
+        var data = sessionStorage.getItem(SHEET_CACHE_KEY);
+        if (data) return JSON.parse(data);
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function setCachedSheetPrices(prices) {
+    try {
+      sessionStorage.setItem(SHEET_CACHE_KEY, JSON.stringify(prices));
+      sessionStorage.setItem(SHEET_CACHE_TS, Date.now().toString());
+    } catch (e) {}
+  }
+
   /* ── APPLY PRICES ────────────────────────────────────────── */
   function applyPrices(sheetPrices, rate, currencyInfo) {
     var hasSheet = Object.keys(sheetPrices).length > 0;
-    var delay    = 320;
 
     /* 1. rooms.html — .room-detail-card cards */
     var detailCards = document.querySelectorAll('.room-detail-card');
@@ -271,10 +316,7 @@
       if (!priceBig) return;
       if (!lkrPrice) lkrPrice = extractNumbers(priceBig.textContent);
       if (!lkrPrice) return;
-      priceBig.classList.add('price-converting');
-      (function (el, p) {
-        setTimeout(function () { updatePriceBig(el, p, rate, currencyInfo); }, delay);
-      })(priceBig, lkrPrice);
+      updatePriceBig(priceBig, lkrPrice, rate, currencyInfo);
     });
 
     /* 2. index.html — .room-card preview cards */
@@ -288,10 +330,7 @@
       if (!priceSpan) return;
       if (!lkrPrice) lkrPrice = extractNumbers(priceSpan.textContent);
       if (!lkrPrice) return;
-      priceSpan.classList.add('price-converting');
-      (function (el, p) {
-        setTimeout(function () { updatePriceSpan(el, p, rate, currencyInfo); }, delay);
-      })(priceSpan, lkrPrice);
+      updatePriceSpan(priceSpan, lkrPrice, rate, currencyInfo);
     });
 
     /* 3. rooms.html — .compare-table tbody */
@@ -305,59 +344,68 @@
       if (!priceCell) return;
       if (!lkrPrice) lkrPrice = extractNumbers(priceCell.textContent);
       if (!lkrPrice) return;
-      (function (el, p) {
-        setTimeout(function () { updatePriceCol(el, p, rate, currencyInfo); }, delay + 150);
-      })(priceCell, lkrPrice);
+      updatePriceCol(priceCell, lkrPrice, rate, currencyInfo);
     });
   }
 
   /* ── MAIN ────────────────────────────────────────────────── */
   function init() {
+    /* ── Step 0: Immediately hide hardcoded prices with skeletons ── */
+    showPriceSkeletons();
+
     var sheetPrices  = {};
     var countryCode  = 'LK';   // default to Sri Lanka (home country)
     var currencyInfo = COUNTRY_CURRENCY_MAP['LK'];
     var usdRates     = null;
 
-    /* Step 1 — Google Sheet prices (LKR) */
-    fetchWithTimeout(SHEET_CSV_URL, 7000)
+    /* ── Try to use cached sheet prices for instant first-paint ── */
+    var cachedSheet = getCachedSheetPrices();
+    if (cachedSheet) {
+      sheetPrices = cachedSheet;
+      console.log('[KM] Using cached sheet prices');
+    }
+
+    /* ── Fetch sheet prices (live, always) + geo & rates in parallel ── */
+    var sheetPromise = fetchWithTimeout(SHEET_CSV_URL, 7000)
       .then(function (r) {
         if (!r.ok) throw new Error('Sheet ' + r.status);
         return r.text();
       })
       .then(function (csv) {
         sheetPrices = parseSheetCSV(csv);
+        setCachedSheetPrices(sheetPrices);
         console.log('[KM] Sheet prices (LKR):', sheetPrices);
       })
       .catch(function (e) {
         console.warn('[KM] Sheet fallback to HTML prices:', e.message);
-      })
+      });
 
-      /* Step 2 — Detect Country (with sessionStorage cache) */
-      .then(function () {
-        var cachedGeo = sessionStorage.getItem('km_geo_code');
-        if (cachedGeo) {
-          countryCode = cachedGeo;
-          currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || DEFAULT_CURRENCY;
-          return null;
-        }
-        return fetchWithTimeout(GEO_URL, 3500)
-          .then(function (r) {
-            if (!r.ok) throw new Error('Geo ' + r.status);
-            return r.json();
-          })
-          .then(function (data) {
-            if (data && data.country_code) {
-              countryCode = data.country_code.toUpperCase();
-              currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || DEFAULT_CURRENCY;
-              sessionStorage.setItem('km_geo_code', countryCode);
-            }
-          });
-      })
-      .catch(function (e) {
-        console.warn('[KM] Geo failed (defaulting to LKR):', e.message);
-      })
+    var geoPromise = (function () {
+      var cachedGeo = sessionStorage.getItem('km_geo_code');
+      if (cachedGeo) {
+        countryCode  = cachedGeo;
+        currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || COUNTRY_CURRENCY_MAP['LK'];
+        return Promise.resolve();
+      }
+      return fetchWithTimeout(GEO_URL, 3500)
+        .then(function (r) {
+          if (!r.ok) throw new Error('Geo ' + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          if (data && data.country_code) {
+            countryCode  = data.country_code.toUpperCase();
+            currencyInfo = COUNTRY_CURRENCY_MAP[countryCode] || COUNTRY_CURRENCY_MAP['LK'];
+            sessionStorage.setItem('km_geo_code', countryCode);
+          }
+        })
+        .catch(function (e) {
+          console.warn('[KM] Geo failed (defaulting to LKR):', e.message);
+        });
+    })();
 
-      /* Step 3 — Fetch USD Exchange Rates (with sessionStorage cache) */
+    /* ── Once sheet + geo resolve, fetch rates if needed, then apply ── */
+    Promise.all([sheetPromise, geoPromise])
       .then(function () {
         if (currencyInfo.code === 'LKR') return null;
 
@@ -385,8 +433,6 @@
       .catch(function (e) {
         console.warn('[KM] Rates failed (will use LKR):', e.message);
       })
-
-      /* Step 4 — Compute rate and apply */
       .then(function () {
         var rate = 1; // LKR → LKR
 
@@ -407,6 +453,9 @@
       })
       .catch(function (e) {
         console.error('[KM] Fatal:', e);
+        // On total failure, at least remove skeletons to show fallback HTML prices
+        var allPrices = document.querySelectorAll('.price-loading');
+        allPrices.forEach(function (el) { el.classList.remove('price-loading'); });
       });
   }
 
