@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You & Guest Connect | Kites Mountain Hotel & Resort - Badulla</title>
+  <meta name="title" content="Thank You & Guest Connect | Kites Mountain Hotel & Resort - Badulla" />
+  <meta name="description" content="Thank you for staying at Kites Mountain Hotel & Resort in Badulla. Connect with us on social media, share your review on Google, or chat with our team." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.kitesmountainhotel.com/connect" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.kitesmountainhotel.com/connect" />
+  <meta property="og:title" content="Thank You for Staying With Us! | Kites Mountain Hotel & Resort" />
+  <meta property="og:description" content="We hope you enjoyed your stay in Badulla! Share your experience, follow us, or contact our team directly." />
+  <meta property="og:image" content="https://www.kitesmountainhotel.com/images/pool.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.kitesmountainhotel.com/connect" />
+  <meta name="twitter:title" content="Thank You & Guest Connect | Kites Mountain Hotel & Resort" />
+  <meta name="twitter:description" content="We hope you enjoyed your stay in Badulla! Share your experience, follow us, or contact our team directly." />
+  <meta name="twitter:image" content="https://www.kitesmountainhotel.com/images/pool.webp" />
+
+  <!-- Favicon Package -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0d0d1a" />
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* CSS Reset & Base */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-light: #F3E5AB;
+      --gold-dark: #9B731B;
+      --gold-glow: rgba(212, 175, 55, 0.4);
+      --bg-dark: #0a0a12;
+      --card-bg: rgba(18, 20, 32, 0.78);
+      --text-white: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.82);
+      --text-dim: rgba(255, 255, 255, 0.6);
+      --radius-card: 24px;
+      --radius-btn: 50px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        linear-gradient(180deg, rgba(8, 9, 15, 0.82) 0%, rgba(13, 14, 24, 0.90) 100%),
+        url('/images/pool.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    /* Main Container Card */
+    .connect-container {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      animation: connectFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .connect-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: var(--radius-card);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(212, 175, 55, 0.08);
+      padding: 40px 24px 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .connect-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold-primary) 50%, transparent 100%);
+    }
+
+    /* Header Section */
+    .header-section {
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-wrapper {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-primary);
+      padding: 4px;
+      background: rgba(10, 10, 18, 0.75);
+      box-shadow: 0 0 25px var(--gold-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .logo-wrapper:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.6);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .primary-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.65rem, 5vw, 2.1rem);
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.28;
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+
+    .primary-heading span {
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--gold-light) 60%, var(--gold-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.94rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* Action Buttons Stack */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+
+    .btn-connect {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 20px;
+      border-radius: var(--radius-btn);
+      font-size: 0.93rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .btn-connect:hover {
+      transform: translateY(-3px);
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+      color: var(--text-white);
+    }
+
+    .btn-connect:active {
+      transform: translateY(-1px) scale(0.99);
+    }
+
+    .btn-content {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+      flex: 1;
+    }
+
+    .btn-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .btn-connect:hover .btn-icon-wrap {
+      transform: scale(1.1);
+      background: rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-text {
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: 0.1px;
+    }
+
+    .btn-arrow {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      opacity: 0.7;
+      transition: var(--transition);
+      margin-left: 8px;
+    }
+
+    .btn-connect:hover .btn-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* Button 1: Google Review Special Glowing Highlight */
+    .btn-google-highlight {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(155, 115, 27, 0.35) 100%);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 
+        0 0 20px rgba(212, 175, 55, 0.35),
+        inset 0 0 15px rgba(212, 175, 55, 0.15);
+      animation: pulseGoldGlow 3s infinite alternate;
+    }
+
+    .btn-google-highlight:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.38) 0%, rgba(155, 115, 27, 0.48) 100%);
+      box-shadow: 
+        0 0 30px rgba(212, 175, 55, 0.6),
+        inset 0 0 20px rgba(212, 175, 55, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .btn-google-highlight .btn-icon-wrap {
+      background: rgba(212, 175, 55, 0.3);
+      color: #FFD700;
+    }
+
+    .badge-valued {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--gold-primary);
+      color: #0a0a12;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Individual Icon Accent Colors */
+    .icon-google { color: #FFD700; }
+    .icon-instagram { color: #E1306C; }
+    .icon-tiktok { color: #00F2FE; }
+    .icon-facebook { color: #1877F2; }
+    .icon-website { color: var(--gold-primary); }
+    .icon-whatsapp { color: #25D366; }
+
+    /* Footer Section */
+    .connect-footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding-top: 24px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-tagline {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gold-light);
+      line-height: 1.5;
+    }
+
+    .footer-contact {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-contact a {
+      color: var(--text-white);
+      text-decoration: underline;
+      transition: var(--transition);
+    }
+
+    .footer-contact a:hover {
+      color: var(--gold-primary);
+    }
+
+    .footer-bottom-link {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .footer-bottom-link a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-bottom-link a:hover {
+      color: var(--gold-primary);
+      text-decoration: underline;
+    }
+
+    /* Keyframe Animations */
+    @keyframes connectFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGoldGlow {
+      0% {
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3), inset 0 0 10px rgba(212, 175, 55, 0.1);
+      }
+      100% {
+        box-shadow: 0 0 28px rgba(212, 175, 55, 0.55), inset 0 0 18px rgba(212, 175, 55, 0.25);
+      }
+    }
+
+    /* Media Queries for Small Screens */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 12px;
+      }
+      .connect-card {
+        padding: 32px 18px 24px 18px;
+        border-radius: 20px;
+      }
+      .logo-wrapper {
+        width: 80px;
+        height: 80px;
+      }
+      .btn-connect {
+        min-height: 52px;
+        padding: 12px 16px;
+        font-size: 0.88rem;
+      }
+      .btn-icon-wrap {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="connect-container">
+    <div class="connect-card">
+      
+      <!-- A. Header Section (Centered) -->
+      <header class="header-section">
+        <div class="logo-wrapper">
+          <img src="/images/kites_logo_2.png" alt="Kites Mountain Hotel & Resort Logo" class="logo-img" />
+        </div>
+        <h1 class="primary-heading">
+          Thank You for Staying With Us! <span>⛰️✨</span>
+        </h1>
+        <p class="subtitle">
+          We hope you enjoyed your stay at Kites Mountain Hotel &amp; Resort. Your feedback &amp; support mean the world to our team!
+        </p>
+      </header>
+
+      <!-- B. Interactive Full-Width Action Buttons -->
+      <section class="action-buttons" aria-label="Guest Connect Options">
+        
+        <!-- Button 1 (Gold Glowing Border Highlight): Google Review -->
+        <a href="https://g.page/r/CcIjBkBSgSZhEBM/review" target="_blank" rel="noopener noreferrer" class="btn-connect btn-google-highlight">
+          <div class="btn-content">
+            <div class="btn-icon-wrap">
+              <i class="fa-solid fa-star icon-google"></i>
+            </div>
+            <span class="btn-text">
+              Share Your Experience on Google <span class="badge-valued">REVIEW</span>
+            </span>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <!-- Button 2: Instagram -->
+        <a href="https://www.instagram.com/kitesmountain?igsi=MWwxdWNndDJ2cDdpMA==" target="_blank" rel="noopener noreferrer" class="btn-connect">
+          <div class="btn-content">
+            <div class="btn-icon-wrap">
+              <i class="fa-brands fa-instagram icon-instagram"></i>
+            </div>
+            <span class="btn-text">Follow Us &amp; Tag Your Photos on Instagram</span>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <!-- Button 3: TikTok -->
+        <a href="https://www.tiktok.com/@kites_mountain?_r=1&_t=ZS-99EGSHZnKTZ" target="_blank" rel="noopener noreferrer" class="btn-connect">
+          <div class="btn-content">
+            <div class="btn-icon-wrap">
+              <i class="fa-brands fa-tiktok icon-tiktok"></i>
+            </div>
+            <span class="btn-text">Watch Our Moments on TikTok</span>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <!-- Button 4: Facebook -->
+        <a href="https://www.facebook.com/share/1HqKeVVnjR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="btn-connect">
+          <div class="btn-content">
+            <div class="btn-icon-wrap">
+              <i class="fa-brands fa-facebook-f icon-facebook"></i>
+            </div>
+            <span class="btn-text">Connect With Us on Facebook</span>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <!-- Button 5: Website -->
+        <a href="https://www.kitesmountainhotel.com" target="_blank" rel="noopener noreferrer" class="btn-connect">
+          <div class="btn-content">
+            <div class="btn-icon-wrap">
+              <i class="fa-solid fa-globe icon-website"></i>
+            </div>
+            <span class="btn-text">Visit Official Website &amp; Book Direct</span>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+        <!-- Button 6: WhatsApp -->
+        <a href="https://wa.me/94775243432" target="_blank" rel="noopener noreferrer" class="btn-connect">
+          <div class="btn-content">
+            <div class="btn-icon-wrap">
+              <i class="fa-brands fa-whatsapp icon-whatsapp"></i>
+            </div>
+            <span class="btn-text">Chat With Us / Direct WhatsApp</span>
+          </div>
+          <i class="fa-solid fa-chevron-right btn-arrow"></i>
+        </a>
+
+      </section>
+
+      <!-- C. Footer Section (Centered) -->
+      <footer class="connect-footer">
+        <p class="footer-tagline">
+          Tag @KitesMountainHotel in your posts to be featured on our page!
+        </p>
+        <p class="footer-contact">
+          Reservations: <a href="tel:+94775243432">+94 77 524 3432</a> | Dunhinda Road, Badulla, Sri Lanka.
+        </p>
+        <div class="footer-bottom-link">
+          <p>&copy; 2026 Kites Mountain Hotel &amp; Resort. <a href="index.html">Back to Main Site</a></p>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
